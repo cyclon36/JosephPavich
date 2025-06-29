@@ -36,24 +36,24 @@
       max-width: 16vw;
       min-width: 0;
       object-fit: contain;
-      border: 4px solid #ffa726;
-      border-radius: 14px;
-      background: #fff8e1;
-      box-shadow:
-        0 0 0 4px #ffe0b2,
-        0 4px 12px 0 #ffb30099,
-        inset 0 2px 8px #bc6c25cc,
-        inset 0 -3px 12px #ffedb6cc;
-      transition: box-shadow 0.2s, border-color 0.2s;
       display: block;
+
+      /* Gradient border magic */
+      border: 4px solid transparent;
+      border-radius: 16px;
+      background: 
+        linear-gradient(#fff8e1, #fff8e1) padding-box,
+        linear-gradient(120deg, #bc6c25, #ff9800 35%, #ffe082 65%, #ffb300 85%, #bc6c25) border-box;
+      box-shadow:
+        0 0 0 6px #ffe08233,
+        0 6px 20px 0 #bc6c2577;
+      transition: box-shadow 0.2s, border-color 0.2s;
     }
     .retro-bar img:hover {
       box-shadow:
-        0 0 0 4px #ffd180,
-        0 8px 24px 0 #ff980099,
-        inset 0 4px 16px #bc6c25e6,
-        inset 0 -6px 24px #ffedb6ee;
-      border-color: #fb8c00;
+        0 0 0 8px #ffe08266,
+        0 8px 28px 0 #bc6c25bb;
+      border-color: transparent;
     }
     @media (max-width: 900px) {
       .retro-bar img {
