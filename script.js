@@ -3,50 +3,50 @@ const track = document.getElementById('scroll-track');
 const images = track ? track.querySelectorAll('img') : [];
 const numImages = images.length;
 
-// Set proper heights and widths
-function setTrackAndContainer() {
+function setDimensions() {
   if (!track || !container) return;
+  // Each image 100vw wide, height 50vh
   const vw = window.innerWidth;
-  const vh = window.innerHeight * 0.5; // 50vh for slideshow
+  const vh = window.innerHeight * 0.5;
   track.style.width = (numImages * vw) + 'px';
   track.style.height = vh + 'px';
   images.forEach(img => {
     img.style.width = vw + 'px';
     img.style.height = vh + 'px';
   });
-  container.style.height = (numImages * window.innerHeight) + 'px'; // 100vh per image
+  // Scroll area: (numImages) * 100vh, so you get one "screen" per image horizontally
+  container.style.height = (numImages * window.innerHeight) + 'px';
 }
 
 function handleScroll() {
-  if (!container || !track || numImages === 0) {
-    document.body.style.overflow = '';
-    return;
-  }
+  if (!container || !track || numImages === 0) return;
   const windowHeight = window.innerHeight;
   const containerTop = container.offsetTop;
   const containerHeight = container.offsetHeight;
   const scrollY = window.scrollY;
 
-  // Use full 100vh per image for vertical scroll area
-  if (scrollY >= containerTop && scrollY < containerTop + containerHeight - windowHeight) {
+  // This is the total scrollable range for the slideshow
+  const start = containerTop;
+  const end = containerTop + containerHeight - windowHeight;
+  if (scrollY >= start && scrollY <= end) {
     const totalScrollable = containerHeight - windowHeight;
-    const progress = (scrollY - containerTop) / totalScrollable;
+    const progress = Math.min(Math.max((scrollY - containerTop) / totalScrollable, 0), 1);
     const maxTranslate = track.offsetWidth - window.innerWidth;
     const translateX = -maxTranslate * progress;
     track.style.transform = `translateX(${translateX}px)`;
-    document.body.style.overflow = 'hidden'; // Lock scroll
+    document.body.style.overflow = 'hidden';
   } else {
-    track.style.transform = 'translateX(0)';
+    // snap back if outside range
+    track.style.transform = scrollY < start ? 'translateX(0)' : `translateX(-${track.offsetWidth - window.innerWidth}px)`;
     document.body.style.overflow = '';
   }
 }
 
 window.addEventListener('scroll', handleScroll);
 window.addEventListener('resize', () => {
-  setTrackAndContainer();
+  setDimensions();
   handleScroll();
 });
 
-// Initial setup
-setTrackAndContainer();
+setDimensions();
 handleScroll();
