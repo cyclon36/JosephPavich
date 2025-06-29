@@ -40,7 +40,6 @@
     section h2 {
       margin-top: 0;
     }
-    /* Slideshow styles */
     #scroll-container {
       position: relative;
       background: #222;
@@ -65,11 +64,10 @@
     #scroll-track img {
       width: 100vw;
       height: 50vh;
-      object-fit: cover;
+      object-fit: contain;   /* No cropping */
       background: #555;
       display: block;
       flex-shrink: 0;
-      /* Prevents image from being less than full viewport */
       min-width: 100vw;
       min-height: 50vh;
     }
@@ -94,26 +92,7 @@
       <li><a href="#goals">Goals</a></li>
     </ul>
   </nav>
-  <section id="intro">
-    <h2>Intro</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at erat nec sapien dapibus fermentum. Mauris egestas, purus non rutrum consequat, sapien metus blandit enim, in finibus ligula magna id turpis.</p>
-  </section>
-  <section id="background">
-    <h2>Professional Background</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl et aliquet placerat, tellus sapien laoreet ante, ut faucibus augue metus nec magna.</p>
-  </section>
-  <section id="achievements">
-    <h2>Achievements</h2>
-    <p>Nullam a arcu euismod, luctus enim nec, ultricies sem. Nam ac urna nec enim cursus facilisis.</p>
-  </section>
-  <section id="collaborations">
-    <h2>Collaborations</h2>
-    <p>Praesent in tristique metus. Sed id dolor dictum, rutrum metus a, cursus arcu.</p>
-  </section>
-  <section id="goals">
-    <h2>Goals</h2>
-    <p>Fusce malesuada, risus eu ornare cursus, lorem tellus dictum risus, eu sodales ex est id ligula.</p>
-  </section>
+  <!-- ...other sections... -->
   <div class="spacer"></div>
   <section id="scroll-container">
     <div id="scroll-wrapper">
