@@ -3,17 +3,11 @@ const track = document.getElementById('scroll-track');
 const images = track ? track.querySelectorAll('img') : [];
 const numImages = images.length;
 
-// Set image and track dimensions for full-width, cropped images
-function setDimensions() {
-  if (!track || !container) return;
-  const vw = window.innerWidth;
-  const vh = window.innerHeight * 0.5;
-  track.style.width = (numImages * vw) + 'px';
-  track.style.height = vh + 'px';
-  images.forEach(img => {
-    img.style.width = vw + 'px';
-    img.style.height = vh + 'px';
-  });
+// Don't set widths in JS! Let CSS handle image and track sizing.
+
+function setContainerHeight() {
+  // Container height = numImages * window.innerHeight
+  if (!container) return;
   container.style.height = (numImages * window.innerHeight) + 'px';
 }
 
@@ -28,21 +22,29 @@ function handleScroll() {
   if (scrollY >= start && scrollY <= end) {
     const totalScrollable = containerHeight - windowHeight;
     const progress = Math.min(Math.max((scrollY - containerTop) / totalScrollable, 0), 1);
-    const maxTranslate = track.offsetWidth - window.innerWidth;
+    const maxTranslate = track.scrollWidth - window.innerWidth;
     const translateX = -maxTranslate * progress;
     track.style.transform = `translateX(${translateX}px)`;
     document.body.style.overflow = 'hidden';
   } else {
-    track.style.transform = scrollY < start ? 'translateX(0)' : `translateX(-${track.offsetWidth - window.innerWidth}px)`;
+    // snap back if outside range
+    track.style.transform = scrollY < start
+      ? 'translateX(0)'
+      : `translateX(-${track.scrollWidth - window.innerWidth}px)`;
     document.body.style.overflow = '';
   }
 }
 
 window.addEventListener('scroll', handleScroll);
 window.addEventListener('resize', () => {
-  setDimensions();
+  setContainerHeight();
   handleScroll();
 });
 
-setDimensions();
+window.addEventListener('DOMContentLoaded', () => {
+  setContainerHeight();
+  handleScroll();
+});
+
+setContainerHeight();
 handleScroll();
