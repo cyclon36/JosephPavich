@@ -16,9 +16,6 @@
       background: #f8f6f0;
     }
     .retro-bar {
-      position: fixed;
-      left: 0;
-      bottom: 0;
       width: 100vw;
       display: flex;
       flex-direction: column;
@@ -30,12 +27,13 @@
       z-index: 100;
       padding: 0;
       min-height: 110px;
+      position: relative;
     }
     .image-row {
       display: flex;
       flex-direction: row;
       justify-content: center;
-      align-items: flex-end;
+      align-items: center;
       gap: 18px;
       width: 100vw;
       padding-top: 10px;
@@ -77,18 +75,21 @@
           #e06348 0,      /* coral */
           #e06348 8px,
           #fffdf5 8px,
+          #fffdf5 10px,
           #edc061 10px,   /* gold */
           #edc061 18px,
           #fffdf5 18px,
+          #fffdf5 20px,
           #eeb75a 20px,   /* mustard */
           #eeb75a 28px,
           #fffdf5 28px,
+          #fffdf5 30px,
           #24a098 30px,   /* teal */
           #24a098 38px,
           #fffdf5 38px,
+          #fffdf5 40px,
           #253746 40px,   /* navy */
-          #253746 48px,
-          #fffdf5 48px
+          #253746 48px
         );
       border-radius: 8px;
       overflow: hidden;
@@ -118,7 +119,7 @@
 <body>
   <div class="content">
     <h1>Welcome to Joseph Pavich’s Portfolio</h1>
-    <p>This is sample content. Scroll down to see the retro image bar at the bottom!</p>
+    <p>This is sample content. Scroll down to see the retro image bar at the center!</p>
   </div>
   <div class="retro-bar">
     <div class="image-row">
