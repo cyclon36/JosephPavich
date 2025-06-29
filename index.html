@@ -53,21 +53,21 @@
     }
 
     #scroll-wrapper {
-      height: 100vh;   /* always 100vh for sticky area */
-      width: 100vw;
-      overflow: hidden;
       position: sticky;
       top: 0;
+      width: 100vw;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     #scroll-track {
       display: flex;
+      align-items: center;
       height: 50vh;
       transition: transform 0.1s ease-out;
-      align-items: center;
     }
 
     #scroll-track img {
@@ -76,6 +76,7 @@
       object-fit: contain;
       background: #555;
       display: block;
+      flex-shrink: 0;
     }
 
     .spacer {
