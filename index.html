@@ -23,65 +23,65 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 24px 0 24px 0;
+      padding: 18px 0 20px 0;
       gap: 18px;
-      border-top: 8px solid #8d5524; /* dark brown border */
-      /* Sunset stripes using CSS gradients */
-      background: 
+      border-top: 8px solid #382417;
+      /* 70s horizontal stripes background */
+      background:
         repeating-linear-gradient(
-          to right,
-          #bc6c25,   /* brown */
-          #bc6c25 60px,
-          #ff9800 60px,
-          #ff9800 120px,
-          #ffe082 120px,
-          #ffe082 180px,
-          #ffb300 180px,
-          #ffb300 240px,
-          #bc6c25 240px,
-          #bc6c25 300px
+          to top,
+          #e06348 0px,     /* coral/red-orange */
+          #e06348 16px,
+          #edc061 16px,    /* gold */
+          #edc061 32px,
+          #eeb75a 32px,    /* mustard */
+          #eeb75a 48px,
+          #24a098 48px,    /* teal */
+          #24a098 64px,
+          #253746 64px,    /* navy */
+          #253746 80px
         ),
-        #ffe7b3;
-      box-shadow: 0 -2px 24px rgba(140,85,36,0.15);
+        #fbe6d5; /* pale peach base */
+      box-shadow: 0 -2px 24px rgba(40,30,20,0.10);
       z-index: 100;
-      min-height: 120px;
+      min-height: 96px;
     }
     .retro-bar img {
-      height: 100px;
+      height: 80px;
       width: auto;
       max-width: 16vw;
       min-width: 0;
       object-fit: contain;
       display: block;
-      border: 4px solid #8d5524;
+      border: 4px solid #382417;
       border-radius: 16px;
       background: #fff8e1;
-      box-shadow: 0 4px 12px 0 #ffb30044;
+      box-shadow: 0 4px 12px 0 #e0634844;
       transition: box-shadow 0.2s, border-color 0.2s;
     }
     .retro-bar img:hover {
       box-shadow:
         0 0 0 8px #ffe08266,
-        0 8px 28px 0 #bc6c25bb;
-      border-color: #bc6c25;
+        0 8px 28px 0 #253746bb;
+      border-color: #e06348;
     }
     @media (max-width: 900px) {
       .retro-bar img {
-        height: 60px;
+        height: 48px;
         max-width: 22vw;
       }
       .retro-bar {
-        min-height: 80px;
+        min-height: 60px;
         padding: 12px 0 12px 0;
       }
     }
     @media (max-width: 600px) {
       .retro-bar img {
-        height: 40px;
+        height: 32px;
         max-width: 32vw;
       }
       .retro-bar {
-        min-height: 54px;
+        min-height: 40px;
         padding: 6px 0 6px 0;
       }
     }
