@@ -2,9 +2,8 @@ const container = document.getElementById('scroll-container');
 const track = document.getElementById('scroll-track');
 const images = track ? track.querySelectorAll('img') : [];
 const numImages = images.length;
-let ticking = false;
 
-// Resize track and images to fit viewport
+// Set the width of the track and images on load and resize
 function setTrackWidth() {
   if (!track) return;
   track.style.width = (numImages * window.innerWidth) + 'px';
@@ -14,7 +13,6 @@ function setTrackWidth() {
   });
 }
 
-// Horizontal scroll effect mapped to vertical scroll
 function handleScroll() {
   if (!container || !track || numImages === 0) {
     document.body.style.overflow = '';
@@ -39,16 +37,7 @@ function handleScroll() {
   }
 }
 
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      handleScroll();
-      ticking = false;
-    });
-    ticking = true;
-  }
-});
-
+window.addEventListener('scroll', handleScroll);
 window.addEventListener('resize', () => {
   setTrackWidth();
   handleScroll();
