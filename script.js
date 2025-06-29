@@ -3,6 +3,7 @@ const track = document.getElementById('scroll-track');
 const images = track ? track.querySelectorAll('img') : [];
 const numImages = images.length;
 
+// Set image and track dimensions for full-width, cropped images
 function setDimensions() {
   if (!track || !container) return;
   const vw = window.innerWidth;
