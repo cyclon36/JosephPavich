@@ -5,94 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joseph Pavich</title>
   <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #fff;
-      padding: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-
-    section {
-      padding: 120px 40px 60px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    section h2 {
-      margin-top: 0;
-    }
-
-    /* Slideshow styles */
-    #scroll-container {
-      position: relative;
-      background: #222;
-    }
-
-    #scroll-wrapper {
-      position: sticky;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    #scroll-track {
-      display: flex;
-      align-items: center;
-      height: 50vh;
-      transition: transform 0.1s ease-out;
-    }
-
-    #scroll-track img {
-      width: 100vw;
-      height: 50vh;
-      object-fit: contain;
-      background: #555;
-      display: block;
-      flex-shrink: 0;
-    }
-
-    .spacer {
-      height: 120vh;
-      background: #fff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 80px 20px;
-      color: #888;
-    }
+    body { margin: 0; font-family: sans-serif; scroll-behavior: smooth; }
+    nav { position: fixed; top: 0; width: 100%; background: #fff; padding: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 10; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; justify-content: center; margin: 0; padding: 0; }
+    nav a { text-decoration: none; color: #333; font-weight: bold; }
+    section { padding: 120px 40px 60px; max-width: 900px; margin: auto; }
+    section h2 { margin-top: 0; }
+    #scroll-container { position: relative; background: #222; }
+    #scroll-wrapper { position: sticky; top: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    #scroll-track { display: flex; align-items: center; height: 50vh; transition: transform 0.1s ease-out; }
+    #scroll-track img { width: 100vw; height: 50vh; object-fit: contain; background: #555; display: block; flex-shrink: 0; }
+    .spacer { height: 120vh; background: #fff; }
+    footer { text-align: center; padding: 80px 20px; color: #888; }
   </style>
 </head>
 <body>
-
   <nav>
     <ul>
       <li><a href="#intro">Intro</a></li>
@@ -102,34 +29,8 @@
       <li><a href="#goals">Goals</a></li>
     </ul>
   </nav>
-
-  <section id="intro">
-    <h2>Intro</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at erat nec sapien dapibus fermentum. Mauris egestas, purus non rutrum consequat, sapien metus blandit enim, in finibus ligula magna id turpis.</p>
-  </section>
-
-  <section id="background">
-    <h2>Professional Background</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl et aliquet placerat, tellus sapien laoreet ante, ut faucibus augue metus nec magna.</p>
-  </section>
-
-  <section id="achievements">
-    <h2>Achievements</h2>
-    <p>Nullam a arcu euismod, luctus enim nec, ultricies sem. Nam ac urna nec enim cursus facilisis.</p>
-  </section>
-
-  <section id="collaborations">
-    <h2>Collaborations</h2>
-    <p>Praesent in tristique metus. Sed id dolor dictum, rutrum metus a, cursus arcu.</p>
-  </section>
-
-  <section id="goals">
-    <h2>Goals</h2>
-    <p>Fusce malesuada, risus eu ornare cursus, lorem tellus dictum risus, eu sodales ex est id ligula.</p>
-  </section>
-
+  <!-- ...other sections... -->
   <div class="spacer"></div>
-
   <section id="scroll-container">
     <div id="scroll-wrapper">
       <div id="scroll-track">
@@ -142,9 +43,7 @@
       </div>
     </div>
   </section>
-
   <div class="spacer"></div>
-
   <footer>
     &copy; 2025 Joseph Pavich. All rights reserved.
   </footer>
