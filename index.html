@@ -3,61 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joseph Pavich – Portfolio</title>
+  <title>Joseph Pavich</title>
   <style>
-    * {
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
-    body {
-      font-family: sans-serif;
-      overflow-x: hidden;
-    }
-    header, footer {
-      padding: 2rem;
-      text-align: center;
-      background: #f3f3f3;
-    }
-    nav {
-      padding: 1rem 2rem;
-      background: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    nav ul {
-      display: flex;
-      gap: 1rem;
-      list-style: none;
-    }
+
     nav a {
       text-decoration: none;
       color: #333;
       font-weight: bold;
     }
 
-    #scroll-gallery {
+    section {
+      padding: 120px 40px 60px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section h2 {
+      margin-top: 0;
+    }
+
+    #scroll-container {
       position: relative;
       height: 100vh;
       overflow: hidden;
-      margin-top: 4rem;
     }
-    .horizontal-scroll {
+
+    #scroll-wrapper {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
       position: sticky;
       top: 0;
+    }
+
+    #scroll-track {
       display: flex;
-      height: 100vh;
-      width: max-content;
+      width: 600vw; /* 6 images */
+      height: 100%;
+      transition: transform 0.1s ease-out;
     }
-    .frame {
+
+    #scroll-track img {
+      width: 100vw;
       height: 100vh;
-      flex-shrink: 0;
+      object-fit: cover;
     }
-    .frame img {
-      height: 100vh;
-      display: block;
+
+    footer {
+      text-align: center;
+      padding: 80px 20px;
+      color: #888;
     }
   </style>
 </head>
@@ -65,60 +84,19 @@
 
   <nav>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#intro">Intro</a></li>
+      <li><a href="#background">Professional Background</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#collaborations">Collaborations</a></li>
+      <li><a href="#goals">Goals</a></li>
     </ul>
   </nav>
 
-  <header id="home">
-    <h1>Welcome to My Portfolio</h1>
-    <p>Explore my creative journey.</p>
-  </header>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Your intro goes here.</p>
+  <section id="intro">
+    <h2>Intro</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at erat nec sapien dapibus fermentum. Mauris egestas, purus non rutrum consequat, sapien metus blandit enim, in finibus libero justo ac mauris.</p>
   </section>
 
-  <section id="work">
-    <h2>My Work</h2>
-    <p>Details and projects.</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Let’s connect!</p>
-  </section>
-
-  <!-- Scroll Frame Section (No overlays) -->
-  <section id="scroll-gallery">
-    <div class="horizontal-scroll">
-      <div class="frame"><img src="frame1.png" alt="Frame 1" /></div>
-      <div class="frame"><img src="frame2.png" alt="Frame 2" /></div>
-      <div class="frame"><img src="frame3.png" alt="Frame 3" /></div>
-      <div class="frame"><img src="frame4.png" alt="Frame 4" /></div>
-      <div class="frame"><img src="frame5.png" alt="Frame 5" /></div>
-      <div class="frame"><img src="frame6.png" alt="Frame 6" /></div>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Joseph Pavich</p>
-  </footer>
-
-  <script>
-    const container = document.querySelector('.horizontal-scroll');
-    window.addEventListener('scroll', () => {
-      container.scrollLeft = window.scrollY;
-    });
-  </script>
-<div id="scroll-animation" style="position: relative; width: 100%; height: 100vh; overflow: hidden;">
-  <img id="frameImage" src="frame1.png" style="width: 100%; height: auto;" alt="Scrolling frame">
-</div>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+  <section id="background">
+    <h2>Professional Background</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl et aliquet placerat, tellus sapien laoreet ante, ut faucibus augue metus nec magna. Sed t
