@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joseph Pavich</title>
+  <title>Retro Stripe Example</title>
   <style>
     body {
       margin: 0;
@@ -23,20 +23,28 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 18px 0 20px 0;
+      padding: 24px 0 24px 0;
       gap: 18px;
-      border-top: 8px solid #8d5524; /* brown panel border */
-      /* Retro sunset gradient background */
-      background: linear-gradient(
-        120deg,
-        #bc6c25 0%,
-        #ff9800 40%,
-        #ffe082 60%,
-        #ffb300 85%,
-        #bc6c25 100%
-      );
+      border-top: 8px solid #8d5524; /* dark brown border */
+      /* Sunset stripes using CSS gradients */
+      background: 
+        repeating-linear-gradient(
+          to right,
+          #bc6c25,   /* brown */
+          #bc6c25 60px,
+          #ff9800 60px,
+          #ff9800 120px,
+          #ffe082 120px,
+          #ffe082 180px,
+          #ffb300 180px,
+          #ffb300 240px,
+          #bc6c25 240px,
+          #bc6c25 300px
+        ),
+        #ffe7b3;
       box-shadow: 0 -2px 24px rgba(140,85,36,0.15);
       z-index: 100;
+      min-height: 120px;
     }
     .retro-bar img {
       height: 100px;
@@ -45,11 +53,10 @@
       min-width: 0;
       object-fit: contain;
       display: block;
-      border: 4px solid #8d5524;  /* solid brown border */
+      border: 4px solid #8d5524;
       border-radius: 16px;
       background: #fff8e1;
-      box-shadow:
-        0 4px 12px 0 #ffb30044;
+      box-shadow: 0 4px 12px 0 #ffb30044;
       transition: box-shadow 0.2s, border-color 0.2s;
     }
     .retro-bar img:hover {
@@ -63,11 +70,19 @@
         height: 60px;
         max-width: 22vw;
       }
+      .retro-bar {
+        min-height: 80px;
+        padding: 12px 0 12px 0;
+      }
     }
     @media (max-width: 600px) {
       .retro-bar img {
         height: 40px;
         max-width: 32vw;
+      }
+      .retro-bar {
+        min-height: 54px;
+        padding: 6px 0 6px 0;
       }
     }
   </style>
