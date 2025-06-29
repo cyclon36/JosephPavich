@@ -8,27 +8,26 @@
     body {
       margin: 0;
       font-family: sans-serif;
+      background: #f9f7f3;
     }
-    /* Simple page content for testing */
     .content {
       min-height: 80vh;
       padding: 2rem;
       background: #f6f4e6;
     }
-    /* Retro image bar styles */
     .retro-bar {
       position: fixed;
       left: 0;
       bottom: 0;
       width: 100vw;
-      background: #ffe7b3; /* pale retro yellow */
+      background: #ffe7b3;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px 0;
+      padding: 18px 0 20px 0;
       gap: 18px;
-      border-top: 8px solid #ff9800; /* retro orange border */
-      box-shadow: 0 -2px 24px rgba(0,0,0,0.10);
+      border-top: 8px solid #ffa726;
+      box-shadow: 0 -2px 24px rgba(255,152,0,0.08);
       z-index: 100;
     }
     .retro-bar img {
@@ -38,18 +37,24 @@
       min-width: 0;
       height: auto;
       aspect-ratio: 4/3;
-      border: 4px solid #ff9800; /* thick retro orange border */
-      border-radius: 12px;
+      border: 4px solid #ffa726; /* warm orange */
+      border-radius: 14px;
       background: #fff8e1;
-      box-shadow: 0 2px 8px rgba(255,152,0,0.15);
-      object-fit: contain;
-      transition: box-shadow 0.2s;
+      box-shadow:
+        0 0 0 4px #ffe0b2,                  /* light yellow outer edge */
+        0 4px 12px 0 #ffb30099,             /* orange glow shadow */
+        inset 0 2px 8px #bc6c25cc,          /* brownish retro inset */
+        inset 0 -3px 12px #ffedb6cc;        /* pale yellow bottom inset */
+      transition: box-shadow 0.2s, border-color 0.2s;
     }
     .retro-bar img:hover {
-      box-shadow: 0 4px 16px #ff9800cc;
-      border-color: #ff5722;
+      box-shadow:
+        0 0 0 4px #ffd180,
+        0 8px 24px 0 #ff980099,
+        inset 0 4px 16px #bc6c25e6,
+        inset 0 -6px 24px #ffedb6ee;
+      border-color: #fb8c00;
     }
-    /* Responsive fallback for tiny screens */
     @media (max-width: 600px) {
       .retro-bar img {
         max-width: 16vw;
