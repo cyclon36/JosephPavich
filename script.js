@@ -3,14 +3,17 @@ const track = document.getElementById('scroll-track');
 const images = track ? track.querySelectorAll('img') : [];
 const numImages = images.length;
 
-// Set the width of the track and images on load and resize
-function setTrackWidth() {
-  if (!track) return;
-  track.style.width = (numImages * window.innerWidth) + 'px';
+// Dynamically set track width and container height for perfect scrolling
+function setTrackAndContainer() {
+  if (!track || !container) return;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  track.style.width = (numImages * vw) + 'px';
   images.forEach(img => {
-    img.style.width = window.innerWidth + 'px';
-    img.style.height = window.innerHeight + 'px';
+    img.style.width = vw + 'px';
+    img.style.height = vh + 'px';
   });
+  container.style.height = (numImages * vh) + 'px';
 }
 
 function handleScroll() {
@@ -39,10 +42,10 @@ function handleScroll() {
 
 window.addEventListener('scroll', handleScroll);
 window.addEventListener('resize', () => {
-  setTrackWidth();
+  setTrackAndContainer();
   handleScroll();
 });
 
 // Initial setup
-setTrackWidth();
+setTrackAndContainer();
 handleScroll();
