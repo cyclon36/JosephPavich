@@ -10,7 +10,51 @@
       font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
       background: #fff;
     }
-    /* NAVBAR STYLES */
+    /* Hamburger menu floating (always fixed) */
+    .hamburger-float {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 2001;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08);
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.2s;
+    }
+    .hamburger-float .hamburger-icon {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+    .hamburger-float .hamburger-icon span {
+      display: block;
+      height: 4px;
+      width: 100%;
+      background: #181818;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger-float button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Navbar styles */
     .navbar {
       position: fixed;
       top: 36px;
@@ -19,95 +63,44 @@
       width: 90vw;
       max-width: 1120px;
       background: #fafaf8;
-      border-radius: 32px;
+      border-radius: 28px;
       box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 0 32px;
-      height: 96px;
+      justify-content: space-between;
+      padding: 0 36px;
+      height: 65px; /* ~30% less than previous 96px */
       z-index: 1000;
       transition: top 0.4s cubic-bezier(.4,0,.2,1);
       gap: 0;
     }
     .navbar.hide {
-      top: -120px;
+      top: -90px;
       transition: top 0.35s cubic-bezier(.4,0,.2,1);
     }
-    .navbar .hamburger {
-      position: absolute;
-      left: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      padding: 10px 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 1101;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 48px;
-      width: 48px;
-      transition: background 0.15s;
-    }
-    .navbar .hamburger:hover {
-      background: #ececec;
-    }
-    .hamburger-icon {
-      width: 34px;
-      height: 34px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 7px;
-    }
-    .hamburger-icon span {
-      display: block;
-      height: 4px;
-      width: 34px;
-      background: #181818;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .navbar-title {
-      flex: 1;
-      text-align: center;
-      font-weight: 900;
-      font-size: 3.5rem;
-      color: #181818;
-      letter-spacing: 0.06em;
-      line-height: 1;
-      z-index: 1;
-      user-select: none;
-      pointer-events: none;
-    }
     .navbar-links {
-      position: absolute;
-      right: 32px;
-      top: 50%;
-      transform: translateY(-50%);
       display: flex;
-      gap: 35px;
+      gap: 32px;
       align-items: center;
+      height: 100%;
+      margin-left: 68px; /* space for floating hamburger */
     }
     .navbar-link {
       font-family: inherit;
       text-decoration: none;
       color: #222;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       letter-spacing: 0.09em;
       text-transform: uppercase;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0 8px;
-      height: 48px;
+      padding: 0 7px;
+      height: 36px;
       display: flex;
       align-items: center;
-      border-radius: 10px;
+      border-radius: 8px;
       transition: background 0.18s;
     }
     .navbar-link:hover,
@@ -115,17 +108,34 @@
       background: #ececec;
       outline: none;
     }
-    /* Hamburger Dropdown */
+    .navbar-title {
+      margin-left: auto;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #181818;
+      letter-spacing: 0.07em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    /* Hamburger menu in bar (hidden, for layout only) */
+    .navbar .hamburger-bar {
+      display: none;
+      width: 54px;
+      height: 54px;
+    }
+    /* Dropdown styles */
     .dropdown {
       display: none;
       position: fixed;
-      top: 96px;
-      left: 26px;
+      top: 78px;
+      left: 24px;
       min-width: 170px;
       background: #fafaf8;
       border-radius: 16px;
       box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
-      z-index: 1200;
+      z-index: 2200;
       flex-direction: column;
       padding: 12px 0;
       animation: fadeIn 0.25s;
@@ -157,7 +167,7 @@
       from { opacity: 0; transform: translateY(-10px);}
       to { opacity: 1; transform: translateY(0);}
     }
-    /* HERO SECTION */
+    /* Hero section */
     .hero-bg {
       width: 100vw;
       min-height: 400px;
@@ -176,7 +186,7 @@
     .hero-bg::before {
       content: "";
       display: block;
-      height: 120px;
+      height: 90px;
       width: 100vw;
       position: absolute;
       top: 0;
@@ -184,10 +194,10 @@
       background: transparent;
       z-index: 2;
     }
-    /* CONTENT */
+    /* Content */
     .content {
       max-width: 900px;
-      margin: 120px auto 0 auto;
+      margin: 100px auto 0 auto;
       padding: 2rem;
       background: #f8f6f0;
       border-radius: 18px;
@@ -277,28 +287,24 @@
     /* Responsive styles */
     @media (max-width: 900px) {
       .navbar {
-        height: 60px;
-        border-radius: 18px;
-        padding: 0 10px;
+        height: 42px;
+        border-radius: 12px;
+        padding: 0 5vw;
         max-width: 99vw;
       }
       .navbar-title {
-        font-size: 2.1rem;
+        font-size: 1.4rem;
       }
       .navbar-links {
-        right: 12px;
         gap: 12px;
+        margin-left: 60px;
       }
       .navbar-link {
-        font-size: 0.95rem;
-        height: 32px;
+        font-size: 0.86rem;
+        height: 22px;
       }
-      .hamburger-icon, .hamburger-icon span {
-        width: 22px;
-      }
-      .hamburger-icon span { height: 3px; }
       .dropdown {
-        top: 60px;
+        top: 62px;
         left: 10px;
         min-width: 120px;
         border-radius: 10px;
@@ -307,14 +313,28 @@
         padding: 10px 18px;
         font-size: 0.95rem;
       }
+      .hamburger-float {
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        left: 8px;
+      }
+      .hamburger-float .hamburger-icon {
+        width: 18px;
+        height: 18px;
+        gap: 4px;
+      }
+      .hamburger-float .hamburger-icon span {
+        height: 2.5px;
+      }
       .hero-bg {
-        min-height: 190px;
-        height: 50vw;
+        min-height: 120px;
+        height: 40vw;
         border-radius: 0 0 12px 12px;
       }
       .content {
         padding: 1.2rem;
-        margin: 80px 3vw 0 3vw;
+        margin: 60px 3vw 0 3vw;
       }
       .image-row img {
         height: 48px;
@@ -329,23 +349,23 @@
     }
     @media (max-width: 600px) {
       .navbar {
-        height: 44px;
+        height: 36px;
         border-radius: 10px;
-        padding: 0 2vw;
+        padding: 0 1vw;
       }
       .navbar-title {
-        font-size: 1.1rem;
+        font-size: 0.95rem;
       }
       .navbar-links {
-        right: 2px;
-        gap: 4px;
+        gap: 5px;
+        margin-left: 40px;
       }
       .navbar-link {
-        font-size: 0.7rem;
-        height: 20px;
+        font-size: 0.62rem;
+        height: 16px;
       }
       .hero-bg {
-        min-height: 100px;
+        min-height: 60px;
       }
       .content {
         padding: 0.6rem;
@@ -360,32 +380,49 @@
       .retro-bar {
         min-height: 40px;
       }
+      .hamburger-float {
+        width: 30px;
+        height: 30px;
+        top: 2px;
+        left: 2px;
+      }
+      .hamburger-float .hamburger-icon {
+        width: 12px;
+        height: 12px;
+        gap: 2.5px;
+      }
+      .hamburger-float .hamburger-icon span {
+        height: 1.2px;
+      }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar" id="navbar">
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+  <div class="hamburger-float" id="hamburger-float">
+    <button id="hamburger-btn" aria-label="Menu">
       <span class="hamburger-icon">
         <span></span>
         <span></span>
         <span></span>
       </span>
     </button>
-    <span class="navbar-title">JOSEPH PAVICH</span>
+  </div>
+  <nav class="navbar" id="navbar">
     <div class="navbar-links">
       <a href="#background" class="navbar-link">BACKGROUND</a>
       <a href="#challenges" class="navbar-link">CHALLENGES</a>
       <a href="#values" class="navbar-link">VALUES</a>
       <a href="#goals" class="navbar-link">GOALS</a>
     </div>
-    <div class="dropdown" id="dropdownMenu">
-      <a href="#background" class="dropdown-link">BACKGROUND</a>
-      <a href="#challenges" class="dropdown-link">CHALLENGES</a>
-      <a href="#values" class="dropdown-link">VALUES</a>
-      <a href="#goals" class="dropdown-link">GOALS</a>
-    </div>
+    <span class="navbar-title">JOSEPH PAVICH</span>
+    <div class="hamburger-bar" style="display:none"></div>
   </nav>
+  <div class="dropdown" id="dropdownMenu">
+    <a href="#background" class="dropdown-link">BACKGROUND</a>
+    <a href="#challenges" class="dropdown-link">CHALLENGES</a>
+    <a href="#values" class="dropdown-link">VALUES</a>
+    <a href="#goals" class="dropdown-link">GOALS</a>
+  </div>
   <div class="hero-bg"></div>
   <div class="content">
     <h1>Welcome to Joseph Pavich’s Portfolio</h1>
@@ -403,14 +440,15 @@
     </div>
   </div>
   <script>
-    // Hamburger dropdown
-    const hamburger = document.getElementById('hamburger');
+    // Hamburger dropdown functionality
+    const hamburgerFloat = document.getElementById('hamburger-float');
+    const hamburgerBtn = document.getElementById('hamburger-btn');
     const dropdownMenu = document.getElementById('dropdownMenu');
-    hamburger.addEventListener('click', function(e) {
+    hamburgerBtn.addEventListener('click', function(e) {
       dropdownMenu.classList.toggle('open');
       e.stopPropagation();
     });
-    document.body.addEventListener('click', function(e) {
+    document.body.addEventListener('click', function() {
       dropdownMenu.classList.remove('open');
     });
     dropdownMenu.addEventListener('click', function(e) {
@@ -420,27 +458,17 @@
     // Hide navbar on scroll down, show on scroll up
     let prevScroll = window.scrollY;
     let navbar = document.getElementById('navbar');
-    let ticking = false;
     window.addEventListener('scroll', function() {
-      if (!ticking) {
-        window.requestAnimationFrame(function() {
-          let currScroll = window.scrollY;
-          if (currScroll > prevScroll && currScroll > 80) {
-            // Scrolling down
-            navbar.classList.add('hide');
-          } else {
-            // Scrolling up
-            navbar.classList.remove('hide');
-          }
-          prevScroll = currScroll;
-          ticking = false;
-        });
-        ticking = true;
+      let currScroll = window.scrollY;
+      if (currScroll > prevScroll && currScroll > 60) {
+        // Scrolling down
+        navbar.classList.add('hide');
+      } else {
+        // Scrolling up
+        navbar.classList.remove('hide');
       }
+      prevScroll = currScroll;
     });
-
-    // Sticky hamburger menu (always visible)
-    // Already handled by position:fixed on navbar
   </script>
 </body>
 </html>
