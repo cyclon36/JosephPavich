@@ -4,35 +4,42 @@ const images = track ? track.querySelectorAll('img') : [];
 const numImages = images.length;
 let ticking = false;
 
-// Ensure the track and images are sized to window width
+// Show a warning if images are missing
+if (numImages === 0) {
+  container.innerHTML = '<div style="color:white;background:#c00;padding:2em;text-align:center;font-size:2em;">No images found!<br>Check Frame1.png–Frame6.png are in the right place.</div>';
+}
+
+// Always set a minimum height so the section never collapses
 function setTrackWidth() {
   if (!track) return;
   track.style.width = (numImages * window.innerWidth) + 'px';
   images.forEach(img => {
     img.style.width = window.innerWidth + 'px';
+    img.onerror = () => {
+      img.style.background = '#c00';
+      img.style.color = 'white';
+      img.alt = 'Image missing';
+      img.src = '';
+      img.parentElement.innerHTML += `<div style="position:absolute;left:0;top:40%;width:100vw;text-align:center;color:white;font-size:2em;">Image missing</div>`;
+    };
   });
 }
 
 function handleScroll() {
-  if (!container || !track) return;
+  if (!container || !track || numImages === 0) {
+    document.body.style.overflow = '';
+    return;
+  }
   const rect = container.getBoundingClientRect();
   const windowHeight = window.innerHeight;
-
-  // Calculate if the slideshow is in view
-  const inSlideshow =
-    rect.top < windowHeight &&
-    rect.bottom > 0 &&
-    window.scrollY + windowHeight > container.offsetTop &&
-    window.scrollY < container.offsetTop + container.offsetHeight;
-
+  const inSlideshow = rect.top < windowHeight && rect.bottom > 0;
   if (inSlideshow) {
     // Progress across the slideshow section
     let scrollProgress = Math.min(Math.max((windowHeight - rect.top) / (container.offsetHeight + windowHeight), 0), 1);
     let maxTranslate = track.offsetWidth - window.innerWidth;
     let translateX = -maxTranslate * scrollProgress;
     track.style.transform = `translateX(${translateX}px)`;
-
-    // Only lock scroll if not at the very top or bottom of the section
+    // Only lock scroll if actually in the middle of the slideshow
     if (scrollProgress > 0 && scrollProgress < 1) {
       document.body.style.overflow = 'hidden';
     } else {
