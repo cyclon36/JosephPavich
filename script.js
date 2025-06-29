@@ -3,11 +3,10 @@ const track = document.getElementById('scroll-track');
 const images = track ? track.querySelectorAll('img') : [];
 const numImages = images.length;
 
-// Don't set widths in JS! Let CSS handle image and track sizing.
-
 function setContainerHeight() {
-  // Container height = numImages * window.innerHeight
   if (!container) return;
+  // The scrollable area should be (numImages - 1) * window.innerHeight + window.innerHeight
+  // which is numImages * window.innerHeight
   container.style.height = (numImages * window.innerHeight) + 'px';
 }
 
@@ -19,18 +18,19 @@ function handleScroll() {
   const scrollY = window.scrollY;
   const start = containerTop;
   const end = containerTop + containerHeight - windowHeight;
+
+  // The horizontal track should move exactly one full image per "screenful" of scroll
   if (scrollY >= start && scrollY <= end) {
-    const totalScrollable = containerHeight - windowHeight;
+    const totalScrollable = containerHeight - windowHeight; // This is (numImages - 1) * window.innerHeight
     const progress = Math.min(Math.max((scrollY - containerTop) / totalScrollable, 0), 1);
-    const maxTranslate = track.scrollWidth - window.innerWidth;
+    const maxTranslate = window.innerWidth * (numImages - 1);
     const translateX = -maxTranslate * progress;
     track.style.transform = `translateX(${translateX}px)`;
     document.body.style.overflow = 'hidden';
   } else {
-    // snap back if outside range
     track.style.transform = scrollY < start
       ? 'translateX(0)'
-      : `translateX(-${track.scrollWidth - window.innerWidth}px)`;
+      : `translateX(-${window.innerWidth * (numImages - 1)}px)`;
     document.body.style.overflow = '';
   }
 }
@@ -40,7 +40,6 @@ window.addEventListener('resize', () => {
   setContainerHeight();
   handleScroll();
 });
-
 window.addEventListener('DOMContentLoaded', () => {
   setContainerHeight();
   handleScroll();
