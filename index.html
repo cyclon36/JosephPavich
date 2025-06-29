@@ -8,108 +8,69 @@
     body {
       margin: 0;
       font-family: sans-serif;
-      scroll-behavior: smooth;
     }
-    nav {
+    /* Simple page content for testing */
+    .content {
+      min-height: 80vh;
+      padding: 2rem;
+      background: #f6f4e6;
+    }
+    /* Retro image bar styles */
+    .retro-bar {
       position: fixed;
-      top: 0;
-      width: 100%;
-      background: #fff;
-      padding: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 10;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-    section {
-      padding: 120px 40px 60px;
-      max-width: 900px;
-      margin: auto;
-    }
-    section h2 {
-      margin-top: 0;
-    }
-    #scroll-container {
-      position: relative;
-      background: #222;
-    }
-    #scroll-wrapper {
-      position: sticky;
-      top: 0;
+      left: 0;
+      bottom: 0;
       width: 100vw;
-      height: 100vh;
+      background: #ffe7b3; /* pale retro yellow */
       display: flex;
-      align-items: center;
       justify-content: center;
-      overflow: hidden;
-    }
-    #scroll-track {
-      display: flex;
       align-items: center;
-      height: 50vh;
-      transition: transform 0.1s ease-out;
-      will-change: transform;
+      padding: 16px 0;
+      gap: 18px;
+      border-top: 8px solid #ff9800; /* retro orange border */
+      box-shadow: 0 -2px 24px rgba(0,0,0,0.10);
+      z-index: 100;
     }
-    #scroll-track img {
-      width: 100vw;
-      height: 50vh;
-      object-fit: contain;   /* No cropping */
-      background: #555;
-      display: block;
-      flex-shrink: 0;
-      min-width: 100vw;
-      min-height: 50vh;
+    .retro-bar img {
+      flex: 1 1 0;
+      max-width: calc((100vw - 120px) / 6);
+      max-height: 12vw;
+      min-width: 0;
+      height: auto;
+      aspect-ratio: 4/3;
+      border: 4px solid #ff9800; /* thick retro orange border */
+      border-radius: 12px;
+      background: #fff8e1;
+      box-shadow: 0 2px 8px rgba(255,152,0,0.15);
+      object-fit: contain;
+      transition: box-shadow 0.2s;
     }
-    .spacer {
-      height: 120vh;
-      background: #fff;
+    .retro-bar img:hover {
+      box-shadow: 0 4px 16px #ff9800cc;
+      border-color: #ff5722;
     }
-    footer {
-      text-align: center;
-      padding: 80px 20px;
-      color: #888;
+    /* Responsive fallback for tiny screens */
+    @media (max-width: 600px) {
+      .retro-bar img {
+        max-width: 16vw;
+        max-height: 18vw;
+        aspect-ratio: 1/1;
+      }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="#intro">Intro</a></li>
-      <li><a href="#background">Professional Background</a></li>
-      <li><a href="#achievements">Achievements</a></li>
-      <li><a href="#collaborations">Collaborations</a></li>
-      <li><a href="#goals">Goals</a></li>
-    </ul>
-  </nav>
-  <!-- ...other sections... -->
-  <div class="spacer"></div>
-  <section id="scroll-container">
-    <div id="scroll-wrapper">
-      <div id="scroll-track">
-        <img src="Frame1.png" alt="Frame 1" />
-        <img src="Frame2.png" alt="Frame 2" />
-        <img src="Frame3.png" alt="Frame 3" />
-        <img src="Frame4.png" alt="Frame 4" />
-        <img src="Frame5.png" alt="Frame 5" />
-        <img src="Frame6.png" alt="Frame 6" />
-      </div>
-    </div>
-  </section>
-  <div class="spacer"></div>
-  <footer>
-    &copy; 2025 Joseph Pavich. All rights reserved.
-  </footer>
-  <script src="script.js"></script>
+  <div class="content">
+    <h1>Welcome to Joseph Pavich’s Portfolio</h1>
+    <p>This is sample content. Scroll down to see the retro image bar at the bottom!</p>
+  </div>
+  <div class="retro-bar">
+    <img src="Frame1.png" alt="Frame 1"/>
+    <img src="Frame2.png" alt="Frame 2"/>
+    <img src="Frame3.png" alt="Frame 3"/>
+    <img src="Frame4.png" alt="Frame 4"/>
+    <img src="Frame5.png" alt="Frame 5"/>
+    <img src="Frame6.png" alt="Frame 6"/>
+  </div>
 </body>
 </html>
