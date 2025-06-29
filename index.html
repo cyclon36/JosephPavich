@@ -49,13 +49,12 @@
     /* Slideshow styles */
     #scroll-container {
       position: relative;
-      /* height will be set by JS for bulletproof scroll */
-      min-height: 100vh;
+      min-height: 50vh;
       background: #222;
     }
 
     #scroll-wrapper {
-      height: 100vh;
+      height: 50vh;   /* Half the previous height */
       width: 100vw;
       overflow: hidden;
       position: sticky;
@@ -64,14 +63,14 @@
 
     #scroll-track {
       display: flex;
-      height: 100vh;
+      height: 50vh;
       transition: transform 0.1s ease-out;
     }
 
     #scroll-track img {
       width: 100vw;
-      height: 100vh;
-      object-fit: cover;
+      height: 50vh;
+      object-fit: contain;
       background: #555;
       display: block;
     }
