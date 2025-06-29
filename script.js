@@ -5,22 +5,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const numImages = images.length;
 
   function setContainerHeight() {
-    // Always set the height to exactly numImages * window.innerHeight
     if (!container) return;
+    // Ensure enough vertical scroll for all images
     container.style.height = (numImages * window.innerHeight) + 'px';
   }
 
   function handleScroll() {
     if (!container || !track || numImages === 0) return;
     const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
     const containerTop = container.offsetTop;
     const containerHeight = container.offsetHeight;
     const scrollY = window.scrollY;
     const start = containerTop;
     const end = containerTop + containerHeight - windowHeight;
-
-    // Use (numImages - 1) * window.innerWidth for translation—matches the number of transitions
-    const maxTranslate = window.innerWidth * (numImages - 1);
+    const maxTranslate = windowWidth * (numImages - 1);
 
     if (scrollY >= start && scrollY <= end) {
       const totalScrollable = containerHeight - windowHeight;
@@ -36,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Important: always update sizes on resize and load
   window.addEventListener('scroll', handleScroll);
   window.addEventListener('resize', () => {
     setContainerHeight();
