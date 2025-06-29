@@ -3,12 +3,13 @@ const track = document.getElementById('scroll-track');
 const images = track ? track.querySelectorAll('img') : [];
 const numImages = images.length;
 
-// Dynamically set track width and container height for perfect scrolling
+// Set track width and container height for 50vh slides
 function setTrackAndContainer() {
   if (!track || !container) return;
   const vw = window.innerWidth;
-  const vh = window.innerHeight;
+  const vh = window.innerHeight * 0.5; // 50vh
   track.style.width = (numImages * vw) + 'px';
+  track.style.height = vh + 'px';
   images.forEach(img => {
     img.style.width = vw + 'px';
     img.style.height = vh + 'px';
@@ -22,13 +23,14 @@ function handleScroll() {
     return;
   }
   const windowHeight = window.innerHeight;
+  const vh = windowHeight * 0.5; // 50vh
   const containerTop = container.offsetTop;
   const containerHeight = container.offsetHeight;
   const scrollY = window.scrollY;
 
   // Only activate effect when inside slideshow section
-  if (scrollY >= containerTop && scrollY < containerTop + containerHeight - windowHeight) {
-    const totalScrollable = containerHeight - windowHeight;
+  if (scrollY >= containerTop && scrollY < containerTop + containerHeight - vh) {
+    const totalScrollable = containerHeight - vh;
     const progress = (scrollY - containerTop) / totalScrollable;
     const maxTranslate = track.offsetWidth - window.innerWidth;
     const translateX = -maxTranslate * progress;
