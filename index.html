@@ -1,52 +1,152 @@
-const container = document.getElementById('scroll-container');
-const track = document.getElementById('scroll-track');
-const images = track ? track.querySelectorAll('img') : [];
-const numImages = images.length;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joseph Pavich</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      scroll-behavior: smooth;
+    }
 
-// Set proper heights and widths
-function setTrackAndContainer() {
-  if (!track || !container) return;
-  const vw = window.innerWidth;
-  const vh = window.innerHeight * 0.5; // 50vh for slideshow
-  track.style.width = (numImages * vw) + 'px';
-  track.style.height = vh + 'px';
-  images.forEach(img => {
-    img.style.width = vw + 'px';
-    img.style.height = vh + 'px';
-  });
-  container.style.height = (numImages * window.innerHeight) + 'px'; // 100vh per image
-}
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
 
-function handleScroll() {
-  if (!container || !track || numImages === 0) {
-    document.body.style.overflow = '';
-    return;
-  }
-  const windowHeight = window.innerHeight;
-  const containerTop = container.offsetTop;
-  const containerHeight = container.offsetHeight;
-  const scrollY = window.scrollY;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
 
-  // Use full 100vh per image for vertical scroll area
-  if (scrollY >= containerTop && scrollY < containerTop + containerHeight - windowHeight) {
-    const totalScrollable = containerHeight - windowHeight;
-    const progress = (scrollY - containerTop) / totalScrollable;
-    const maxTranslate = track.offsetWidth - window.innerWidth;
-    const translateX = -maxTranslate * progress;
-    track.style.transform = `translateX(${translateX}px)`;
-    document.body.style.overflow = 'hidden'; // Lock scroll
-  } else {
-    track.style.transform = 'translateX(0)';
-    document.body.style.overflow = '';
-  }
-}
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
 
-window.addEventListener('scroll', handleScroll);
-window.addEventListener('resize', () => {
-  setTrackAndContainer();
-  handleScroll();
-});
+    section {
+      padding: 120px 40px 60px;
+      max-width: 900px;
+      margin: auto;
+    }
 
-// Initial setup
-setTrackAndContainer();
-handleScroll();
+    section h2 {
+      margin-top: 0;
+    }
+
+    /* Slideshow styles */
+    #scroll-container {
+      position: relative;
+      background: #222;
+    }
+
+    #scroll-wrapper {
+      height: 100vh;   /* always 100vh for sticky area */
+      width: 100vw;
+      overflow: hidden;
+      position: sticky;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #scroll-track {
+      display: flex;
+      height: 50vh;
+      transition: transform 0.1s ease-out;
+      align-items: center;
+    }
+
+    #scroll-track img {
+      width: 100vw;
+      height: 50vh;
+      object-fit: contain;
+      background: #555;
+      display: block;
+    }
+
+    .spacer {
+      height: 120vh;
+      background: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 80px 20px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="#intro">Intro</a></li>
+      <li><a href="#background">Professional Background</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#collaborations">Collaborations</a></li>
+      <li><a href="#goals">Goals</a></li>
+    </ul>
+  </nav>
+
+  <section id="intro">
+    <h2>Intro</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at erat nec sapien dapibus fermentum. Mauris egestas, purus non rutrum consequat, sapien metus blandit enim, in finibus ligula magna id turpis.</p>
+  </section>
+
+  <section id="background">
+    <h2>Professional Background</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl et aliquet placerat, tellus sapien laoreet ante, ut faucibus augue metus nec magna.</p>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <p>Nullam a arcu euismod, luctus enim nec, ultricies sem. Nam ac urna nec enim cursus facilisis.</p>
+  </section>
+
+  <section id="collaborations">
+    <h2>Collaborations</h2>
+    <p>Praesent in tristique metus. Sed id dolor dictum, rutrum metus a, cursus arcu.</p>
+  </section>
+
+  <section id="goals">
+    <h2>Goals</h2>
+    <p>Fusce malesuada, risus eu ornare cursus, lorem tellus dictum risus, eu sodales ex est id ligula.</p>
+  </section>
+
+  <div class="spacer"></div>
+
+  <section id="scroll-container">
+    <div id="scroll-wrapper">
+      <div id="scroll-track">
+        <img src="Frame1.png" alt="Frame 1" />
+        <img src="Frame2.png" alt="Frame 2" />
+        <img src="Frame3.png" alt="Frame 3" />
+        <img src="Frame4.png" alt="Frame 4" />
+        <img src="Frame5.png" alt="Frame 5" />
+        <img src="Frame6.png" alt="Frame 6" />
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <footer>
+    &copy; 2025 Joseph Pavich. All rights reserved.
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
