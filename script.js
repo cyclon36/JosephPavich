@@ -5,7 +5,6 @@ const numImages = images.length;
 
 function setDimensions() {
   if (!track || !container) return;
-  // Each image 100vw wide, height 50vh
   const vw = window.innerWidth;
   const vh = window.innerHeight * 0.5;
   track.style.width = (numImages * vw) + 'px';
@@ -14,7 +13,6 @@ function setDimensions() {
     img.style.width = vw + 'px';
     img.style.height = vh + 'px';
   });
-  // Scroll area: (numImages) * 100vh, so you get one "screen" per image horizontally
   container.style.height = (numImages * window.innerHeight) + 'px';
 }
 
@@ -24,8 +22,6 @@ function handleScroll() {
   const containerTop = container.offsetTop;
   const containerHeight = container.offsetHeight;
   const scrollY = window.scrollY;
-
-  // This is the total scrollable range for the slideshow
   const start = containerTop;
   const end = containerTop + containerHeight - windowHeight;
   if (scrollY >= start && scrollY <= end) {
@@ -36,7 +32,6 @@ function handleScroll() {
     track.style.transform = `translateX(${translateX}px)`;
     document.body.style.overflow = 'hidden';
   } else {
-    // snap back if outside range
     track.style.transform = scrollY < start ? 'translateX(0)' : `translateX(-${track.offsetWidth - window.innerWidth}px)`;
     document.body.style.overflow = '';
   }
