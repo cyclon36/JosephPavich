@@ -21,32 +21,26 @@
       bottom: 0;
       width: 100vw;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 18px 0 20px 0;
-      gap: 18px;
+      justify-content: center;
+      padding: 0;
+      background: #fbe6d5; /* retro off-white */
       border-top: 8px solid #382417;
-      /* 70s horizontal stripes background */
-      background:
-        repeating-linear-gradient(
-          to top,
-          #e06348 0px,     /* coral/red-orange */
-          #e06348 16px,
-          #edc061 16px,    /* gold */
-          #edc061 32px,
-          #eeb75a 32px,    /* mustard */
-          #eeb75a 48px,
-          #24a098 48px,    /* teal */
-          #24a098 64px,
-          #253746 64px,    /* navy */
-          #253746 80px
-        ),
-        #fbe6d5; /* pale peach base */
       box-shadow: 0 -2px 24px rgba(40,30,20,0.10);
       z-index: 100;
-      min-height: 96px;
     }
-    .retro-bar img {
+    .image-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 18px;
+      width: 100vw;
+      padding-top: 10px;
+      /* Images slightly overlap above the stripes for extra retro effect */
+    }
+    .image-row img {
       height: 80px;
       width: auto;
       max-width: 16vw;
@@ -58,32 +52,66 @@
       background: #fff8e1;
       box-shadow: 0 4px 12px 0 #e0634844;
       transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      z-index: 2;
     }
-    .retro-bar img:hover {
+    .image-row img:hover {
       box-shadow:
         0 0 0 8px #ffe08266,
         0 8px 28px 0 #253746bb;
       border-color: #e06348;
     }
+    .stripes {
+      position: relative;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 50px; /* less than image height */
+      width: min(70vw, 640px); /* stripes only in the center portion */
+      justify-content: center;
+      z-index: 1;
+      margin-top: -20px; /* move stripes up under the images for overlap, tweak as needed */
+      margin-bottom: 10px;
+    }
+    .stripe {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      margin-bottom: 6px; /* off-white gap */
+    }
+    /* Retro colors from your image, top to bottom: */
+    .stripe1 { background: #e06348; }
+    .stripe2 { background: #edc061; }
+    .stripe3 { background: #eeb75a; }
+    .stripe4 { background: #24a098; }
+    .stripe5 { background: #253746; }
+    /* Remove margin for last stripe */
+    .stripes .stripe:last-child { margin-bottom: 0; }
+
     @media (max-width: 900px) {
-      .retro-bar img {
+      .image-row img {
         height: 48px;
         max-width: 22vw;
       }
-      .retro-bar {
-        min-height: 60px;
-        padding: 12px 0 12px 0;
+      .stripes {
+        height: 30px;
+        width: min(90vw, 320px);
+        margin-top: -10px;
       }
+      .stripe { height: 4px; margin-bottom: 4px; }
     }
     @media (max-width: 600px) {
-      .retro-bar img {
+      .image-row img {
         height: 32px;
         max-width: 32vw;
       }
-      .retro-bar {
-        min-height: 40px;
-        padding: 6px 0 6px 0;
+      .stripes {
+        height: 18px;
+        width: min(98vw, 190px);
+        margin-top: -7px;
       }
+      .stripe { height: 2px; margin-bottom: 2px; }
     }
   </style>
 </head>
@@ -93,12 +121,21 @@
     <p>This is sample content. Scroll down to see the retro image bar at the bottom!</p>
   </div>
   <div class="retro-bar">
-    <img src="Frame1.png" alt="Frame 1"/>
-    <img src="Frame2.png" alt="Frame 2"/>
-    <img src="Frame3.png" alt="Frame 3"/>
-    <img src="Frame4.png" alt="Frame 4"/>
-    <img src="Frame5.png" alt="Frame 5"/>
-    <img src="Frame6.png" alt="Frame 6"/>
+    <div class="image-row">
+      <img src="Frame1.png" alt="Frame 1"/>
+      <img src="Frame2.png" alt="Frame 2"/>
+      <img src="Frame3.png" alt="Frame 3"/>
+      <img src="Frame4.png" alt="Frame 4"/>
+      <img src="Frame5.png" alt="Frame 5"/>
+      <img src="Frame6.png" alt="Frame 6"/>
+    </div>
+    <div class="stripes">
+      <div class="stripe stripe1"></div>
+      <div class="stripe stripe2"></div>
+      <div class="stripe stripe3"></div>
+      <div class="stripe stripe4"></div>
+      <div class="stripe stripe5"></div>
+    </div>
   </div>
 </body>
 </html>
