@@ -1,15 +1,15 @@
-const totalFrames = 6;
-const frameImage = document.getElementById("frameImage");
+const scrollTrack = document.getElementById("scroll-track");
+const scrollContainer = document.getElementById("scroll-container");
+const totalImages = 6;
 
 window.addEventListener("scroll", () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const scrollFraction = scrollTop / docHeight;
+  const containerTop = scrollContainer.offsetTop;
+  const containerHeight = scrollContainer.offsetHeight;
+  const scrollY = window.scrollY;
 
-  const frameIndex = Math.min(
-    totalFrames - 1,
-    Math.floor(scrollFraction * totalFrames)
-  );
-
-  frameImage.src = `frame${frameIndex + 1}.png`;
+  if (scrollY >= containerTop && scrollY <= containerTop + containerHeight) {
+    const progress = (scrollY - containerTop) / containerHeight;
+    const translateX = -progress * (100 * (totalImages - 1));
+    scrollTrack.style.transform = `translateX(${translateX}vw)`;
+  }
 });
