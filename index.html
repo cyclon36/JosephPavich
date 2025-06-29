@@ -10,50 +10,6 @@
       font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
       background: #fff;
     }
-    /* Hamburger menu floating (always fixed) */
-    .hamburger-float {
-      position: fixed;
-      top: 24px;
-      left: 24px;
-      z-index: 2001;
-      background: #fff;
-      border-radius: 50%;
-      box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08);
-      width: 54px;
-      height: 54px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: box-shadow 0.2s;
-    }
-    .hamburger-float .hamburger-icon {
-      width: 30px;
-      height: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-    }
-    .hamburger-float .hamburger-icon span {
-      display: block;
-      height: 4px;
-      width: 100%;
-      background: #181818;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .hamburger-float button {
-      background: none;
-      border: none;
-      padding: 0;
-      margin: 0;
-      cursor: pointer;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
     /* Navbar styles */
     .navbar {
       position: fixed;
@@ -69,9 +25,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 36px;
-      height: 65px; /* ~30% less than previous 96px */
+      height: 65px;
       z-index: 1000;
-      transition: top 0.4s cubic-bezier(.4,0,.2,1);
+      transition: top 0.35s cubic-bezier(.4,0,.2,1);
       gap: 0;
     }
     .navbar.hide {
@@ -83,7 +39,6 @@
       gap: 32px;
       align-items: center;
       height: 100%;
-      margin-left: 68px; /* space for floating hamburger */
     }
     .navbar-link {
       font-family: inherit;
@@ -119,23 +74,56 @@
       pointer-events: none;
       white-space: nowrap;
     }
-    /* Hamburger menu in bar (hidden, for layout only) */
-    .navbar .hamburger-bar {
-      display: none;
-      width: 54px;
-      height: 54px;
+    /* Hamburger Icon (2 lines, morphs to X) */
+    .hamburger-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-right: 24px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 1101;
+    }
+    .hamburger-icon {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+    .hamburger-bar {
+      width: 32px;
+      height: 4px;
+      background: #181818;
+      border-radius: 2px;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .hamburger-btn.open .bar1 {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger-btn.open .bar2 {
+      transform: rotate(-45deg) translate(6px, -6px);
     }
     /* Dropdown styles */
     .dropdown {
       display: none;
       position: fixed;
-      top: 78px;
-      left: 24px;
+      top: 88px;
+      left: 36px;
       min-width: 170px;
       background: #fafaf8;
       border-radius: 16px;
       box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
-      z-index: 2200;
+      z-index: 1200;
       flex-direction: column;
       padding: 12px 0;
       animation: fadeIn 0.25s;
@@ -297,7 +285,6 @@
       }
       .navbar-links {
         gap: 12px;
-        margin-left: 60px;
       }
       .navbar-link {
         font-size: 0.86rem;
@@ -312,20 +299,6 @@
       .dropdown-link {
         padding: 10px 18px;
         font-size: 0.95rem;
-      }
-      .hamburger-float {
-        width: 40px;
-        height: 40px;
-        top: 10px;
-        left: 8px;
-      }
-      .hamburger-float .hamburger-icon {
-        width: 18px;
-        height: 18px;
-        gap: 4px;
-      }
-      .hamburger-float .hamburger-icon span {
-        height: 2.5px;
       }
       .hero-bg {
         min-height: 120px;
@@ -346,6 +319,20 @@
       .retro-bar {
         min-height: 70px;
       }
+      .hamburger-btn {
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+      }
+      .hamburger-icon {
+        width: 22px;
+        height: 22px;
+        gap: 8px;
+      }
+      .hamburger-bar {
+        width: 22px;
+        height: 3px;
+      }
     }
     @media (max-width: 600px) {
       .navbar {
@@ -358,7 +345,6 @@
       }
       .navbar-links {
         gap: 5px;
-        margin-left: 40px;
       }
       .navbar-link {
         font-size: 0.62rem;
@@ -380,34 +366,30 @@
       .retro-bar {
         min-height: 40px;
       }
-      .hamburger-float {
+      .hamburger-btn {
         width: 30px;
         height: 30px;
-        top: 2px;
-        left: 2px;
       }
-      .hamburger-float .hamburger-icon {
-        width: 12px;
-        height: 12px;
-        gap: 2.5px;
+      .hamburger-icon {
+        width: 14px;
+        height: 14px;
+        gap: 5px;
       }
-      .hamburger-float .hamburger-icon span {
-        height: 1.2px;
+      .hamburger-bar {
+        width: 14px;
+        height: 2px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="hamburger-float" id="hamburger-float">
-    <button id="hamburger-btn" aria-label="Menu">
+  <nav class="navbar" id="navbar">
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
       <span class="hamburger-icon">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span class="hamburger-bar bar1"></span>
+        <span class="hamburger-bar bar2"></span>
       </span>
     </button>
-  </div>
-  <nav class="navbar" id="navbar">
     <div class="navbar-links">
       <a href="#background" class="navbar-link">BACKGROUND</a>
       <a href="#challenges" class="navbar-link">CHALLENGES</a>
@@ -415,7 +397,6 @@
       <a href="#goals" class="navbar-link">GOALS</a>
     </div>
     <span class="navbar-title">JOSEPH PAVICH</span>
-    <div class="hamburger-bar" style="display:none"></div>
   </nav>
   <div class="dropdown" id="dropdownMenu">
     <a href="#background" class="dropdown-link">BACKGROUND</a>
@@ -440,35 +421,39 @@
     </div>
   </div>
   <script>
-    // Hamburger dropdown functionality
-    const hamburgerFloat = document.getElementById('hamburger-float');
+    // Hamburger dropdown and morph
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const dropdownMenu = document.getElementById('dropdownMenu');
     hamburgerBtn.addEventListener('click', function(e) {
+      hamburgerBtn.classList.toggle('open');
       dropdownMenu.classList.toggle('open');
       e.stopPropagation();
     });
     document.body.addEventListener('click', function() {
+      hamburgerBtn.classList.remove('open');
       dropdownMenu.classList.remove('open');
     });
     dropdownMenu.addEventListener('click', function(e) {
       e.stopPropagation();
     });
 
-    // Hide navbar on scroll down, show on scroll up
+    // Hide navbar on scroll down, show on scroll up (always show on slight up)
     let prevScroll = window.scrollY;
     let navbar = document.getElementById('navbar');
+    let scrollingDown = false;
     window.addEventListener('scroll', function() {
       let currScroll = window.scrollY;
       if (currScroll > prevScroll && currScroll > 60) {
         // Scrolling down
         navbar.classList.add('hide');
+        scrollingDown = true;
       } else {
-        // Scrolling up
+        // Scrolling up (even slightly)
         navbar.classList.remove('hide');
+        scrollingDown = false;
       }
       prevScroll = currScroll;
-    });
+    }, {passive: true});
   </script>
 </body>
 </html>
