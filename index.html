@@ -14,79 +14,51 @@
     .navbar {
       position: fixed;
       top: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90vw;
-      max-width: 1120px;
+      left: 0;
+      width: 100vw;
       background: #fafaf8;
       border-radius: 28px;
       box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 36px;
+      justify-content: center;
       height: 65px;
       z-index: 1000;
       transition: top 0.35s cubic-bezier(.4,0,.2,1);
       gap: 0;
+      padding: 0;
     }
     .navbar.hide {
       top: -90px;
       transition: top 0.35s cubic-bezier(.4,0,.2,1);
     }
-    .navbar-links {
+
+    /* Hamburger always on left, name always centered */
+    .navbar-content {
+      width: 100vw;
       display: flex;
-      gap: 32px;
       align-items: center;
+      justify-content: center;
+      position: relative;
       height: 100%;
-    }
-    .navbar-link {
-      font-family: inherit;
-      text-decoration: none;
-      color: #222;
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0 7px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      border-radius: 8px;
-      transition: background 0.18s;
-    }
-    .navbar-link:hover,
-    .navbar-link:focus {
-      background: #ececec;
-      outline: none;
-    }
-    .navbar-title {
-      margin-left: auto;
-      font-weight: 900;
-      font-size: 2.4rem;
-      color: #181818;
-      letter-spacing: 0.07em;
-      line-height: 1;
-      user-select: none;
-      pointer-events: none;
-      white-space: nowrap;
     }
     .hamburger-btn {
       background: none;
       border: none;
       padding: 0;
-      margin-right: 24px;
+      margin-left: 32px;
+      margin-right: 0;
       width: 48px;
       height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      position: relative;
-      z-index: 1101;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1201;
     }
     .hamburger-icon {
       width: 32px;
@@ -112,47 +84,112 @@
     .hamburger-btn.open .bar2 {
       transform: rotate(-45deg) translate(6px, -6px);
     }
+    .navbar-center {
+      margin: 0 auto;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #181818;
+      letter-spacing: 0.07em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1100;
+    }
+
+    /* Full-width dropdown styles */
     .dropdown {
       display: none;
       position: fixed;
-      top: 88px;
-      left: 36px;
-      min-width: 170px;
+      left: 0;
+      top: 101px; /* 36px + 65px */
+      width: 100vw;
       background: #fafaf8;
-      border-radius: 16px;
+      border-radius: 0 0 28px 28px;
       box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
       z-index: 1200;
       flex-direction: column;
-      padding: 12px 0;
-      animation: fadeIn 0.25s;
+      padding: 26px 0 32px 0;
+      animation: dropdownFadeIn 0.28s;
+      align-items: center;
+      border-top: 1px solid #ececec;
     }
     .dropdown.open {
       display: flex;
     }
     .dropdown-link {
-      padding: 14px 28px;
+      padding: 16px 28px;
       color: #181818;
       font-weight: 700;
-      font-size: 1.13rem;
+      font-size: 1.3rem;
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.09em;
       border: none;
       background: none;
       cursor: pointer;
-      text-align: left;
-      border-radius: 8px;
+      text-align: center;
+      border-radius: 10px;
       transition: background 0.18s;
+      margin: 0.5rem 0;
+      width: 220px;
     }
     .dropdown-link:hover,
     .dropdown-link:focus {
       background: #ececec;
       outline: none;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px);}
+    @keyframes dropdownFadeIn {
+      from { opacity: 0; transform: translateY(-16px);}
       to { opacity: 1; transform: translateY(0);}
     }
+
+    /* Hide scrollbars on dropdown if not needed */
+    .dropdown::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        height: 50px;
+        border-radius: 14px;
+      }
+      .navbar-center {
+        font-size: 1.2rem;
+      }
+      .hamburger-btn {
+        margin-left: 10px;
+        width: 36px;
+        height: 36px;
+      }
+      .hamburger-icon {
+        width: 24px;
+        height: 24px;
+        gap: 6px;
+      }
+      .hamburger-bar {
+        width: 24px;
+        height: 3px;
+      }
+      .dropdown {
+        top: 86px;
+        border-radius: 0 0 14px 14px;
+        padding: 12px 0 18px 0;
+      }
+      .dropdown-link {
+        font-size: 1.02rem;
+        width: 98vw;
+        max-width: 250px;
+        padding: 13px 4vw;
+      }
+    }
+
+    /* Hero BG and Content */
     .hero-bg {
       width: 100vw;
       min-height: 400px;
@@ -208,7 +245,6 @@
       margin-top: 48px;
       overflow: hidden;
     }
-
     .carousel-shell {
       display: flex;
       align-items: center;
@@ -328,6 +364,9 @@
       .carousel-slide img {
         border-radius: 10px;
       }
+      .navbar-center {
+        font-size: 1.3rem;
+      }
     }
     @media (max-width: 600px) {
       .carousel-bar {
@@ -352,30 +391,30 @@
       .carousel-slide img {
         border-radius: 4px;
       }
+      .navbar-center {
+        font-size: 1.02rem;
+      }
     }
   </style>
 </head>
 <body>
   <nav class="navbar" id="navbar">
-    <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
-      <span class="hamburger-icon">
-        <span class="hamburger-bar bar1"></span>
-        <span class="hamburger-bar bar2"></span>
-      </span>
-    </button>
-    <div class="navbar-links">
-      <a href="#background" class="navbar-link">BACKGROUND</a>
-      <a href="#challenges" class="navbar-link">CHALLENGES</a>
-      <a href="#values" class="navbar-link">VALUES</a>
-      <a href="#goals" class="navbar-link">GOALS</a>
+    <div class="navbar-content">
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+        <span class="hamburger-icon">
+          <span class="hamburger-bar bar1"></span>
+          <span class="hamburger-bar bar2"></span>
+        </span>
+      </button>
+      <span class="navbar-center">JOSEPH PAVICH</span>
     </div>
-    <span class="navbar-title">JOSEPH PAVICH</span>
   </nav>
   <div class="dropdown" id="dropdownMenu">
-    <a href="#background" class="dropdown-link">BACKGROUND</a>
-    <a href="#challenges" class="dropdown-link">CHALLENGES</a>
-    <a href="#values" class="dropdown-link">VALUES</a>
-    <a href="#goals" class="dropdown-link">GOALS</a>
+    <a href="#resume" class="dropdown-link">Resume</a>
+    <a href="#my-story" class="dropdown-link">My Story</a>
+    <a href="#challenges" class="dropdown-link">Challenges</a>
+    <a href="#gallery" class="dropdown-link">Gallery</a>
+    <a href="#contact" class="dropdown-link">Contact</a>
   </div>
   <div class="hero-bg"></div>
   <div class="content">
