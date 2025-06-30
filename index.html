@@ -74,7 +74,6 @@
       pointer-events: none;
       white-space: nowrap;
     }
-    /* Hamburger Icon (2 lines, morphs to X) */
     .hamburger-btn {
       background: none;
       border: none;
@@ -113,7 +112,6 @@
     .hamburger-btn.open .bar2 {
       transform: rotate(-45deg) translate(6px, -6px);
     }
-    /* Dropdown styles */
     .dropdown {
       display: none;
       position: fixed;
@@ -155,7 +153,6 @@
       from { opacity: 0; transform: translateY(-10px);}
       to { opacity: 1; transform: translateY(0);}
     }
-    /* Hero section */
     .hero-bg {
       width: 100vw;
       min-height: 400px;
@@ -182,7 +179,6 @@
       background: transparent;
       z-index: 2;
     }
-    /* Content */
     .content {
       max-width: 900px;
       margin: 100px auto 0 auto;
@@ -194,7 +190,7 @@
       z-index: 2;
     }
 
-    /* Retro Carousel Bar */
+    /* Carousel Bar with sunburst background */
     .carousel-bar {
       width: 100vw;
       position: relative;
@@ -208,50 +204,9 @@
       padding: 40px 0;
       margin-top: 48px;
       overflow: hidden;
+      background: url('sunburst.png') center center/cover no-repeat, #fffdf5;
     }
-    .carousel-stripes-bg {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100vw;
-      height: 260px;
-      transform: translateY(-50%);
-      z-index: 0;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-    }
-    .retro-stripe {
-      height: 100%;
-      flex: 1 1 0%;
-      min-width: 60px;
-      max-width: 300px;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          #e06348 0,
-          #e06348 24px,
-          #fffdf5 24px,
-          #fffdf5 30px,
-          #edc061 30px,
-          #edc061 54px,
-          #fffdf5 54px,
-          #fffdf5 60px,
-          #eeb75a 60px,
-          #eeb75a 84px,
-          #fffdf5 84px,
-          #fffdf5 90px,
-          #24a098 90px,
-          #24a098 114px,
-          #fffdf5 114px,
-          #fffdf5 120px,
-          #253746 120px,
-          #253746 144px
-        );
-      border-radius: 14px;
-      box-shadow: 0 2px 6px 0 #0003;
-      margin: 0;
-    }
+
     .carousel-shell {
       display: flex;
       align-items: center;
@@ -273,7 +228,7 @@
       min-width: 340px;
       max-width: 700px;
       width: 48vw;
-      height: 260px;
+      height: 90px;
       overflow: hidden;
       position: relative;
       z-index: 2;
@@ -331,7 +286,7 @@
       display: flex;
     }
     .carousel-slide img {
-      height: 220px;
+      height: 60px;
       width: auto;
       max-width: 92%;
       border: none;
@@ -347,20 +302,13 @@
         min-height: 160px;
         padding: 16px 0;
       }
-      .carousel-stripes-bg,
-      .carousel-shell, .carousel-frame { height: 110px; }
       .carousel-frame {
         border-width: 6px;
         border-radius: 20px;
         min-width: 160px;
         max-width: 370px;
         width: 72vw;
-        height: 110px;
-      }
-      .retro-stripe {
-        min-width: 20px;
-        border-radius: 6px;
-        max-width: 80px;
+        height: 36px;
       }
       .carousel-arrow {
         width: 36px;
@@ -368,7 +316,7 @@
         font-size: 1.7rem;
       }
       .carousel-slide img {
-        height: 76px;
+        height: 18px;
         border-radius: 10px;
       }
     }
@@ -377,20 +325,13 @@
         min-height: 80px;
         padding: 10px 0;
       }
-      .carousel-stripes-bg,
-      .carousel-shell, .carousel-frame { height: 52px; }
       .carousel-frame {
         border-width: 3px;
         border-radius: 7px;
         min-width: 80px;
         max-width: 98vw;
         width: 98vw;
-        height: 52px;
-      }
-      .retro-stripe {
-        min-width: 8px;
-        border-radius: 3px;
-        max-width: 30px;
+        height: 16px;
       }
       .carousel-arrow {
         width: 28px;
@@ -398,7 +339,7 @@
         font-size: 1.1rem;
       }
       .carousel-slide img {
-        height: 36px;
+        height: 8px;
         border-radius: 4px;
       }
     }
@@ -433,11 +374,6 @@
   </div>
 
   <div class="carousel-bar">
-    <div class="carousel-stripes-bg">
-      <div class="retro-stripe"></div>
-      <div style="flex: 0 0 700px; max-width: 700px;"></div>
-      <div class="retro-stripe"></div>
-    </div>
     <div class="carousel-shell">
       <div class="carousel-frame">
         <button class="carousel-arrow left" aria-label="Previous">&#8592;</button>
