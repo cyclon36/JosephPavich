@@ -1,245 +1,196 @@
-<!-- ...previous content (navbar, hero, content sections)... -->
-
-  <div class="carousel-bar">
-    <button class="carousel-arrow left" aria-label="Previous">&#8592;</button>
-    <div class="carousel-track">
-      <div class="carousel-slide">
-        <div class="retro-stripe side"></div>
-        <img src="Frame1.png" alt="Frame 1"/>
-        <div class="retro-stripe side"></div>
-      </div>
-      <div class="carousel-slide">
-        <div class="retro-stripe side"></div>
-        <img src="Frame2.png" alt="Frame 2"/>
-        <div class="retro-stripe side"></div>
-      </div>
-      <div class="carousel-slide">
-        <div class="retro-stripe side"></div>
-        <img src="Frame3.png" alt="Frame 3"/>
-        <div class="retro-stripe side"></div>
-      </div>
-      <div class="carousel-slide">
-        <div class="retro-stripe side"></div>
-        <img src="Frame4.png" alt="Frame 4"/>
-        <div class="retro-stripe side"></div>
-      </div>
-      <div class="carousel-slide">
-        <div class="retro-stripe side"></div>
-        <img src="Frame5.png" alt="Frame 5"/>
-        <div class="retro-stripe side"></div>
-      </div>
-      <div class="carousel-slide">
-        <div class="retro-stripe side"></div>
-        <img src="Frame6.png" alt="Frame 6"/>
-        <div class="retro-stripe side"></div>
-      </div>
-    </div>
-    <button class="carousel-arrow right" aria-label="Next">&#8594;</button>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joseph Pavich Portfolio</title>
   <style>
-    .carousel-bar {
-      width: 100vw;
-      position: relative;
-      background: #fffdf5;
-      border-top: 8px solid #382417;
-      box-shadow: 0 -2px 24px rgba(40,30,20,0.10);
-      min-height: 128px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 32px 0;
-      margin-top: 48px;
-      overflow: hidden;
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #fff;
     }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.45s cubic-bezier(.4,0,.2,1);
-      will-change: transform;
-      width: 100vw;
-      max-width: 880px;
-      overflow: hidden;
-      scroll-behavior: smooth;
-    }
-    .carousel-slide {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 240px;
-      max-width: 240px;
-      padding: 0 12px;
-      box-sizing: border-box;
-      user-select: none;
-      background: none;
-    }
-    .carousel-slide img {
-      height: 80px;
-      width: auto;
-      max-width: 160px;
-      border: 4px solid #382417;
-      border-radius: 16px;
-      background: #fff8e1;
-      box-shadow: 0 4px 12px 0 #e0634844;
-      transition: box-shadow 0.2s, border-color 0.2s;
-      position: relative;
-      z-index: 2;
-      margin: 0 0;
-      display: block;
-    }
-    .retro-stripe.side {
-      width: 14px;
-      height: 88px;
-      border-radius: 7px;
-      margin: 0 6px;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          #e06348 0,
-          #e06348 8px,
-          #fffdf5 8px,
-          #fffdf5 10px,
-          #edc061 10px,
-          #edc061 18px,
-          #fffdf5 18px,
-          #fffdf5 20px,
-          #eeb75a 20px,
-          #eeb75a 28px,
-          #fffdf5 28px,
-          #fffdf5 30px,
-          #24a098 30px,
-          #24a098 38px,
-          #fffdf5 38px,
-          #fffdf5 40px,
-          #253746 40px,
-          #253746 48px
-        );
-      box-shadow: 0 2px 6px 0 #0003;
-      flex-shrink: 0;
-      display: block;
-    }
-    .carousel-arrow {
+    /* Navbar styles */
+    .navbar {
+      position: fixed;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90vw;
+      max-width: 1120px;
       background: #fafaf8;
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 2rem;
-      color: #382417;
-      box-shadow: 0 2px 8px 0 #0001;
+      border-radius: 28px;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-      margin: 0 8px;
-      cursor: pointer;
-      transition: background 0.2s;
+      justify-content: space-between;
+      padding: 0 36px;
+      height: 65px;
+      z-index: 1000;
+      transition: top 0.35s cubic-bezier(.4,0,.2,1);
+      gap: 0;
     }
-    .carousel-arrow:active,
-    .carousel-arrow:focus {
+    .navbar.hide {
+      top: -90px;
+      transition: top 0.35s cubic-bezier(.4,0,.2,1);
+    }
+    .navbar-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      height: 100%;
+    }
+    .navbar-link {
+      font-family: inherit;
+      text-decoration: none;
+      color: #222;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 7px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      transition: background 0.18s;
+    }
+    .navbar-link:hover,
+    .navbar-link:focus {
       background: #ececec;
       outline: none;
     }
-    .carousel-arrow[disabled] {
-      opacity: 0.4;
+    .navbar-title {
+      margin-left: auto;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #181818;
+      letter-spacing: 0.07em;
+      line-height: 1;
+      user-select: none;
       pointer-events: none;
+      white-space: nowrap;
     }
-    @media (max-width: 900px) {
-      .carousel-bar {
-        min-height: 70px;
-        padding: 16px 0;
-      }
-      .carousel-slide,
-      .carousel-slide img {
-        min-width: 130px;
-        max-width: 130px;
-        height: 48px;
-      }
-      .carousel-slide img {
-        height: 48px;
-        max-width: 80px;
-      }
-      .retro-stripe.side {
-        height: 56px;
-        width: 10px;
-        border-radius: 5px;
-      }
+    /* Hamburger Icon (2 lines, morphs to X) */
+    .hamburger-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-right: 24px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 1101;
     }
-    @media (max-width: 600px) {
-      .carousel-bar {
-        min-height: 40px;
-        padding: 10px 0;
-      }
-      .carousel-slide,
-      .carousel-slide img {
-        min-width: 90vw;
-        max-width: 90vw;
-        height: 36px;
-      }
-      .carousel-slide {
-        padding: 0 2vw;
-      }
-      .carousel-slide img {
-        height: 36px;
-        max-width: 60vw;
-      }
-      .retro-stripe.side {
-        height: 40px;
-        width: 7px;
-        border-radius: 3.5px;
-      }
+    .hamburger-icon {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s;
     }
-  </style>
-  <script>
-    // Simple JS Carousel, adjusted for new slide structure
-    const track = document.querySelector('.carousel-track');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.querySelector('.carousel-arrow.left');
-    const nextBtn = document.querySelector('.carousel-arrow.right');
-    let slideIndex = 0;
-    let slidesToShow = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
-    function updateCarousel() {
-      slidesToShow = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
-      const slideWidth = slides[0].offsetWidth;
-      track.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
-      prevBtn.disabled = slideIndex === 0;
-      nextBtn.disabled = slideIndex >= slides.length - slidesToShow;
+    .hamburger-bar {
+      width: 32px;
+      height: 4px;
+      background: #181818;
+      border-radius: 2px;
+      transition: all 0.3s;
+      position: relative;
     }
-    prevBtn.addEventListener('click', () => {
-      slideIndex = Math.max(0, slideIndex - 1);
-      updateCarousel();
-    });
-    nextBtn.addEventListener('click', () => {
-      slideIndex = Math.min(slides.length - slidesToShow, slideIndex + 1);
-      updateCarousel();
-    });
-    window.addEventListener('resize', () => {
-      let newSlidesToShow = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
-      if (slidesToShow !== newSlidesToShow) {
-        slidesToShow = newSlidesToShow;
-        slideIndex = Math.min(slideIndex, slides.length - slidesToShow);
-        updateCarousel();
-      } else {
-        updateCarousel();
-      }
-    });
-    // Touch support for mobile
-    let startX = 0, isDown = false;
-    track.addEventListener('mousedown', e => { isDown = true; startX = e.pageX; });
-    track.addEventListener('mouseleave', () => isDown = false);
-    track.addEventListener('mouseup', () => isDown = false);
-    track.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      if (e.pageX - startX > 50 && slideIndex > 0) { prevBtn.click(); isDown = false; }
-      else if (e.pageX - startX < -50 && slideIndex < slides.length - slidesToShow) { nextBtn.click(); isDown = false; }
-    });
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDown = true; });
-    track.addEventListener('touchend', () => isDown = false);
-    track.addEventListener('touchmove', e => {
-      if (!isDown) return;
-      const x = e.touches[0].clientX;
-      if (x - startX > 50 && slideIndex > 0) { prevBtn.click(); isDown = false; }
-      else if (x - startX < -50 && slideIndex < slides.length - slidesToShow) { nextBtn.click(); isDown = false; }
-    });
-    updateCarousel();
-  </script>
-<!-- ...end of file... -->
+    .hamburger-btn.open .bar1 {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger-btn.open .bar2 {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    /* Dropdown styles */
+    .dropdown {
+      display: none;
+      position: fixed;
+      top: 88px;
+      left: 36px;
+      min-width: 170px;
+      background: #fafaf8;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
+      z-index: 1200;
+      flex-direction: column;
+      padding: 12px 0;
+      animation: fadeIn 0.25s;
+    }
+    .dropdown.open {
+      display: flex;
+    }
+    .dropdown-link {
+      padding: 14px 28px;
+      color: #181818;
+      font-weight: 700;
+      font-size: 1.13rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 8px;
+      transition: background 0.18s;
+    }
+    .dropdown-link:hover,
+    .dropdown-link:focus {
+      background: #ececec;
+      outline: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    /* Hero section */
+    .hero-bg {
+      width: 100vw;
+      min-height: 400px;
+      height: 48vw;
+      max-height: 600px;
+      background: url('pint.png') center center/cover no-repeat;
+      position: relative;
+      margin-top: 0;
+      border-radius: 0 0 32px 32px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-bg::before {
+      content: "";
+      display: block;
+      height: 90px;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 2;
+    }
+    /* Content */
+    .content {
+      max-width: 900px;
+      margin: 100px auto 0 auto;
+      padding: 2rem;
+      background: #f8f6f0;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.03);
+      position: relative;
+      z-index: 2;
+    }
+    /* Retro Carousel Bar
