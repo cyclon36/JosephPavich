@@ -209,20 +209,23 @@
       margin-top: 48px;
       overflow: hidden;
     }
-    .carousel-shell {
+    .carousel-stripes-bg {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100vw;
+      height: 260px;
+      transform: translateY(-50%);
+      z-index: 0;
+      pointer-events: none;
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 100vw;
-      max-width: 100vw;
-      margin: 0 auto;
-      position: relative;
     }
-    .retro-stripe.side {
+    .retro-stripe {
+      height: 100%;
       flex: 1 1 0%;
       min-width: 60px;
-      height: 260px;
-      border-radius: 12px;
+      max-width: 300px;
       background:
         repeating-linear-gradient(
           to bottom,
@@ -245,9 +248,19 @@
           #253746 120px,
           #253746 144px
         );
+      border-radius: 14px;
       box-shadow: 0 2px 6px 0 #0003;
-      margin: 0 18px;
-      max-width: 80px;
+      margin: 0;
+    }
+    .carousel-shell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      max-width: 100vw;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
     .carousel-frame {
       background: #fff8e1;
@@ -263,6 +276,7 @@
       height: 260px;
       overflow: hidden;
       position: relative;
+      z-index: 2;
     }
     .carousel-arrow {
       background: #fafaf8;
@@ -279,7 +293,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 2;
+      z-index: 3;
       cursor: pointer;
       transition: background 0.2s;
       user-select: none;
@@ -307,17 +321,14 @@
     .carousel-slide {
       min-width: 100%;
       max-width: 100%;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       transition: opacity 0.4s;
-      opacity: 0;
-      pointer-events: none;
       height: 100%;
     }
     .carousel-slide.active {
-      opacity: 1;
-      pointer-events: auto;
+      display: flex;
     }
     .carousel-slide img {
       height: 220px;
@@ -331,12 +342,12 @@
       display: block;
       object-fit: contain;
     }
-
     @media (max-width: 900px) {
       .carousel-bar {
         min-height: 160px;
         padding: 16px 0;
       }
+      .carousel-stripes-bg,
       .carousel-shell, .carousel-frame { height: 110px; }
       .carousel-frame {
         border-width: 6px;
@@ -346,12 +357,10 @@
         width: 72vw;
         height: 110px;
       }
-      .retro-stripe.side {
-        height: 110px;
-        width: 16px;
-        border-radius: 6px;
+      .retro-stripe {
         min-width: 20px;
-        margin: 0 6px;
+        border-radius: 6px;
+        max-width: 80px;
       }
       .carousel-arrow {
         width: 36px;
@@ -368,6 +377,7 @@
         min-height: 80px;
         padding: 10px 0;
       }
+      .carousel-stripes-bg,
       .carousel-shell, .carousel-frame { height: 52px; }
       .carousel-frame {
         border-width: 3px;
@@ -377,12 +387,10 @@
         width: 98vw;
         height: 52px;
       }
-      .retro-stripe.side {
-        height: 52px;
-        width: 8px;
-        border-radius: 3px;
+      .retro-stripe {
         min-width: 8px;
-        margin: 0 2px;
+        border-radius: 3px;
+        max-width: 30px;
       }
       .carousel-arrow {
         width: 28px;
@@ -425,8 +433,12 @@
   </div>
 
   <div class="carousel-bar">
+    <div class="carousel-stripes-bg">
+      <div class="retro-stripe"></div>
+      <div style="flex: 0 0 700px; max-width: 700px;"></div>
+      <div class="retro-stripe"></div>
+    </div>
     <div class="carousel-shell">
-      <div class="retro-stripe side"></div>
       <div class="carousel-frame">
         <button class="carousel-arrow left" aria-label="Previous">&#8592;</button>
         <div class="carousel-track" id="carousel-track">
@@ -439,7 +451,6 @@
         </div>
         <button class="carousel-arrow right" aria-label="Next">&#8594;</button>
       </div>
-      <div class="retro-stripe side"></div>
     </div>
   </div>
   <script>
@@ -474,7 +485,7 @@
       prevScroll = currScroll;
     }, {passive: true});
 
-    // Carousel logic: show only one, centered, with retro stripes & border frame
+    // Carousel logic: show only one, centered, with retro stripes as background
     const slides = Array.from(document.querySelectorAll('.carousel-slide'));
     const prevBtn = document.querySelector('.carousel-arrow.left');
     const nextBtn = document.querySelector('.carousel-arrow.right');
