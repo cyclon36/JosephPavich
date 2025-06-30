@@ -193,4 +193,305 @@
       position: relative;
       z-index: 2;
     }
-    /* Retro Carousel Bar
+    /* Retro Carousel Bar & Slides */
+    .carousel-bar {
+      width: 100vw;
+      position: relative;
+      background: #fffdf5;
+      border-top: 8px solid #382417;
+      box-shadow: 0 -2px 24px rgba(40,30,20,0.10);
+      min-height: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 0;
+      margin-top: 48px;
+      overflow: hidden;
+    }
+    .carousel-arrow {
+      background: #fafaf8;
+      border: none;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      font-size: 2.5rem;
+      color: #382417;
+      box-shadow: 0 2px 8px 0 #0001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      margin: 0 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .carousel-arrow:active,
+    .carousel-arrow:focus {
+      background: #ececec;
+      outline: none;
+    }
+    .carousel-arrow[disabled] {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .carousel-track {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      max-width: 100vw;
+      overflow: hidden;
+      position: relative;
+      height: 320px;
+      transition: height 0.3s;
+    }
+    .carousel-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 100vw;
+      max-width: 100vw;
+      transition: opacity 0.4s;
+      pointer-events: none;
+      opacity: 0;
+      height: 320px;
+      box-sizing: border-box;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .retro-stripe.side {
+      width: 36px;
+      height: 240px;
+      border-radius: 12px;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          #e06348 0,
+          #e06348 24px,
+          #fffdf5 24px,
+          #fffdf5 30px,
+          #edc061 30px,
+          #edc061 54px,
+          #fffdf5 54px,
+          #fffdf5 60px,
+          #eeb75a 60px,
+          #eeb75a 84px,
+          #fffdf5 84px,
+          #fffdf5 90px,
+          #24a098 90px,
+          #24a098 114px,
+          #fffdf5 114px,
+          #fffdf5 120px,
+          #253746 120px,
+          #253746 144px
+        );
+      box-shadow: 0 2px 6px 0 #0003;
+      flex-shrink: 0;
+      display: block;
+      margin: 0 28px;
+    }
+    .carousel-slide img {
+      height: 240px;
+      width: auto;
+      max-width: 55vw;
+      border: 8px solid #382417;
+      border-radius: 28px;
+      background: #fff8e1;
+      box-shadow: 0 4px 24px 0 #e0634844;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      z-index: 2;
+      margin: 0 0;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .carousel-bar {
+        min-height: 160px;
+        padding: 16px 0;
+      }
+      .carousel-track, .carousel-slide {
+        height: 160px;
+      }
+      .carousel-slide img {
+        height: 110px;
+        max-width: 70vw;
+        border-width: 5px;
+        border-radius: 12px;
+      }
+      .retro-stripe.side {
+        height: 110px;
+        width: 16px;
+        border-radius: 6px;
+        margin: 0 8px;
+      }
+      .carousel-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 1.7rem;
+        margin: 0 4px;
+      }
+    }
+    @media (max-width: 600px) {
+      .carousel-bar {
+        min-height: 80px;
+        padding: 10px 0;
+      }
+      .carousel-track, .carousel-slide {
+        height: 80px;
+      }
+      .carousel-slide img {
+        height: 50px;
+        max-width: 80vw;
+        border-width: 3px;
+        border-radius: 7px;
+      }
+      .retro-stripe.side {
+        height: 50px;
+        width: 8px;
+        border-radius: 3px;
+        margin: 0 2px;
+      }
+      .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 1.1rem;
+        margin: 0 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+      <span class="hamburger-icon">
+        <span class="hamburger-bar bar1"></span>
+        <span class="hamburger-bar bar2"></span>
+      </span>
+    </button>
+    <div class="navbar-links">
+      <a href="#background" class="navbar-link">BACKGROUND</a>
+      <a href="#challenges" class="navbar-link">CHALLENGES</a>
+      <a href="#values" class="navbar-link">VALUES</a>
+      <a href="#goals" class="navbar-link">GOALS</a>
+    </div>
+    <span class="navbar-title">JOSEPH PAVICH</span>
+  </nav>
+  <div class="dropdown" id="dropdownMenu">
+    <a href="#background" class="dropdown-link">BACKGROUND</a>
+    <a href="#challenges" class="dropdown-link">CHALLENGES</a>
+    <a href="#values" class="dropdown-link">VALUES</a>
+    <a href="#goals" class="dropdown-link">GOALS</a>
+  </div>
+  <div class="hero-bg"></div>
+  <div class="content">
+    <h1>Welcome to Joseph Pavich’s Portfolio</h1>
+    <p>This is sample content. Your hero background and navigation bar now match your custom requirements!</p>
+  </div>
+
+  <div class="carousel-bar">
+    <button class="carousel-arrow left" aria-label="Previous">&#8592;</button>
+    <div class="carousel-track" id="carousel-track">
+      <div class="carousel-slide active">
+        <div class="retro-stripe side"></div>
+        <img src="Frame1.png" alt="Frame 1"/>
+        <div class="retro-stripe side"></div>
+      </div>
+      <div class="carousel-slide">
+        <div class="retro-stripe side"></div>
+        <img src="Frame2.png" alt="Frame 2"/>
+        <div class="retro-stripe side"></div>
+      </div>
+      <div class="carousel-slide">
+        <div class="retro-stripe side"></div>
+        <img src="Frame3.png" alt="Frame 3"/>
+        <div class="retro-stripe side"></div>
+      </div>
+      <div class="carousel-slide">
+        <div class="retro-stripe side"></div>
+        <img src="Frame4.png" alt="Frame 4"/>
+        <div class="retro-stripe side"></div>
+      </div>
+      <div class="carousel-slide">
+        <div class="retro-stripe side"></div>
+        <img src="Frame5.png" alt="Frame 5"/>
+        <div class="retro-stripe side"></div>
+      </div>
+      <div class="carousel-slide">
+        <div class="retro-stripe side"></div>
+        <img src="Frame6.png" alt="Frame 6"/>
+        <div class="retro-stripe side"></div>
+      </div>
+    </div>
+    <button class="carousel-arrow right" aria-label="Next">&#8594;</button>
+  </div>
+  <script>
+    // Hamburger dropdown and morph
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    hamburgerBtn.addEventListener('click', function(e) {
+      hamburgerBtn.classList.toggle('open');
+      dropdownMenu.classList.toggle('open');
+      e.stopPropagation();
+    });
+    document.body.addEventListener('click', function() {
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+    });
+    dropdownMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // Hide navbar on scroll down, show on scroll up (always show on slight up)
+    let prevScroll = window.scrollY;
+    let navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      let currScroll = window.scrollY;
+      if (currScroll > prevScroll && currScroll > 60) {
+        // Scrolling down
+        navbar.classList.add('hide');
+      } else {
+        // Scrolling up (even slightly)
+        navbar.classList.remove('hide');
+      }
+      prevScroll = currScroll;
+    }, {passive: true});
+
+    // Carousel logic: show only one, centered, with retro stripes
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const prevBtn = document.querySelector('.carousel-arrow.left');
+    const nextBtn = document.querySelector('.carousel-arrow.right');
+    let slideIndex = 0;
+    function updateCarousel() {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === slideIndex);
+      });
+      prevBtn.disabled = slideIndex === 0;
+      nextBtn.disabled = slideIndex === slides.length - 1;
+    }
+    prevBtn.addEventListener('click', () => {
+      if (slideIndex > 0) slideIndex--;
+      updateCarousel();
+    });
+    nextBtn.addEventListener('click', () => {
+      if (slideIndex < slides.length - 1) slideIndex++;
+      updateCarousel();
+    });
+    // Touch swipe support
+    let startX = 0, isDown = false;
+    const track = document.getElementById('carousel-track');
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDown = true; });
+    track.addEventListener('touchend', () => isDown = false);
+    track.addEventListener('touchmove', e => {
+      if (!isDown) return;
+      const x = e.touches[0].clientX;
+      if (x - startX > 50 && slideIndex > 0) { prevBtn.click(); isDown = false; }
+      else if (x - startX < -50 && slideIndex < slides.length - 1) { nextBtn.click(); isDown = false; }
+    });
+    updateCarousel();
+  </script>
+</body>
+</html>
