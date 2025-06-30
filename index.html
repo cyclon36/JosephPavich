@@ -1,264 +1,511 @@
-<!-- ... other content ... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joseph Pavich Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #fff;
+    }
+    /* Navbar styles */
+    .navbar {
+      position: fixed;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90vw;
+      max-width: 1120px;
+      background: #fafaf8;
+      border-radius: 28px;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 36px;
+      height: 65px;
+      z-index: 1000;
+      transition: top 0.35s cubic-bezier(.4,0,.2,1);
+      gap: 0;
+    }
+    .navbar.hide {
+      top: -90px;
+      transition: top 0.35s cubic-bezier(.4,0,.2,1);
+    }
+    .navbar-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      height: 100%;
+    }
+    .navbar-link {
+      font-family: inherit;
+      text-decoration: none;
+      color: #222;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 7px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      transition: background 0.18s;
+    }
+    .navbar-link:hover,
+    .navbar-link:focus {
+      background: #ececec;
+      outline: none;
+    }
+    .navbar-title {
+      margin-left: auto;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #181818;
+      letter-spacing: 0.07em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    /* Hamburger Icon (2 lines, morphs to X) */
+    .hamburger-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-right: 24px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 1101;
+    }
+    .hamburger-icon {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+    .hamburger-bar {
+      width: 32px;
+      height: 4px;
+      background: #181818;
+      border-radius: 2px;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .hamburger-btn.open .bar1 {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger-btn.open .bar2 {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    /* Dropdown styles */
+    .dropdown {
+      display: none;
+      position: fixed;
+      top: 88px;
+      left: 36px;
+      min-width: 170px;
+      background: #fafaf8;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
+      z-index: 1200;
+      flex-direction: column;
+      padding: 12px 0;
+      animation: fadeIn 0.25s;
+    }
+    .dropdown.open {
+      display: flex;
+    }
+    .dropdown-link {
+      padding: 14px 28px;
+      color: #181818;
+      font-weight: 700;
+      font-size: 1.13rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 8px;
+      transition: background 0.18s;
+    }
+    .dropdown-link:hover,
+    .dropdown-link:focus {
+      background: #ececec;
+      outline: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    /* Hero section */
+    .hero-bg {
+      width: 100vw;
+      min-height: 400px;
+      height: 48vw;
+      max-height: 600px;
+      background: url('pint.png') center center/cover no-repeat;
+      position: relative;
+      margin-top: 0;
+      border-radius: 0 0 32px 32px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-bg::before {
+      content: "";
+      display: block;
+      height: 90px;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 2;
+    }
+    /* Content */
+    .content {
+      max-width: 900px;
+      margin: 100px auto 0 auto;
+      padding: 2rem;
+      background: #f8f6f0;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.03);
+      position: relative;
+      z-index: 2;
+    }
 
-<div class="carousel-bar">
-  <!-- stripes as flex columns, not background images -->
-  <div class="retro-stripes-column">
-    <div class="stripe stripe1"></div>
-    <div class="stripe stripe2"></div>
-    <div class="stripe stripe3"></div>
-    <div class="stripe stripe4"></div>
-    <div class="stripe stripe5"></div>
-    <div class="stripe stripe6"></div>
+    /* Retro Carousel Bar */
+    .carousel-bar {
+      width: 100vw;
+      position: relative;
+      background: #fffdf5;
+      border-top: 8px solid #382417;
+      box-shadow: 0 -2px 24px rgba(40,30,20,0.10);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 0;
+      margin-top: 48px;
+      overflow: hidden;
+    }
+    .carousel-shell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      max-width: 100vw;
+      margin: 0 auto;
+      position: relative;
+    }
+    .retro-stripe.side {
+      flex: 1 1 0%;
+      min-width: 60px;
+      height: 260px;
+      border-radius: 12px;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          #e06348 0,
+          #e06348 24px,
+          #fffdf5 24px,
+          #fffdf5 30px,
+          #edc061 30px,
+          #edc061 54px,
+          #fffdf5 54px,
+          #fffdf5 60px,
+          #eeb75a 60px,
+          #eeb75a 84px,
+          #fffdf5 84px,
+          #fffdf5 90px,
+          #24a098 90px,
+          #24a098 114px,
+          #fffdf5 114px,
+          #fffdf5 120px,
+          #253746 120px,
+          #253746 144px
+        );
+      box-shadow: 0 2px 6px 0 #0003;
+      margin: 0 18px;
+      max-width: 80px;
+    }
+    .carousel-frame {
+      background: #fff8e1;
+      border: 10px solid #382417;
+      border-radius: 36px;
+      box-shadow: 0 8px 32px 0 #e0634844;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 340px;
+      max-width: 700px;
+      width: 48vw;
+      height: 260px;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel-arrow {
+      background: #fafaf8;
+      border: none;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      font-size: 2.5rem;
+      color: #382417;
+      box-shadow: 0 2px 8px 0 #0001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .carousel-arrow.left { left: 12px; }
+    .carousel-arrow.right { right: 12px; }
+    .carousel-arrow:active,
+    .carousel-arrow:focus {
+      background: #ececec;
+      outline: none;
+    }
+    .carousel-arrow[disabled] {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .carousel-track {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    .carousel-slide {
+      min-width: 100%;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s;
+      opacity: 0;
+      pointer-events: none;
+      height: 100%;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .carousel-slide img {
+      height: 220px;
+      width: auto;
+      max-width: 92%;
+      border: none;
+      border-radius: 18px;
+      background: none;
+      box-shadow: 0 2px 10px #0003;
+      margin: 0 auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    @media (max-width: 900px) {
+      .carousel-bar {
+        min-height: 160px;
+        padding: 16px 0;
+      }
+      .carousel-shell, .carousel-frame { height: 110px; }
+      .carousel-frame {
+        border-width: 6px;
+        border-radius: 20px;
+        min-width: 160px;
+        max-width: 370px;
+        width: 72vw;
+        height: 110px;
+      }
+      .retro-stripe.side {
+        height: 110px;
+        width: 16px;
+        border-radius: 6px;
+        min-width: 20px;
+        margin: 0 6px;
+      }
+      .carousel-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 1.7rem;
+      }
+      .carousel-slide img {
+        height: 76px;
+        border-radius: 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .carousel-bar {
+        min-height: 80px;
+        padding: 10px 0;
+      }
+      .carousel-shell, .carousel-frame { height: 52px; }
+      .carousel-frame {
+        border-width: 3px;
+        border-radius: 7px;
+        min-width: 80px;
+        max-width: 98vw;
+        width: 98vw;
+        height: 52px;
+      }
+      .retro-stripe.side {
+        height: 52px;
+        width: 8px;
+        border-radius: 3px;
+        min-width: 8px;
+        margin: 0 2px;
+      }
+      .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 1.1rem;
+      }
+      .carousel-slide img {
+        height: 36px;
+        border-radius: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+      <span class="hamburger-icon">
+        <span class="hamburger-bar bar1"></span>
+        <span class="hamburger-bar bar2"></span>
+      </span>
+    </button>
+    <div class="navbar-links">
+      <a href="#background" class="navbar-link">BACKGROUND</a>
+      <a href="#challenges" class="navbar-link">CHALLENGES</a>
+      <a href="#values" class="navbar-link">VALUES</a>
+      <a href="#goals" class="navbar-link">GOALS</a>
+    </div>
+    <span class="navbar-title">JOSEPH PAVICH</span>
+  </nav>
+  <div class="dropdown" id="dropdownMenu">
+    <a href="#background" class="dropdown-link">BACKGROUND</a>
+    <a href="#challenges" class="dropdown-link">CHALLENGES</a>
+    <a href="#values" class="dropdown-link">VALUES</a>
+    <a href="#goals" class="dropdown-link">GOALS</a>
   </div>
-  <div class="carousel-shell">
-    <div class="carousel-frame">
-      <button class="carousel-arrow left" aria-label="Previous">&#8592;</button>
-      <div class="carousel-track" id="carousel-track">
-        <div class="carousel-slide active"><img src="Frame1.png" alt="Frame 1"/></div>
-        <div class="carousel-slide"><img src="Frame2.png" alt="Frame 2"/></div>
-        <div class="carousel-slide"><img src="Frame3.png" alt="Frame 3"/></div>
-        <div class="carousel-slide"><img src="Frame4.png" alt="Frame 4"/></div>
-        <div class="carousel-slide"><img src="Frame5.png" alt="Frame 5"/></div>
-        <div class="carousel-slide"><img src="Frame6.png" alt="Frame 6"/></div>
+  <div class="hero-bg"></div>
+  <div class="content">
+    <h1>Welcome to Joseph Pavich’s Portfolio</h1>
+    <p>This is sample content. Your hero background and navigation bar now match your custom requirements!</p>
+  </div>
+
+  <div class="carousel-bar">
+    <div class="carousel-shell">
+      <div class="retro-stripe side"></div>
+      <div class="carousel-frame">
+        <button class="carousel-arrow left" aria-label="Previous">&#8592;</button>
+        <div class="carousel-track" id="carousel-track">
+          <div class="carousel-slide active"><img src="Frame1.png" alt="Frame 1"/></div>
+          <div class="carousel-slide"><img src="Frame2.png" alt="Frame 2"/></div>
+          <div class="carousel-slide"><img src="Frame3.png" alt="Frame 3"/></div>
+          <div class="carousel-slide"><img src="Frame4.png" alt="Frame 4"/></div>
+          <div class="carousel-slide"><img src="Frame5.png" alt="Frame 5"/></div>
+          <div class="carousel-slide"><img src="Frame6.png" alt="Frame 6"/></div>
+        </div>
+        <button class="carousel-arrow right" aria-label="Next">&#8594;</button>
       </div>
-      <button class="carousel-arrow right" aria-label="Next">&#8594;</button>
+      <div class="retro-stripe side"></div>
     </div>
   </div>
-  <div class="retro-stripes-column">
-    <div class="stripe stripe1"></div>
-    <div class="stripe stripe2"></div>
-    <div class="stripe stripe3"></div>
-    <div class="stripe stripe4"></div>
-    <div class="stripe stripe5"></div>
-    <div class="stripe stripe6"></div>
-  </div>
-</div>
-<style>
-.carousel-bar {
-  width: 100vw;
-  position: relative;
-  background: #fffdf5;
-  border-top: 8px solid #382417;
-  box-shadow: 0 -2px 24px rgba(40,30,20,0.10);
-  min-height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 0;
-  margin-top: 48px;
-  overflow: hidden;
-}
-.retro-stripes-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  height: 260px;         /* match carousel-frame height */
-  width: 70px;
-  min-width: 55px;
-  margin: 0 12px;
-  flex-shrink: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px 0 #0002;
-  background: none;
-}
-.stripe {
-  width: 100%;
-  min-height: 32px;
-  max-height: 45px;
-  flex: 1 1 0;
-}
-.stripe1 { background: #e06348; }
-.stripe2 { background: #edc061; }
-.stripe3 { background: #eeb75a; }
-.stripe4 { background: #24a098; }
-.stripe5 { background: #253746; }
-.stripe6 { background: #7ec6b8; }
-.carousel-shell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  max-width: 100vw;
-  position: relative;
-  z-index: 1;
-}
-.carousel-frame {
-  background: #fff8e1;
-  border: 10px solid #382417;
-  border-radius: 36px;
-  box-shadow: 0 8px 32px 0 #e0634844;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 340px;
-  max-width: 700px;
-  width: 48vw;
-  height: 260px;
-  overflow: hidden;
-  position: relative;
-  z-index: 2;
-}
-.carousel-arrow {
-  background: #fafaf8;
-  border: none;
-  border-radius: 50%;
-  width: 54px;
-  height: 54px;
-  font-size: 2.5rem;
-  color: #382417;
-  box-shadow: 0 2px 8px 0 #0001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
-  cursor: pointer;
-  transition: background 0.2s;
-  user-select: none;
-}
-.carousel-arrow.left { left: 12px; }
-.carousel-arrow.right { right: 12px; }
-.carousel-arrow:active,
-.carousel-arrow:focus {
-  background: #ececec;
-  outline: none;
-}
-.carousel-arrow[disabled] {
-  opacity: 0.4;
-  pointer-events: none;
-}
-.carousel-track {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  position: relative;
-  transition: transform 0.4s cubic-bezier(.4,0,.2,1);
-}
-.carousel-slide {
-  min-width: 100%;
-  max-width: 100%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.4s;
-  height: 100%;
-}
-.carousel-slide.active {
-  display: flex;
-}
-.carousel-slide img {
-  height: 220px;
-  width: auto;
-  max-width: 92%;
-  border: none;
-  border-radius: 18px;
-  background: none;
-  box-shadow: 0 2px 10px #0003;
-  margin: 0 auto;
-  display: block;
-  object-fit: contain;
-}
-@media (max-width: 900px) {
-  .carousel-bar {
-    min-height: 160px;
-    padding: 16px 0;
-  }
-  .retro-stripes-column,
-  .carousel-shell, .carousel-frame { height: 110px; }
-  .carousel-frame {
-    border-width: 6px;
-    border-radius: 20px;
-    min-width: 160px;
-    max-width: 370px;
-    width: 72vw;
-    height: 110px;
-  }
-  .retro-stripes-column {
-    width: 24px;
-    min-width: 10px;
-    border-radius: 6px;
-  }
-  .stripe { min-height: 14px; }
-  .carousel-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 1.7rem;
-  }
-  .carousel-slide img {
-    height: 76px;
-    border-radius: 10px;
-  }
-}
-@media (max-width: 600px) {
-  .carousel-bar {
-    min-height: 80px;
-    padding: 10px 0;
-  }
-  .retro-stripes-column,
-  .carousel-shell, .carousel-frame { height: 52px; }
-  .carousel-frame {
-    border-width: 3px;
-    border-radius: 7px;
-    min-width: 80px;
-    max-width: 98vw;
-    width: 98vw;
-    height: 52px;
-  }
-  .retro-stripes-column {
-    width: 9px;
-    min-width: 5px;
-    border-radius: 3px;
-  }
-  .stripe { min-height: 7px; }
-  .carousel-arrow {
-    width: 28px;
-    height: 28px;
-    font-size: 1.1rem;
-  }
-  .carousel-slide img {
-    height: 36px;
-    border-radius: 4px;
-  }
-}
-</style>
-<script>
-  // Carousel logic: show only one, centered, with retro stripes as background
-  const slides = Array.from(document.querySelectorAll('.carousel-slide'));
-  const prevBtn = document.querySelector('.carousel-arrow.left');
-  const nextBtn = document.querySelector('.carousel-arrow.right');
-  let slideIndex = 0;
-  function updateCarousel() {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === slideIndex);
+  <script>
+    // Hamburger dropdown and morph
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    hamburgerBtn.addEventListener('click', function(e) {
+      hamburgerBtn.classList.toggle('open');
+      dropdownMenu.classList.toggle('open');
+      e.stopPropagation();
     });
-    prevBtn.disabled = slideIndex === 0;
-    nextBtn.disabled = slideIndex === slides.length - 1;
-  }
-  prevBtn.addEventListener('click', () => {
-    if (slideIndex > 0) slideIndex--;
+    document.body.addEventListener('click', function() {
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+    });
+    dropdownMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // Hide navbar on scroll down, show on scroll up (always show on slight up)
+    let prevScroll = window.scrollY;
+    let navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      let currScroll = window.scrollY;
+      if (currScroll > prevScroll && currScroll > 60) {
+        // Scrolling down
+        navbar.classList.add('hide');
+      } else {
+        // Scrolling up (even slightly)
+        navbar.classList.remove('hide');
+      }
+      prevScroll = currScroll;
+    }, {passive: true});
+
+    // Carousel logic: show only one, centered, with retro stripes & border frame
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const prevBtn = document.querySelector('.carousel-arrow.left');
+    const nextBtn = document.querySelector('.carousel-arrow.right');
+    let slideIndex = 0;
+    function updateCarousel() {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === slideIndex);
+      });
+      prevBtn.disabled = slideIndex === 0;
+      nextBtn.disabled = slideIndex === slides.length - 1;
+    }
+    prevBtn.addEventListener('click', () => {
+      if (slideIndex > 0) slideIndex--;
+      updateCarousel();
+    });
+    nextBtn.addEventListener('click', () => {
+      if (slideIndex < slides.length - 1) slideIndex++;
+      updateCarousel();
+    });
+    // Touch swipe support
+    let startX = 0, isDown = false;
+    const track = document.getElementById('carousel-track');
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDown = true; });
+    track.addEventListener('touchend', () => isDown = false);
+    track.addEventListener('touchmove', e => {
+      if (!isDown) return;
+      const x = e.touches[0].clientX;
+      if (x - startX > 50 && slideIndex > 0) { prevBtn.click(); isDown = false; }
+      else if (x - startX < -50 && slideIndex < slides.length - 1) { nextBtn.click(); isDown = false; }
+    });
     updateCarousel();
-  });
-  nextBtn.addEventListener('click', () => {
-    if (slideIndex < slides.length - 1) slideIndex++;
-    updateCarousel();
-  });
-  // Touch swipe support
-  let startX = 0, isDown = false;
-  const track = document.getElementById('carousel-track');
-  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDown = true; });
-  track.addEventListener('touchend', () => isDown = false);
-  track.addEventListener('touchmove', e => {
-    if (!isDown) return;
-    const x = e.touches[0].clientX;
-    if (x - startX > 50 && slideIndex > 0) { prevBtn.click(); isDown = false; }
-    else if (x - startX < -50 && slideIndex < slides.length - 1) { nextBtn.click(); isDown = false; }
-  });
-  updateCarousel();
-</script>
-<!-- ... rest of your content ... -->
+  </script>
+</body>
+</html>
