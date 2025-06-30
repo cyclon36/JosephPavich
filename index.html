@@ -17,20 +17,24 @@
       left: 0;
       width: 100vw;
       background: #fafaf8;
-      border-radius: 28px;
-      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+      border-radius: 28px 28px 28px 28px;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12), 0 -2px 24px rgba(40,30,20,0.10);
       display: flex;
       align-items: center;
       justify-content: center;
       height: 65px;
       z-index: 1000;
-      transition: top 0.35s cubic-bezier(.4,0,.2,1);
+      transition: top 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.25s, box-shadow 0.25s;
       gap: 0;
       padding: 0;
     }
     .navbar.hide {
       top: -90px;
-      transition: top 0.35s cubic-bezier(.4,0,.2,1);
+      transition: top 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.25s, box-shadow 0.25s;
+    }
+    .navbar.menu-open {
+      border-radius: 28px 28px 0 0 !important;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12); /* Remove bottom shadow */
     }
 
     /* Hamburger always on left, name always centered */
@@ -110,16 +114,29 @@
       width: 100vw;
       background: #fafaf8;
       border-radius: 0 0 28px 28px;
+      /* box-shadow removed when open to match menu-open */
       box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
       z-index: 1200;
       flex-direction: column;
       padding: 26px 0 32px 0;
       animation: dropdownFadeIn 0.28s;
-      align-items: center;
+      /* align-items: center; */
+      align-items: flex-start;
       border-top: 1px solid #ececec;
+      transition: border-radius 0.25s, box-shadow 0.25s;
     }
     .dropdown.open {
       display: flex;
+      box-shadow: none; /* Remove shadow when open */
+      border-radius: 0 0 0 0;
+    }
+    .dropdown-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 340px;
+      padding-left: 48px;
     }
     .dropdown-link {
       padding: 16px 28px;
@@ -132,7 +149,7 @@
       border: none;
       background: none;
       cursor: pointer;
-      text-align: center;
+      text-align: left;
       border-radius: 10px;
       transition: background 0.18s;
       margin: 0.5rem 0;
@@ -147,8 +164,6 @@
       from { opacity: 0; transform: translateY(-16px);}
       to { opacity: 1; transform: translateY(0);}
     }
-
-    /* Hide scrollbars on dropdown if not needed */
     .dropdown::-webkit-scrollbar {
       width: 0;
       height: 0;
@@ -158,6 +173,9 @@
       .navbar {
         height: 50px;
         border-radius: 14px;
+      }
+      .navbar.menu-open {
+        border-radius: 14px 14px 0 0 !important;
       }
       .navbar-center {
         font-size: 1.2rem;
@@ -180,6 +198,13 @@
         top: 86px;
         border-radius: 0 0 14px 14px;
         padding: 12px 0 18px 0;
+      }
+      .dropdown.open {
+        border-radius: 0 0 0 0;
+      }
+      .dropdown-inner {
+        max-width: 98vw;
+        padding-left: 12px;
       }
       .dropdown-link {
         font-size: 1.02rem;
@@ -410,11 +435,13 @@
     </div>
   </nav>
   <div class="dropdown" id="dropdownMenu">
-    <a href="#resume" class="dropdown-link">Resume</a>
-    <a href="#my-story" class="dropdown-link">My Story</a>
-    <a href="#challenges" class="dropdown-link">Challenges</a>
-    <a href="#gallery" class="dropdown-link">Gallery</a>
-    <a href="#contact" class="dropdown-link">Contact</a>
+    <div class="dropdown-inner">
+      <a href="#resume" class="dropdown-link">Resume</a>
+      <a href="#my-story" class="dropdown-link">My Story</a>
+      <a href="#challenges" class="dropdown-link">Challenges</a>
+      <a href="#gallery" class="dropdown-link">Gallery</a>
+      <a href="#contact" class="dropdown-link">Contact</a>
+    </div>
   </div>
   <div class="hero-bg"></div>
   <div class="content">
@@ -442,14 +469,22 @@
     // Hamburger dropdown and morph
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const dropdownMenu = document.getElementById('dropdownMenu');
+    const navbar = document.getElementById('navbar');
     hamburgerBtn.addEventListener('click', function(e) {
       hamburgerBtn.classList.toggle('open');
       dropdownMenu.classList.toggle('open');
+      // Add/remove menu-open to navbar for border radius and shadow effect
+      if (dropdownMenu.classList.contains('open')) {
+        navbar.classList.add('menu-open');
+      } else {
+        navbar.classList.remove('menu-open');
+      }
       e.stopPropagation();
     });
     document.body.addEventListener('click', function() {
       hamburgerBtn.classList.remove('open');
       dropdownMenu.classList.remove('open');
+      navbar.classList.remove('menu-open');
     });
     dropdownMenu.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -457,7 +492,6 @@
 
     // Hide navbar on scroll down, show on scroll up (always show on slight up)
     let prevScroll = window.scrollY;
-    let navbar = document.getElementById('navbar');
     window.addEventListener('scroll', function() {
       let currScroll = window.scrollY;
       if (currScroll > prevScroll && currScroll > 60) {
