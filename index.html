@@ -36,8 +36,6 @@
       border-radius: 28px 28px 0 0 !important;
       box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12); /* Remove bottom shadow */
     }
-
-    /* Hamburger always on left, name always centered */
     .navbar-content {
       width: 100vw;
       display: flex;
@@ -256,6 +254,8 @@
       justify-content: center;
       overflow: hidden;
       z-index: 1;
+      max-width: 100vw;
+      max-height: 800px;
     }
     .hero-bg::before {
       content: "";
@@ -463,7 +463,7 @@
   </nav>
   <div class="dropdown" id="dropdownMenu">
     <div class="dropdown-inner">
-      <a href="#" class="dropdown-link" id="home-link">Home</a>
+      <a href="/" class="dropdown-link" id="home-link">Home</a>
       <a href="#resume" class="dropdown-link">Resume</a>
       <a href="#my-story" class="dropdown-link">My Story</a>
       <a href="#challenges" class="dropdown-link">Challenges</a>
@@ -523,8 +523,11 @@
       e.stopPropagation();
     });
 
-    // Home link: scroll to top smoothly
+    // Home link: go to index page (even from other pages)
     document.getElementById('home-link').addEventListener('click', function(e) {
+      // If not already on the main page, let the browser navigate
+      if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") return;
+      // If already on the main page, scroll to top smoothly
       e.preventDefault();
       window.scrollTo({top: 0, behavior: 'smooth'});
       // Close menu after click
