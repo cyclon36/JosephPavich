@@ -214,17 +214,16 @@
     }
 
     /* Hero BG and Content */
-   .hero-bg {
-  width: 100vw;
-  height: 800px; /* or whatever fixed height you want */
-  background: url('/images/topimage.png') center center/cover no-repeat;
-  border-radius: 0 0 32px 32px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 1;
-}
+    .hero-bg {
+      width: 100vw;
+      height: 400px;
+      background: url('/background.png') center center/cover no-repeat;
+      border-radius: 0 0 32px 32px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
     }
     .hero-bg::before {
       content: "";
@@ -487,15 +486,19 @@
       e.stopPropagation();
     });
 
-    // Hide navbar on scroll down, show on scroll up (always show on slight up)
+    // Hide navbar on scroll down, show on scroll up (only when menu is closed)
     let prevScroll = window.scrollY;
     window.addEventListener('scroll', function() {
       let currScroll = window.scrollY;
-      if (currScroll > prevScroll && currScroll > 60) {
-        // Scrolling down
-        navbar.classList.add('hide');
+      // Only hide navbar if dropdown (hamburger menu) is closed
+      if (!dropdownMenu.classList.contains('open')) {
+        if (currScroll > prevScroll && currScroll > 60) {
+          navbar.classList.add('hide');
+        } else {
+          navbar.classList.remove('hide');
+        }
       } else {
-        // Scrolling up (even slightly)
+        // When menu is open, always show navbar
         navbar.classList.remove('hide');
       }
       prevScroll = currScroll;
