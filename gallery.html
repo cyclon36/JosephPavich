@@ -10,7 +10,7 @@
       margin: 0;
       background: #f9f9f9;
     }
-    /* Navbar styles */
+    /* Navbar styles ... (unchanged) */
     .navbar {
       position: fixed;
       top: 36px;
@@ -28,80 +28,15 @@
       gap: 0;
       padding: 0;
     }
-    .navbar.hide {
-      top: -90px;
-      transition: top 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.25s, box-shadow 0.25s;
-    }
-    .navbar.menu-open {
-      border-radius: 28px 28px 0 0 !important;
-      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
-    }
-    .navbar-content {
-      width: 100vw;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      height: 100%;
-    }
-    .hamburger-btn {
-      background: none;
-      border: none;
-      padding: 0;
-      margin-left: 32px;
-      margin-right: 0;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1201;
-    }
-    .hamburger-icon {
-      width: 32px;
-      height: 32px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 10px;
-      transition: all 0.3s;
-    }
-    .hamburger-bar {
-      width: 32px;
-      height: 4px;
-      background: #181818;
-      border-radius: 2px;
-      transition: all 0.3s;
-      position: relative;
-    }
-    .hamburger-btn.open .bar1 {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-    .hamburger-btn.open .bar2 {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-    .navbar-center {
-      margin: 0 auto;
-      font-weight: 900;
-      font-size: 2.4rem;
-      color: #181818;
-      letter-spacing: 0.07em;
-      line-height: 1;
-      user-select: none;
-      pointer-events: none;
-      white-space: nowrap;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1100;
-    }
+    .navbar.hide { top: -90px; }
+    .navbar.menu-open { border-radius: 28px 28px 0 0 !important; box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);}
+    .navbar-content { width: 100vw; display: flex; align-items: center; justify-content: center; position: relative; height: 100%; }
+    .hamburger-btn { background: none; border: none; padding: 0; margin-left: 32px; margin-right: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 1201; }
+    .hamburger-icon { width: 32px; height: 32px; position: relative; display: flex; flex-direction: column; justify-content: center; gap: 10px; transition: all 0.3s; }
+    .hamburger-bar { width: 32px; height: 4px; background: #181818; border-radius: 2px; transition: all 0.3s; position: relative; }
+    .hamburger-btn.open .bar1 { transform: rotate(45deg) translate(6px, 6px);}
+    .hamburger-btn.open .bar2 { transform: rotate(-45deg) translate(6px, -6px);}
+    .navbar-center { margin: 0 auto; font-weight: 900; font-size: 2.4rem; color: #181818; letter-spacing: 0.07em; line-height: 1; user-select: none; pointer-events: none; white-space: nowrap; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1100;}
     .dropdown {
       display: none;
       position: fixed;
@@ -150,32 +85,28 @@
       margin: 0.5rem 0;
       width: 220px;
     }
-    .dropdown-link:hover,
-    .dropdown-link:focus {
-      background: #ececec;
-      outline: none;
-    }
-    /* CONTACT IMAGE: Make it larger and centered in dropdown area */
+    .dropdown-link:hover, .dropdown-link:focus { background: #ececec; outline: none; }
+
+    /* CONTACT IMAGE: Fill dropdown and center */
     .dropdown-contact-img-wrapper {
       display: none;
       position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 330px;
-      height: 220px;
-      align-items: center;
-      justify-content: center;
+      inset: 0;
       z-index: 10;
       pointer-events: none;
       background: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown.open .dropdown-contact-img-wrapper {
+      display: flex;
     }
     .dropdown-contact-img-wrapper img {
       display: block;
-      max-width: 100%;
-      max-height: 100%;
-      width: 300px;
-      height: auto;
+      height: 90%;
+      width: auto;
+      max-width: 98vw;
+      max-height: 98%;
       object-fit: contain;
       border-radius: 24px;
       box-shadow: 0 4px 32px #0002;
@@ -184,12 +115,7 @@
       pointer-events: all;
     }
     @media (max-width: 900px) {
-      .dropdown-contact-img-wrapper {
-        width: 220px;
-        height: 146px;
-      }
       .dropdown-contact-img-wrapper img {
-        width: 170px;
         border-radius: 14px;
       }
     }
@@ -237,12 +163,7 @@
         max-width: 250px;
         padding: 13px 4vw;
       }
-      .dropdown-contact-img-wrapper {
-        width: 120px;
-        height: 80px;
-      }
       .dropdown-contact-img-wrapper img {
-        width: 100px;
         border-radius: 8px;
       }
     }
@@ -295,7 +216,6 @@
       object-fit: cover;
       border-radius: 12px;
     }
-    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
@@ -306,9 +226,7 @@
       align-items: center;
       justify-content: center;
     }
-    .modal.open {
-      display: flex;
-    }
+    .modal.open { display: flex; }
     .modal-img-wrapper {
       background: #fff8e1;
       border-radius: 16px;
@@ -338,25 +256,12 @@
       z-index: 5100;
       transition: color 0.2s;
     }
-    .modal-close:hover {
-      color: #e06348;
-    }
+    .modal-close:hover { color: #e06348;}
     @media (max-width: 600px) {
-      .gallery-page-content {
-        padding-top: 110px;
-      }
-      .gallery-container {
-        gap: 12px;
-      }
-      .gallery-thumb {
-        width: 120px; height: 90px;
-        border-width: 7px;
-        border-radius: 10px;
-      }
-      .modal-img-wrapper {
-        padding: 4px;
-        border-radius: 6px;
-      }
+      .gallery-page-content { padding-top: 110px; }
+      .gallery-container { gap: 12px; }
+      .gallery-thumb { width: 120px; height: 90px; border-width: 7px; border-radius: 10px;}
+      .modal-img-wrapper { padding: 4px; border-radius: 6px;}
     }
   </style>
 </head>
