@@ -117,6 +117,7 @@
       align-items: flex-start;
       border-top: 1px solid #ececec;
       transition: border-radius 0.25s, box-shadow 0.25s;
+      min-height: 260px;
     }
     .dropdown.open {
       display: flex;
@@ -130,6 +131,7 @@
       width: 100%;
       max-width: 340px;
       padding-left: 48px;
+      z-index: 2;
     }
     .dropdown-link {
       padding: 16px 28px;
@@ -153,35 +155,42 @@
       background: #ececec;
       outline: none;
     }
+    /* CONTACT IMAGE: Make it larger and centered in dropdown area */
     .dropdown-contact-img-wrapper {
+      display: none;
       position: absolute;
-      right: 32px;
-      top: 36px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-      height: 90px;
-      z-index: 1300;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 330px;
+      height: 220px;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      pointer-events: none;
+      background: none;
     }
     .dropdown-contact-img-wrapper img {
-      max-height: 90px;
-      max-width: 110px;
-      border-radius: 18px;
-      box-shadow: 0 2px 12px #0002;
-      background: #fff;
-      border: 3px solid #ececec;
       display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: 300px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 24px;
+      box-shadow: 0 4px 32px #0002;
+      border: 6px solid #ececec;
+      background: #fff;
+      pointer-events: all;
     }
     @media (max-width: 900px) {
       .dropdown-contact-img-wrapper {
-        top: 18px;
-        right: 12px;
-        height: 56px;
+        width: 220px;
+        height: 146px;
       }
       .dropdown-contact-img-wrapper img {
-        max-height: 56px;
-        max-width: 70px;
-        border-radius: 8px;
+        width: 170px;
+        border-radius: 14px;
       }
     }
     @media (max-width: 600px) {
@@ -213,6 +222,7 @@
         top: 86px;
         border-radius: 0 0 14px 14px;
         padding: 12px 0 18px 0;
+        min-height: 120px;
       }
       .dropdown.open {
         border-radius: 0 0 0 0;
@@ -228,14 +238,12 @@
         padding: 13px 4vw;
       }
       .dropdown-contact-img-wrapper {
-        top: 8px;
-        right: 4px;
-        height: 38px;
+        width: 120px;
+        height: 80px;
       }
       .dropdown-contact-img-wrapper img {
-        max-height: 38px;
-        max-width: 38px;
-        border-radius: 6px;
+        width: 100px;
+        border-radius: 8px;
       }
     }
     .gallery-page-content {
@@ -248,7 +256,6 @@
       font-size: 1.18rem;
       color: #49392f;
       line-height: 1.6;
-      /* No border or box-shadow */
       background: none;
       border-radius: 0;
       padding: 0 24px 8px 24px;
@@ -264,7 +271,7 @@
       justify-content: center;
     }
     .gallery-thumb {
-      border: 14px solid #382417; /* Same as carousel frame on main page */
+      border: 14px solid #382417;
       border-radius: 20px;
       box-shadow: 0 4px 16px #0002;
       background: #fff8e1;
