@@ -119,7 +119,6 @@
       z-index: 1200;
       flex-direction: column;
       padding: 26px 0 32px 0;
-      /* align-items: center; */
       align-items: flex-start;
       border-top: 1px solid #ececec;
       transition: border-radius 0.25s, box-shadow 0.25s;
@@ -159,15 +158,38 @@
       background: #ececec;
       outline: none;
     }
-    @keyframes dropdownFadeIn {
-      from { opacity: 0; transform: translateY(-16px);}
-      to { opacity: 1; transform: translateY(0);}
+    /* Contact image in dropdown */
+    .dropdown-contact-img-wrapper {
+      position: absolute;
+      right: 32px;
+      top: 36px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      height: 90px;
+      z-index: 1300;
     }
-    .dropdown::-webkit-scrollbar {
-      width: 0;
-      height: 0;
+    .dropdown-contact-img-wrapper img {
+      max-height: 90px;
+      max-width: 110px;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #0002;
+      background: #fff;
+      border: 3px solid #ececec;
+      display: block;
     }
-
+    @media (max-width: 900px) {
+      .dropdown-contact-img-wrapper {
+        top: 18px;
+        right: 12px;
+        height: 56px;
+      }
+      .dropdown-contact-img-wrapper img {
+        max-height: 56px;
+        max-width: 70px;
+        border-radius: 8px;
+      }
+    }
     @media (max-width: 600px) {
       .navbar {
         height: 50px;
@@ -211,13 +233,23 @@
         max-width: 250px;
         padding: 13px 4vw;
       }
+      .dropdown-contact-img-wrapper {
+        top: 8px;
+        right: 4px;
+        height: 38px;
+      }
+      .dropdown-contact-img-wrapper img {
+        max-height: 38px;
+        max-width: 38px;
+        border-radius: 6px;
+      }
     }
 
     /* Hero BG and Content */
     .hero-bg {
       width: 100vw;
-      height: 800px;
-      background: url('/images/topimage.png') center center/cover no-repeat;
+      height: 400px;
+      background: url('/background.png') center center/cover no-repeat;
       border-radius: 0 0 32px 32px;
       display: flex;
       align-items: flex-start;
@@ -431,12 +463,15 @@
   </nav>
   <div class="dropdown" id="dropdownMenu">
     <div class="dropdown-inner">
-      <a href="#" class="dropdown-link">Home</a>
+      <a href="#" class="dropdown-link" id="home-link">Home</a>
       <a href="#resume" class="dropdown-link">Resume</a>
       <a href="#my-story" class="dropdown-link">My Story</a>
       <a href="#challenges" class="dropdown-link">Challenges</a>
-      <a href="#gallery" class="dropdown-link">Gallery</a>
-      <a href="#contact" class="dropdown-link">Contact</a>
+      <a href="gallery.html" class="dropdown-link">Gallery</a>
+      <a href="#contact" class="dropdown-link" id="contact-link">Contact</a>
+    </div>
+    <div class="dropdown-contact-img-wrapper" id="contact-img-wrapper" style="display: none;">
+      <img src="images/contact.png" alt="Contact" />
     </div>
   </div>
   <div class="hero-bg"></div>
@@ -481,9 +516,43 @@
       hamburgerBtn.classList.remove('open');
       dropdownMenu.classList.remove('open');
       navbar.classList.remove('menu-open');
+      // Hide contact image if visible
+      document.getElementById('contact-img-wrapper').style.display = 'none';
     });
     dropdownMenu.addEventListener('click', function(e) {
       e.stopPropagation();
+    });
+
+    // Home link: scroll to top smoothly
+    document.getElementById('home-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      // Close menu after click
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+      navbar.classList.remove('menu-open');
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+
+    // Gallery link: goes to gallery.html (no special JS needed)
+
+    // Contact link: show image to right of menu
+    document.getElementById('contact-link').addEventListener('mouseenter', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'flex';
+    });
+    document.getElementById('contact-link').addEventListener('mouseleave', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    // Also show image if the link is tapped/clicked (for mobile)
+    document.getElementById('contact-link').addEventListener('click', function(e) {
+      // Don't close menu, just show image
+      e.preventDefault();
+      document.getElementById('contact-img-wrapper').style.display = 'flex';
+    });
+
+    // Hide image if mouse leaves the dropdown area entirely
+    document.getElementById('dropdownMenu').addEventListener('mouseleave', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'none';
     });
 
     // Hide navbar on scroll down, show on scroll up (only when menu is closed)
