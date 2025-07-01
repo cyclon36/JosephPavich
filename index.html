@@ -34,7 +34,7 @@
     }
     .navbar.menu-open {
       border-radius: 28px 28px 0 0 !important;
-      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12); /* Remove bottom shadow */
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
     }
     .navbar-content {
       width: 100vw;
@@ -102,17 +102,14 @@
       transform: translate(-50%, -50%);
       z-index: 1100;
     }
-
-    /* Full-width dropdown styles */
     .dropdown {
       display: none;
       position: fixed;
       left: 0;
-      top: 101px; /* 36px + 65px */
+      top: 101px;
       width: 100vw;
       background: #fafaf8;
       border-radius: 0 0 28px 28px;
-      /* box-shadow removed when open to match menu-open */
       box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
       z-index: 1200;
       flex-direction: column;
@@ -120,10 +117,11 @@
       align-items: flex-start;
       border-top: 1px solid #ececec;
       transition: border-radius 0.25s, box-shadow 0.25s;
+      min-height: 260px;
     }
     .dropdown.open {
       display: flex;
-      box-shadow: none; /* Remove shadow when open */
+      box-shadow: none;
       border-radius: 0 0 0 0;
     }
     .dropdown-inner {
@@ -133,6 +131,7 @@
       width: 100%;
       max-width: 340px;
       padding-left: 48px;
+      z-index: 2;
     }
     .dropdown-link {
       padding: 16px 28px;
@@ -156,36 +155,36 @@
       background: #ececec;
       outline: none;
     }
-    /* Contact image in dropdown */
+    /* CONTACT IMAGE: Fill dropdown and center */
     .dropdown-contact-img-wrapper {
+      display: none;
       position: absolute;
-      right: 32px;
-      top: 36px;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      background: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown.open .dropdown-contact-img-wrapper {
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-      height: 90px;
-      z-index: 1300;
     }
     .dropdown-contact-img-wrapper img {
-      max-height: 90px;
-      max-width: 110px;
-      border-radius: 18px;
-      box-shadow: 0 2px 12px #0002;
-      background: #fff;
-      border: 3px solid #ececec;
       display: block;
+      height: 90%;
+      width: auto;
+      max-width: 98vw;
+      max-height: 98%;
+      object-fit: contain;
+      border-radius: 24px;
+      box-shadow: 0 4px 32px #0002;
+      border: 6px solid #ececec;
+      background: #fff;
+      pointer-events: all;
     }
     @media (max-width: 900px) {
-      .dropdown-contact-img-wrapper {
-        top: 18px;
-        right: 12px;
-        height: 56px;
-      }
       .dropdown-contact-img-wrapper img {
-        max-height: 56px;
-        max-width: 70px;
-        border-radius: 8px;
+        border-radius: 14px;
       }
     }
     @media (max-width: 600px) {
@@ -217,6 +216,7 @@
         top: 86px;
         border-radius: 0 0 14px 14px;
         padding: 12px 0 18px 0;
+        min-height: 120px;
       }
       .dropdown.open {
         border-radius: 0 0 0 0;
@@ -231,18 +231,10 @@
         max-width: 250px;
         padding: 13px 4vw;
       }
-      .dropdown-contact-img-wrapper {
-        top: 8px;
-        right: 4px;
-        height: 38px;
-      }
       .dropdown-contact-img-wrapper img {
-        max-height: 38px;
-        max-width: 38px;
-        border-radius: 6px;
+        border-radius: 8px;
       }
     }
-
     /* Hero BG and Content */
     .hero-bg {
       width: 100vw;
@@ -278,7 +270,6 @@
       position: relative;
       z-index: 2;
     }
-
     /* Carousel Bar with sunburst background */
     .carousel-bar {
       width: 100vw;
@@ -504,7 +495,6 @@
     hamburgerBtn.addEventListener('click', function(e) {
       hamburgerBtn.classList.toggle('open');
       dropdownMenu.classList.toggle('open');
-      // Add/remove menu-open to navbar for border radius and shadow effect
       if (dropdownMenu.classList.contains('open')) {
         navbar.classList.add('menu-open');
       } else {
@@ -516,7 +506,6 @@
       hamburgerBtn.classList.remove('open');
       dropdownMenu.classList.remove('open');
       navbar.classList.remove('menu-open');
-      // Hide contact image if visible
       document.getElementById('contact-img-wrapper').style.display = 'none';
     });
     dropdownMenu.addEventListener('click', function(e) {
@@ -525,35 +514,26 @@
 
     // Home link: go to index page (even from other pages)
     document.getElementById('home-link').addEventListener('click', function(e) {
-      // If not already on the main page, let the browser navigate
       if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") return;
-      // If already on the main page, scroll to top smoothly
       e.preventDefault();
       window.scrollTo({top: 0, behavior: 'smooth'});
-      // Close menu after click
       hamburgerBtn.classList.remove('open');
       dropdownMenu.classList.remove('open');
       navbar.classList.remove('menu-open');
       document.getElementById('contact-img-wrapper').style.display = 'none';
     });
 
-    // Gallery link: goes to gallery.html (no special JS needed)
-
-    // Contact link: show image to right of menu
+    // Contact link: show image centered in dropdown
     document.getElementById('contact-link').addEventListener('mouseenter', function() {
       document.getElementById('contact-img-wrapper').style.display = 'flex';
     });
     document.getElementById('contact-link').addEventListener('mouseleave', function() {
       document.getElementById('contact-img-wrapper').style.display = 'none';
     });
-    // Also show image if the link is tapped/clicked (for mobile)
     document.getElementById('contact-link').addEventListener('click', function(e) {
-      // Don't close menu, just show image
       e.preventDefault();
       document.getElementById('contact-img-wrapper').style.display = 'flex';
     });
-
-    // Hide image if mouse leaves the dropdown area entirely
     document.getElementById('dropdownMenu').addEventListener('mouseleave', function() {
       document.getElementById('contact-img-wrapper').style.display = 'none';
     });
@@ -562,7 +542,6 @@
     let prevScroll = window.scrollY;
     window.addEventListener('scroll', function() {
       let currScroll = window.scrollY;
-      // Only hide navbar if dropdown (hamburger menu) is closed
       if (!dropdownMenu.classList.contains('open')) {
         if (currScroll > prevScroll && currScroll > 60) {
           navbar.classList.add('hide');
@@ -570,7 +549,6 @@
           navbar.classList.remove('hide');
         }
       } else {
-        // When menu is open, always show navbar
         navbar.classList.remove('hide');
       }
       prevScroll = currScroll;
