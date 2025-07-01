@@ -10,6 +10,252 @@
       margin: 0;
       background: #f9f9f9;
     }
+    /* Navbar styles */
+    .navbar {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      width: 100vw;
+      background: #fafaf8;
+      border-radius: 28px 28px 28px 28px;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12), 0 -2px 24px rgba(40,30,20,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 65px;
+      z-index: 1000;
+      transition: top 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.25s, box-shadow 0.25s;
+      gap: 0;
+      padding: 0;
+    }
+    .navbar.hide {
+      top: -90px;
+      transition: top 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.25s, box-shadow 0.25s;
+    }
+    .navbar.menu-open {
+      border-radius: 28px 28px 0 0 !important;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+    }
+    .navbar-content {
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 100%;
+    }
+    .hamburger-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-left: 32px;
+      margin-right: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1201;
+    }
+    .hamburger-icon {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+    .hamburger-bar {
+      width: 32px;
+      height: 4px;
+      background: #181818;
+      border-radius: 2px;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .hamburger-btn.open .bar1 {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger-btn.open .bar2 {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    .navbar-center {
+      margin: 0 auto;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #181818;
+      letter-spacing: 0.07em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1100;
+    }
+
+    /* Full-width dropdown styles */
+    .dropdown {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 101px; /* 36px + 65px */
+      width: 100vw;
+      background: #fafaf8;
+      border-radius: 0 0 28px 28px;
+      box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
+      z-index: 1200;
+      flex-direction: column;
+      padding: 26px 0 32px 0;
+      align-items: flex-start;
+      border-top: 1px solid #ececec;
+      transition: border-radius 0.25s, box-shadow 0.25s;
+    }
+    .dropdown.open {
+      display: flex;
+      box-shadow: none;
+      border-radius: 0 0 0 0;
+    }
+    .dropdown-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 340px;
+      padding-left: 48px;
+    }
+    .dropdown-link {
+      padding: 16px 28px;
+      color: #181818;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 10px;
+      transition: background 0.18s;
+      margin: 0.5rem 0;
+      width: 220px;
+    }
+    .dropdown-link:hover,
+    .dropdown-link:focus {
+      background: #ececec;
+      outline: none;
+    }
+    .dropdown-contact-img-wrapper {
+      position: absolute;
+      right: 32px;
+      top: 36px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      height: 90px;
+      z-index: 1300;
+    }
+    .dropdown-contact-img-wrapper img {
+      max-height: 90px;
+      max-width: 110px;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #0002;
+      background: #fff;
+      border: 3px solid #ececec;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .dropdown-contact-img-wrapper {
+        top: 18px;
+        right: 12px;
+        height: 56px;
+      }
+      .dropdown-contact-img-wrapper img {
+        max-height: 56px;
+        max-width: 70px;
+        border-radius: 8px;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        height: 50px;
+        border-radius: 14px;
+      }
+      .navbar.menu-open {
+        border-radius: 14px 14px 0 0 !important;
+      }
+      .navbar-center {
+        font-size: 1.2rem;
+      }
+      .hamburger-btn {
+        margin-left: 10px;
+        width: 36px;
+        height: 36px;
+      }
+      .hamburger-icon {
+        width: 24px;
+        height: 24px;
+        gap: 6px;
+      }
+      .hamburger-bar {
+        width: 24px;
+        height: 3px;
+      }
+      .dropdown {
+        top: 86px;
+        border-radius: 0 0 14px 14px;
+        padding: 12px 0 18px 0;
+      }
+      .dropdown.open {
+        border-radius: 0 0 0 0;
+      }
+      .dropdown-inner {
+        max-width: 98vw;
+        padding-left: 12px;
+      }
+      .dropdown-link {
+        font-size: 1.02rem;
+        width: 98vw;
+        max-width: 250px;
+        padding: 13px 4vw;
+      }
+      .dropdown-contact-img-wrapper {
+        top: 8px;
+        right: 4px;
+        height: 38px;
+      }
+      .dropdown-contact-img-wrapper img {
+        max-height: 38px;
+        max-width: 38px;
+        border-radius: 6px;
+      }
+    }
+    /* Gallery content below navbar */
+    .gallery-page-content {
+      padding-top: 160px;
+    }
+    .gallery-description {
+      max-width: 700px;
+      margin: 0 auto 26px auto;
+      text-align: center;
+      font-size: 1.18rem;
+      color: #49392f;
+      line-height: 1.6;
+      background: #fffefb;
+      border-radius: 12px;
+      padding: 16px 24px;
+      box-shadow: 0 2px 8px #0001;
+    }
     .gallery-container {
       max-width: 1100px;
       margin: 40px auto;
@@ -91,6 +337,9 @@
       color: #e06348;
     }
     @media (max-width: 600px) {
+      .gallery-page-content {
+        padding-top: 110px;
+      }
       .gallery-container {
         gap: 12px;
       }
@@ -104,74 +353,88 @@
         border-radius: 6px;
       }
     }
-    /* Add styling for the gallery description */
-    .gallery-description {
-      max-width: 700px;
-      margin: 0 auto 26px auto;
-      text-align: center;
-      font-size: 1.18rem;
-      color: #49392f;
-      line-height: 1.6;
-      background: #fffefb;
-      border-radius: 12px;
-      padding: 16px 24px;
-      box-shadow: 0 2px 8px #0001;
-    }
   </style>
 </head>
 <body>
-  <h1 style="text-align:center; margin-top:30px;">Gallery</h1>
-  <div class="gallery-description">
-    A sampling of photos that entail special projects and automotive interiors during my time as a business owner. These represent my own designs in both products, interiors, and seating.
+  <!-- NAVBAR & DROPDOWN (SAME AS index.html for consistency) -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-content">
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+        <span class="hamburger-icon">
+          <span class="hamburger-bar bar1"></span>
+          <span class="hamburger-bar bar2"></span>
+        </span>
+      </button>
+      <span class="navbar-center">JOSEPH PAVICH</span>
+    </div>
+  </nav>
+  <div class="dropdown" id="dropdownMenu">
+    <div class="dropdown-inner">
+      <a href="#" class="dropdown-link" id="home-link">Home</a>
+      <a href="#resume" class="dropdown-link">Resume</a>
+      <a href="#my-story" class="dropdown-link">My Story</a>
+      <a href="#challenges" class="dropdown-link">Challenges</a>
+      <a href="gallery.html" class="dropdown-link">Gallery</a>
+      <a href="#contact" class="dropdown-link" id="contact-link">Contact</a>
+    </div>
+    <div class="dropdown-contact-img-wrapper" id="contact-img-wrapper" style="display: none;">
+      <img src="images/contact.png" alt="Contact" />
+    </div>
   </div>
-  <div class="gallery-container">
-    <div class="gallery-thumb" data-full="gallery/photo1.jpg">
-      <img src="gallery/photo1.jpg" alt="Photo 1"/>
+  <div class="gallery-page-content">
+    <h1 style="text-align:center; margin-top:30px;">Gallery</h1>
+    <div class="gallery-description">
+      A sampling of photos that entail special projects and automotive interiors during my time as a business owner. These represent my own designs in both products, interiors, and seating.
     </div>
-    <div class="gallery-thumb" data-full="gallery/photo2.jpg">
-      <img src="gallery/photo2.jpg" alt="Photo 2"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo3.jpg">
-      <img src="gallery/photo3.jpg" alt="Photo 3"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo4.jpg">
-      <img src="gallery/photo4.jpg" alt="Photo 4"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo5.jpg">
-      <img src="gallery/photo5.jpg" alt="Photo 5"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo6.jpg">
-      <img src="gallery/photo6.jpg" alt="Photo 6"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo7.jpg">
-      <img src="gallery/photo7.jpg" alt="Photo 7"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo8.jpg">
-      <img src="gallery/photo8.jpg" alt="Photo 8"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo9.jpg">
-      <img src="gallery/photo9.jpg" alt="Photo 9"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo10.jpg">
-      <img src="gallery/photo10.jpg" alt="Photo 10"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo11.jpg">
-      <img src="gallery/photo11.jpg" alt="Photo 11"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo12.jpg">
-      <img src="gallery/photo12.jpg" alt="Photo 12"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo13.jpg">
-      <img src="gallery/photo13.jpg" alt="Photo 13"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo14.jpg">
-      <img src="gallery/photo14.jpg" alt="Photo 14"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo15.jpg">
-      <img src="gallery/photo15.jpg" alt="Photo 15"/>
-    </div>
-    <div class="gallery-thumb" data-full="gallery/photo16.jpg">
-      <img src="gallery/photo16.jpg" alt="Photo 16"/>
+    <div class="gallery-container">
+      <div class="gallery-thumb" data-full="gallery/photo1.jpg">
+        <img src="gallery/photo1.jpg" alt="Photo 1"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo2.jpg">
+        <img src="gallery/photo2.jpg" alt="Photo 2"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo3.jpg">
+        <img src="gallery/photo3.jpg" alt="Photo 3"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo4.jpg">
+        <img src="gallery/photo4.jpg" alt="Photo 4"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo5.jpg">
+        <img src="gallery/photo5.jpg" alt="Photo 5"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo6.jpg">
+        <img src="gallery/photo6.jpg" alt="Photo 6"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo7.jpg">
+        <img src="gallery/photo7.jpg" alt="Photo 7"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo8.jpg">
+        <img src="gallery/photo8.jpg" alt="Photo 8"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo9.jpg">
+        <img src="gallery/photo9.jpg" alt="Photo 9"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo10.jpg">
+        <img src="gallery/photo10.jpg" alt="Photo 10"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo11.jpg">
+        <img src="gallery/photo11.jpg" alt="Photo 11"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo12.jpg">
+        <img src="gallery/photo12.jpg" alt="Photo 12"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo13.jpg">
+        <img src="gallery/photo13.jpg" alt="Photo 13"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo14.jpg">
+        <img src="gallery/photo14.jpg" alt="Photo 14"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo15.jpg">
+        <img src="gallery/photo15.jpg" alt="Photo 15"/>
+      </div>
+      <div class="gallery-thumb" data-full="gallery/photo16.jpg">
+        <img src="gallery/photo16.jpg" alt="Photo 16"/>
+      </div>
     </div>
   </div>
   <div class="modal" id="galleryModal">
@@ -181,6 +444,67 @@
     </div>
   </div>
   <script>
+    // Hamburger dropdown and morph
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const navbar = document.getElementById('navbar');
+    hamburgerBtn.addEventListener('click', function(e) {
+      hamburgerBtn.classList.toggle('open');
+      dropdownMenu.classList.toggle('open');
+      if (dropdownMenu.classList.contains('open')) {
+        navbar.classList.add('menu-open');
+      } else {
+        navbar.classList.remove('menu-open');
+      }
+      e.stopPropagation();
+    });
+    document.body.addEventListener('click', function() {
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+      navbar.classList.remove('menu-open');
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    dropdownMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+    // Home link: scroll to top smoothly
+    document.getElementById('home-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+      navbar.classList.remove('menu-open');
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    // Contact link: show image to right of menu
+    document.getElementById('contact-link').addEventListener('mouseenter', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'flex';
+    });
+    document.getElementById('contact-link').addEventListener('mouseleave', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    document.getElementById('contact-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('contact-img-wrapper').style.display = 'flex';
+    });
+    document.getElementById('dropdownMenu').addEventListener('mouseleave', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    // Hide navbar on scroll down, show on scroll up (only when menu is closed)
+    let prevScroll = window.scrollY;
+    window.addEventListener('scroll', function() {
+      let currScroll = window.scrollY;
+      if (!dropdownMenu.classList.contains('open')) {
+        if (currScroll > prevScroll && currScroll > 60) {
+          navbar.classList.add('hide');
+        } else {
+          navbar.classList.remove('hide');
+        }
+      } else {
+        navbar.classList.remove('hide');
+      }
+      prevScroll = currScroll;
+    }, {passive: true});
     // Modal logic
     const modal = document.getElementById('galleryModal');
     const modalImg = document.getElementById('modalImg');
