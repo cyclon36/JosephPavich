@@ -102,13 +102,11 @@
       transform: translate(-50%, -50%);
       z-index: 1100;
     }
-
-    /* Full-width dropdown styles */
     .dropdown {
       display: none;
       position: fixed;
       left: 0;
-      top: 101px; /* 36px + 65px */
+      top: 101px;
       width: 100vw;
       background: #fafaf8;
       border-radius: 0 0 28px 28px;
@@ -240,7 +238,6 @@
         border-radius: 6px;
       }
     }
-    /* Gallery content below navbar */
     .gallery-page-content {
       padding-top: 160px;
     }
@@ -251,10 +248,11 @@
       font-size: 1.18rem;
       color: #49392f;
       line-height: 1.6;
-      background: #fffefb;
-      border-radius: 12px;
-      padding: 16px 24px;
-      box-shadow: 0 2px 8px #0001;
+      /* No border or box-shadow */
+      background: none;
+      border-radius: 0;
+      padding: 0 24px 8px 24px;
+      box-shadow: none;
     }
     .gallery-container {
       max-width: 1100px;
@@ -266,7 +264,7 @@
       justify-content: center;
     }
     .gallery-thumb {
-      border: 6px solid #382417;
+      border: 14px solid #382417; /* Same as carousel frame on main page */
       border-radius: 20px;
       box-shadow: 0 4px 16px #0002;
       background: #fff8e1;
@@ -345,7 +343,7 @@
       }
       .gallery-thumb {
         width: 120px; height: 90px;
-        border-width: 3px;
+        border-width: 7px;
         border-radius: 10px;
       }
       .modal-img-wrapper {
@@ -356,7 +354,7 @@
   </style>
 </head>
 <body>
-  <!-- NAVBAR & DROPDOWN (SAME AS index.html for consistency) -->
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="navbar-content">
       <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
@@ -370,7 +368,7 @@
   </nav>
   <div class="dropdown" id="dropdownMenu">
     <div class="dropdown-inner">
-      <a href="#" class="dropdown-link" id="home-link">Home</a>
+      <a href="/" class="dropdown-link" id="home-link">Home</a>
       <a href="#resume" class="dropdown-link">Resume</a>
       <a href="#my-story" class="dropdown-link">My Story</a>
       <a href="#challenges" class="dropdown-link">Challenges</a>
@@ -467,8 +465,8 @@
     dropdownMenu.addEventListener('click', function(e) {
       e.stopPropagation();
     });
-    // Home link: scroll to top smoothly
     document.getElementById('home-link').addEventListener('click', function(e) {
+      if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") return;
       e.preventDefault();
       window.scrollTo({top: 0, behavior: 'smooth'});
       hamburgerBtn.classList.remove('open');
@@ -476,7 +474,6 @@
       navbar.classList.remove('menu-open');
       document.getElementById('contact-img-wrapper').style.display = 'none';
     });
-    // Contact link: show image to right of menu
     document.getElementById('contact-link').addEventListener('mouseenter', function() {
       document.getElementById('contact-img-wrapper').style.display = 'flex';
     });
@@ -490,7 +487,6 @@
     document.getElementById('dropdownMenu').addEventListener('mouseleave', function() {
       document.getElementById('contact-img-wrapper').style.display = 'none';
     });
-    // Hide navbar on scroll down, show on scroll up (only when menu is closed)
     let prevScroll = window.scrollY;
     window.addEventListener('scroll', function() {
       let currScroll = window.scrollY;
