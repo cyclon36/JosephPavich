@@ -30,12 +30,12 @@
     .navbar.hide { top: -90px; }
     .navbar.menu-open { border-radius: 28px 28px 0 0 !important; box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);}
     .navbar-content { width: 100vw; display: flex; align-items: center; justify-content: center; position: relative; height: 100%; }
-    .hamburger-btn { background: none; border: none; padding: 0; margin-left: 32px; margin-right: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 1201;}
+    .hamburger-btn { background: none; border: none; padding: 0; margin-left: 32px; margin-right: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor:pointer;}
     .hamburger-icon { width: 32px; height: 32px; position: relative; display: flex; flex-direction: column; justify-content: center; gap: 10px; transition: all 0.3s; }
     .hamburger-bar { width: 32px; height: 4px; background: #181818; border-radius: 2px; transition: all 0.3s; position: relative; }
     .hamburger-btn.open .bar1 { transform: rotate(45deg) translate(6px, 6px);}
     .hamburger-btn.open .bar2 { transform: rotate(-45deg) translate(6px, -6px);}
-    .navbar-center { margin: 0 auto; font-weight: 900; font-size: 2.4rem; color: #181818; letter-spacing: 0.07em; line-height: 1; user-select: none; pointer-events: none; white-space: nowrap; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1100;}
+    .navbar-center { margin: 0 auto; font-weight: 900; font-size: 2.4rem; color: #181818; letter-spacing: 0.07em; line-height: 1; user-select: none; pointer-events: none; white-space: nowrap; position: relative;}
     .dropdown {
       display: none;
       position: fixed;
@@ -154,7 +154,7 @@
     @media (max-width: 600px) { .gallery-page-content { padding-top: 110px; } }
 
     .gallery-description {
-      max-width: 700px;
+      max-width: 1100px;
       margin: 0 auto 26px auto;
       text-align: center;
       font-size: 1.18rem;
@@ -265,10 +265,10 @@
   </nav>
   <div class="dropdown" id="dropdownMenu">
     <div class="dropdown-inner">
-      <a href="/" class="dropdown-link" id="home-link">Home</a>
-      <a href="#resume" class="dropdown-link">Resume</a>
-      <a href="#my-story" class="dropdown-link">My Story</a>
-      <a href="#challenges" class="dropdown-link">Challenges</a>
+      <a href="index.html" class="dropdown-link" id="home-link">Home</a>
+      <a href="resume.html" class="dropdown-link">Resume</a>
+      <a href="story.html" class="dropdown-link">My Story</a>
+      <a href="challenges.html" class="dropdown-link">Challenges</a>
       <a href="gallery.html" class="dropdown-link">Gallery</a>
       <a href="#contact" class="dropdown-link" id="contact-link">Contact</a>
     </div>
