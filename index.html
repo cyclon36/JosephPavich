@@ -307,14 +307,18 @@
       text-align: left;
     }
     /* Separation line below welcome section, similar to carousel's top border */
-    .welcome-separator {
-      max-width: 900px;
-      width: 100%;
-      border: none;
-      border-top: 8px solid #382417;
-      margin: 32px auto 0 auto;
-      box-sizing: border-box;
-    }
+.welcome-separator {
+  width: 100vw;
+  max-width: none;
+  border: none;
+  border-top: 8px solid #382417;
+  margin: 32px 0 0 0;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+}
     /* Carousel Bar with sunburst background */
     .carousel-bar {
       width: 100vw;
