@@ -1,1 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>5 Star Safety - Joseph Pavich Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #fff;
+    }
+    .navbar {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      width: 100vw;
+      background: #e4e4e4;
+      border-radius: 28px 28px 28px 28px;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12), 0 -2px 24px rgba(40,30,20,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 65px;
+      z-index: 1000;
+      transition: top 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.25s, box-shadow 0.25s;
+      gap: 0;
+      padding: 0;
+    }
+    .navbar.hide { top: -90px; }
+    .navbar.menu-open { border-radius: 28px 28px 0 0 !important; box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);}
+    .navbar-content { width: 100vw; display: flex; align-items: center; justify-content: center; position: relative; height: 100%; }
+    .hamburger-btn { background: none; border: none; padding: 0; margin-left: 32px; margin-right: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor:pointer; }
+    .hamburger-icon { width: 32px; height: 32px; position: relative; display: flex; flex-direction: column; justify-content: center; gap: 10px; transition: all 0.3s; }
+    .hamburger-bar { width: 32px; height: 4px; background: #6a6a6a; border-radius: 2px; transition: all 0.3s; position: relative; }
+    .hamburger-btn.open .bar1 { transform: rotate(45deg) translate(6px, 6px);}
+    .hamburger-btn.open .bar2 { transform: rotate(-45deg) translate(6px, -6px);}
+    .navbar-center { margin: 0 auto; font-weight: 900; font-size: 2.4rem; color: #181818; letter-spacing: 0.07em; line-height: 1; user-select: none; pointer-events: none; white-space: nowrap; position: relative;}
+    .dropdown {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 101px;
+      width: 100vw;
+      background: #e4e4e4;
+      border-radius: 0 0 28px 28px;
+      box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
+      z-index: 1200;
+      flex-direction: column;
+      padding: 26px 0 32px 0;
+      align-items: flex-start;
+      border-top: 1px solid #ececec;
+      transition: border-radius 0.25s, box-shadow 0.25s;
+      min-height: 260px;
+    }
+    .dropdown.open { display: flex; box-shadow: none; border-radius: 0 0 0 0; }
+    .dropdown-inner { display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 340px; padding-left: 48px; z-index: 2;}
+    .dropdown-link {
+      padding: 16px 28px;
+      color: #181818;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 10px;
+      transition: background 0.18s;
+      margin: 0.5rem 0;
+      width: 220px;
+    }
+    .dropdown-link:hover, .dropdown-link:focus { background: #ececec; outline: none; }
+    .dropdown-contact-img-wrapper {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      background: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown.open .dropdown-contact-img-wrapper { display: flex; }
+    .dropdown-contact-img-wrapper img {
+      display: block;
+      height: 90%;
+      width: auto;
+      max-width: 98vw;
+      max-height: 98%;
+      object-fit: contain;
+      border-radius: 24px;
+      box-shadow: 0 4px 32px #0002;
+      border: 6px solid #ececec;
+      background: #fff;
+      pointer-events: all;
+    }
+    @media (max-width: 900px) {
+      .dropdown-contact-img-wrapper img { border-radius: 14px; }
+    }
+    @media (max-width: 600px) {
+      .navbar { height: 50px; border-radius: 14px; }
+      .navbar.menu-open { border-radius: 14px 14px 0 0 !important; }
+      .navbar-center { font-size: 1.2rem; }
+      .hamburger-btn { margin-left: 10px; width: 36px; height: 36px; }
+      .hamburger-icon { width: 24px; height: 24px; gap: 6px; }
+      .hamburger-bar { width: 24px; height: 3px; }
+      .dropdown { top: 86px; border-radius: 0 0 14px 14px; padding: 12px 0 18px 0; min-height: 120px; }
+      .dropdown.open { border-radius: 0 0 0 0;}
+      .dropdown-inner { max-width: 98vw; padding-left: 12px; }
+      .dropdown-link { font-size: 1.02rem; width: 98vw; max-width: 250px; padding: 13px 4vw; }
+      .dropdown-contact-img-wrapper img { border-radius: 8px;}
+    }
 
+    .pdf-pages {
+      margin: 70px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+      gap: 44px;
+    }
+    .pdf-pages img {
+      display: block;
+      margin: 0 auto;
+      max-width: 90vw;
+      width: 100%;
+      max-height: 900px;
+      border: 8px solid #382417;
+      border-radius: 18px;
+      background: #f1f1f1;
+      box-shadow: 0 4px 16px #0001;
+    }
+    .pdf-pages img:first-child {
+      margin-top: 80px;
+    }
+    @media (max-width: 900px) {
+      .pdf-pages { gap: 18px; }
+      .pdf-pages img { border-width: 4px; border-radius: 10px; }
+      .pdf-pages img:first-child { margin-top: 80px; }
+    }
+    @media (max-width: 600px) {
+      .pdf-pages img { border-width: 2.5px; border-radius: 6px; }
+      .pdf-pages img:first-child { margin-top: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="navbar-content">
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+        <span class="hamburger-icon">
+          <span class="hamburger-bar bar1"></span>
+          <span class="hamburger-bar bar2"></span>
+        </span>
+      </button>
+      <span class="navbar-center">JOSEPH PAVICH</span>
+    </div>
+  </nav>
+  <div class="dropdown" id="dropdownMenu">
+    <div class="dropdown-inner">
+      <a href="index.html" class="dropdown-link" id="home-link">Home</a>
+      <a href="resume.html" class="dropdown-link">Resume</a>
+      <a href="story.html" class="dropdown-link">My Story</a>
+      <a href="challenges.html" class="dropdown-link">Challenges</a>
+      <a href="gallery.html" class="dropdown-link">Gallery</a>
+      <a href="#contact" class="dropdown-link" id="contact-link">Contact</a>
+    </div>
+    <div class="dropdown-contact-img-wrapper" id="contact-img-wrapper" style="display: none;">
+      <img src="images/contact.png" alt="Contact" />
+    </div>
+  </div>
+
+  <div class="pdf-pages">
+    <img src="images/5star1.jpg" alt="5 Star Safety page 1">
+    <img src="images/5star2.jpg" alt="5 Star Safety page 2">
+    <img src="images/5star3.jpg" alt="5 Star Safety page 3">
+  </div>
+
+  <script>
+    // Hamburger dropdown and morph
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const navbar = document.getElementById('navbar');
+    hamburgerBtn.addEventListener('click', function(e) {
+      hamburgerBtn.classList.toggle('open');
+      dropdownMenu.classList.toggle('open');
+      if (dropdownMenu.classList.contains('open')) {
+        navbar.classList.add('menu-open');
+      } else {
+        navbar.classList.remove('menu-open');
+      }
+      e.stopPropagation();
+    });
+    document.body.addEventListener('click', function() {
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+      navbar.classList.remove('menu-open');
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    dropdownMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+    document.getElementById('home-link').addEventListener('click', function(e) {
+      if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") return;
+      e.preventDefault();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+      navbar.classList.remove('menu-open');
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    document.getElementById('contact-link').addEventListener('mouseenter', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'flex';
+    });
+    document.getElementById('contact-link').addEventListener('mouseleave', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    document.getElementById('contact-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('contact-img-wrapper').style.display = 'flex';
+    });
+    document.getElementById('dropdownMenu').addEventListener('mouseleave', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    let prevScroll = window.scrollY;
+    window.addEventListener('scroll', function() {
+      let currScroll = window.scrollY;
+      if (!dropdownMenu.classList.contains('open')) {
+        if (currScroll > prevScroll && currScroll > 60) {
+          navbar.classList.add('hide');
+        } else {
+          navbar.classList.remove('hide');
+        }
+      } else {
+        navbar.classList.remove('hide');
+      }
+      prevScroll = currScroll;
+    }, {passive: true});
+  </script>
+</body>
+</html>
