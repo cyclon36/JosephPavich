@@ -16,7 +16,7 @@
       top: 36px;
       left: 0;
       width: 100vw;
-      background: #e4e4e4; /* changed from #fafaf8 to light grey */
+      background: #e4e4e4;
       border-radius: 28px 28px 28px 28px;
       box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12), 0 -2px 24px rgba(40,30,20,0.10);
       display: flex;
@@ -33,7 +33,7 @@
     .navbar-content { width: 100vw; display: flex; align-items: center; justify-content: center; position: relative; height: 100%; }
     .hamburger-btn { background: none; border: none; padding: 0; margin-left: 32px; margin-right: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor:pointer; }
     .hamburger-icon { width: 32px; height: 32px; position: relative; display: flex; flex-direction: column; justify-content: center; gap: 10px; transition: all 0.3s; }
-    .hamburger-bar { width: 32px; height: 4px; background: #6a6a6a; /* darker grey for contrast */ border-radius: 2px; transition: all 0.3s; position: relative; }
+    .hamburger-bar { width: 32px; height: 4px; background: #6a6a6a; border-radius: 2px; transition: all 0.3s; position: relative; }
     .hamburger-btn.open .bar1 { transform: rotate(45deg) translate(6px, 6px);}
     .hamburger-btn.open .bar2 { transform: rotate(-45deg) translate(6px, -6px);}
     .navbar-center { margin: 0 auto; font-weight: 900; font-size: 2.4rem; color: #181818; letter-spacing: 0.07em; line-height: 1; user-select: none; pointer-events: none; white-space: nowrap; position: relative;}
@@ -43,7 +43,7 @@
       left: 0;
       top: 101px;
       width: 100vw;
-      background: #e4e4e4; /* changed from #fafaf8 to light grey */
+      background: #e4e4e4;
       border-radius: 0 0 28px 28px;
       box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
       z-index: 1200;
@@ -136,12 +136,18 @@
       background: #f1f1f1;
       box-shadow: 0 4px 16px #0001;
     }
+    /* Add top padding to only the first image */
+    .pdf-pages img:first-child {
+      margin-top: 80px;
+    }
     @media (max-width: 900px) {
       .pdf-pages { gap: 18px; }
       .pdf-pages img { border-width: 4px; border-radius: 10px; }
+      .pdf-pages img:first-child { margin-top: 80px; }
     }
     @media (max-width: 600px) {
       .pdf-pages img { border-width: 2.5px; border-radius: 6px; }
+      .pdf-pages img:first-child { margin-top: 80px; }
     }
   </style>
 </head>
