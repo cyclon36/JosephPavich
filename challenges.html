@@ -153,7 +153,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: #fff8e1;
+      background: #f1f1f1; /* changed to grey */
       border: 8px solid #382417;
       border-radius: 24px;
       box-shadow: 0 4px 16px #0001;
@@ -171,13 +171,23 @@
       max-height: 180px;
       border-radius: 14px;
       display: block;
-      background: #fff;
+      background: #f1f1f1;
       margin-bottom: 8px;
+    }
+    .challenge-caption {
+      font-size: 1.18rem;
+      color: #382417;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      letter-spacing: 0.01em;
     }
     @media (max-width: 900px) {
       .challenges-image-links { gap: 22px; }
       .challenge-img-link { border-width: 4px; border-radius: 14px; padding: 12px 8px;}
       .challenge-img-link img { max-width: 130px; max-height: 90px; border-radius: 8px;}
+      .challenge-caption { font-size: 1rem; }
     }
     @media (max-width: 600px) {
       .challenges-image-links { flex-direction: column; align-items: center; gap: 16px;}
@@ -215,13 +225,16 @@
 
   <div class="challenges-image-links">
     <a class="challenge-img-link" href="5star.html">
-      <img src="images/5star.png" alt="5 Star Challenge">
+      <img src="images/5star.png" alt="5 Star Safety">
+      <span class="challenge-caption">5 Star Safety</span>
     </a>
     <a class="challenge-img-link" href="radius.html">
-      <img src="images/radius.png" alt="Radius Challenge">
+      <img src="images/radius.png" alt="Radius Test">
+      <span class="challenge-caption">Radius Test</span>
     </a>
     <a class="challenge-img-link" href="seamtape.html">
-      <img src="images/seamtape.png" alt="Seam Tape Challenge">
+      <img src="images/seamtape.png" alt="Seam Tape">
+      <span class="challenge-caption">Seam Tape</span>
     </a>
   </div>
 
