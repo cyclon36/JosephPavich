@@ -286,9 +286,10 @@
       height: 100%;
       width: auto;
       border-radius: 20px;
-      box-shadow: 0 2px 16px #0001;
       background: #f8f6f0;
       display: block;
+      /* Drop shadow removed */
+      box-shadow: none;
     }
     .welcome-text {
       font-size: 2rem;
@@ -300,8 +301,19 @@
       background: #fff8e1;
       border-radius: 18px;
       padding: 28px 32px;
-      box-shadow: 0 2px 8px #0001;
+      /* Thin brown border to match carousel */
+      border: 2px solid #382417;
+      box-shadow: none;
       text-align: left;
+    }
+    /* Separation line below welcome section, similar to carousel's top border */
+    .welcome-separator {
+      max-width: 900px;
+      width: 100%;
+      border: none;
+      border-top: 8px solid #382417;
+      margin: 32px auto 0 auto;
+      box-sizing: border-box;
     }
     /* Carousel Bar with sunburst background */
     .carousel-bar {
@@ -432,6 +444,10 @@
         padding: 18px 12px;
         max-width: 98vw;
       }
+      .welcome-separator {
+        margin-top: 18px;
+        max-width: 98vw;
+      }
       .carousel-bar {
         min-height: 220px;
         height: 50vw;
@@ -522,11 +538,12 @@
 
   <!-- BEGIN: Welcome Section -->
   <div class="welcome-row">
-    <img src="images/joepoint.png" class="welcome-img" alt="Joe pointing" />
+    <img src="images/joepoint1.png" class="welcome-img" alt="Joe pointing" />
     <div class="welcome-text">
       Welcome! We'll only cover portions of this site together, but feel free to come back and explore the menu and links on your own time.
     </div>
   </div>
+  <hr class="welcome-separator" />
   <!-- END: Welcome Section -->
 
   <div class="content">
