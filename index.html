@@ -155,7 +155,6 @@
       background: #ececec;
       outline: none;
     }
-    /* CONTACT IMAGE: Fill dropdown and center */
     .dropdown-contact-img-wrapper {
       display: none;
       position: absolute;
@@ -237,7 +236,7 @@
     }
     /* Hero BG and Content */
     .hero-bg {
-      margin-top: 10;
+      margin-top: 0;
       width: 100vw;
       height: 680px;
       background: url('/images/topimage.png') center center/cover no-repeat;
@@ -247,8 +246,9 @@
       justify-content: center;
       overflow: hidden;
       z-index: 1;
-      width: 100vw;
-      height: 680px;
+      max-width: 100vw;
+      max-height: 680px;
+      position: relative;
     }
     .hero-bg::before {
       content: "";
@@ -270,6 +270,38 @@
       box-shadow: 0 2px 12px 0 rgba(0,0,0,0.03);
       position: relative;
       z-index: 2;
+    }
+    /* Welcome Row styles */
+    .welcome-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 40px;
+      max-width: 900px;
+      margin: 32px auto 0 auto;
+      padding: 0 32px;
+    }
+    .welcome-img {
+      max-height: 300px;
+      height: 100%;
+      width: auto;
+      border-radius: 20px;
+      box-shadow: 0 2px 16px #0001;
+      background: #f8f6f0;
+      display: block;
+    }
+    .welcome-text {
+      font-size: 2rem;
+      color: #382417;
+      font-weight: 800;
+      line-height: 1.2;
+      max-width: 420px;
+      letter-spacing: 0.01em;
+      background: #fff8e1;
+      border-radius: 18px;
+      padding: 28px 32px;
+      box-shadow: 0 2px 8px #0001;
+      text-align: left;
     }
     /* Carousel Bar with sunburst background */
     .carousel-bar {
@@ -384,6 +416,22 @@
       max-height: 95%;
     }
     @media (max-width: 900px) {
+      .welcome-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 0 12px;
+        max-width: 98vw;
+      }
+      .welcome-img {
+        max-width: 98vw;
+        max-height: 200px;
+      }
+      .welcome-text {
+        font-size: 1.4rem;
+        padding: 18px 12px;
+        max-width: 98vw;
+      }
       .carousel-bar {
         min-height: 220px;
         height: 50vw;
@@ -413,6 +461,10 @@
       }
     }
     @media (max-width: 600px) {
+      .welcome-row {
+        margin-top: 12px;
+        gap: 12px;
+      }
       .carousel-bar {
         min-height: 100px;
         height: 26vw;
@@ -467,6 +519,16 @@
     </div>
   </div>
   <div class="hero-bg"></div>
+
+  <!-- BEGIN: Welcome Section -->
+  <div class="welcome-row">
+    <img src="images/joepoint.png" class="welcome-img" alt="Joe pointing" />
+    <div class="welcome-text">
+      Welcome! We'll only cover portions of this site together, but feel free to come back and explore the menu and links on your own time.
+    </div>
+  </div>
+  <!-- END: Welcome Section -->
+
   <div class="content">
     <h1>Welcome to Joseph Pavich’s Portfolio</h1>
     <p>This is sample content. Your hero background and navigation bar now match your custom requirements!</p>
