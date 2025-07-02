@@ -10,7 +10,6 @@
       margin: 0;
       background: #f9f9f9;
     }
-    /* Navbar styles ... (unchanged) */
     .navbar {
       position: fixed;
       top: 36px;
@@ -31,7 +30,7 @@
     .navbar.hide { top: -90px; }
     .navbar.menu-open { border-radius: 28px 28px 0 0 !important; box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);}
     .navbar-content { width: 100vw; display: flex; align-items: center; justify-content: center; position: relative; height: 100%; }
-    .hamburger-btn { background: none; border: none; padding: 0; margin-left: 32px; margin-right: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 1201; }
+    .hamburger-btn { background: none; border: none; padding: 0; margin-left: 32px; margin-right: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; cursor: pointer; position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 1201;}
     .hamburger-icon { width: 32px; height: 32px; position: relative; display: flex; flex-direction: column; justify-content: center; gap: 10px; transition: all 0.3s; }
     .hamburger-bar { width: 32px; height: 4px; background: #181818; border-radius: 2px; transition: all 0.3s; position: relative; }
     .hamburger-btn.open .bar1 { transform: rotate(45deg) translate(6px, 6px);}
@@ -54,20 +53,8 @@
       transition: border-radius 0.25s, box-shadow 0.25s;
       min-height: 260px;
     }
-    .dropdown.open {
-      display: flex;
-      box-shadow: none;
-      border-radius: 0 0 0 0;
-    }
-    .dropdown-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-      max-width: 340px;
-      padding-left: 48px;
-      z-index: 2;
-    }
+    .dropdown.open { display: flex; box-shadow: none; border-radius: 0 0 0 0; }
+    .dropdown-inner { display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 340px; padding-left: 48px; z-index: 2;}
     .dropdown-link {
       padding: 16px 28px;
       color: #181818;
@@ -86,8 +73,6 @@
       width: 220px;
     }
     .dropdown-link:hover, .dropdown-link:focus { background: #ececec; outline: none; }
-
-    /* CONTACT IMAGE: Fill dropdown and center */
     .dropdown-contact-img-wrapper {
       display: none;
       position: absolute;
@@ -98,9 +83,7 @@
       align-items: center;
       justify-content: center;
     }
-    .dropdown.open .dropdown-contact-img-wrapper {
-      display: flex;
-    }
+    .dropdown.open .dropdown-contact-img-wrapper { display: flex; }
     .dropdown-contact-img-wrapper img {
       display: block;
       height: 90%;
@@ -115,61 +98,61 @@
       pointer-events: all;
     }
     @media (max-width: 900px) {
-      .dropdown-contact-img-wrapper img {
-        border-radius: 14px;
-      }
+      .dropdown-contact-img-wrapper img { border-radius: 14px; }
     }
     @media (max-width: 600px) {
-      .navbar {
-        height: 50px;
-        border-radius: 14px;
-      }
-      .navbar.menu-open {
-        border-radius: 14px 14px 0 0 !important;
-      }
-      .navbar-center {
-        font-size: 1.2rem;
-      }
-      .hamburger-btn {
-        margin-left: 10px;
-        width: 36px;
-        height: 36px;
-      }
-      .hamburger-icon {
-        width: 24px;
-        height: 24px;
-        gap: 6px;
-      }
-      .hamburger-bar {
-        width: 24px;
-        height: 3px;
-      }
-      .dropdown {
-        top: 86px;
-        border-radius: 0 0 14px 14px;
-        padding: 12px 0 18px 0;
-        min-height: 120px;
-      }
-      .dropdown.open {
-        border-radius: 0 0 0 0;
-      }
-      .dropdown-inner {
-        max-width: 98vw;
-        padding-left: 12px;
-      }
-      .dropdown-link {
-        font-size: 1.02rem;
-        width: 98vw;
-        max-width: 250px;
-        padding: 13px 4vw;
-      }
-      .dropdown-contact-img-wrapper img {
-        border-radius: 8px;
-      }
+      .navbar { height: 50px; border-radius: 14px; }
+      .navbar.menu-open { border-radius: 14px 14px 0 0 !important; }
+      .navbar-center { font-size: 1.2rem; }
+      .hamburger-btn { margin-left: 10px; width: 36px; height: 36px; }
+      .hamburger-icon { width: 24px; height: 24px; gap: 6px; }
+      .hamburger-bar { width: 24px; height: 3px; }
+      .dropdown { top: 86px; border-radius: 0 0 14px 14px; padding: 12px 0 18px 0; min-height: 120px; }
+      .dropdown.open { border-radius: 0 0 0 0;}
+      .dropdown-inner { max-width: 98vw; padding-left: 12px; }
+      .dropdown-link { font-size: 1.02rem; width: 98vw; max-width: 250px; padding: 13px 4vw; }
+      .dropdown-contact-img-wrapper img { border-radius: 8px;}
     }
+
+    /* HERO GALLERY HEADER */
+    .gallery-hero-bg {
+      margin-top: 0;
+      width: 100vw;
+      height: 480px;
+      background: url('gallery/gallerytop.png') center center/cover no-repeat;
+      border-radius: 0 0 32px 32px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+      max-width: 100vw;
+      max-height: 480px;
+      position: relative;
+    }
+    .gallery-hero-bg::before {
+      content: "";
+      display: block;
+      height: 90px;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: transparent;
+      z-index: 2;
+    }
+    @media (max-width: 900px) {
+      .gallery-hero-bg { height: 240px; max-height: 240px; border-radius: 0 0 18px 18px;}
+    }
+    @media (max-width: 600px) {
+      .gallery-hero-bg { height: 110px; max-height: 110px; border-radius: 0 0 8px 8px;}
+    }
+
     .gallery-page-content {
       padding-top: 160px;
     }
+    @media (max-width: 600px) { .gallery-page-content { padding-top: 110px; } }
+
     .gallery-description {
       max-width: 700px;
       margin: 0 auto 26px auto;
@@ -216,6 +199,11 @@
       object-fit: cover;
       border-radius: 12px;
     }
+    @media (max-width: 600px) {
+      .gallery-container { gap: 12px; }
+      .gallery-thumb { width: 120px; height: 90px; border-width: 7px; border-radius: 10px;}
+    }
+
     .modal {
       display: none;
       position: fixed;
@@ -258,9 +246,6 @@
     }
     .modal-close:hover { color: #e06348;}
     @media (max-width: 600px) {
-      .gallery-page-content { padding-top: 110px; }
-      .gallery-container { gap: 12px; }
-      .gallery-thumb { width: 120px; height: 90px; border-width: 7px; border-radius: 10px;}
       .modal-img-wrapper { padding: 4px; border-radius: 6px;}
     }
   </style>
@@ -291,6 +276,10 @@
       <img src="images/contact.png" alt="Contact" />
     </div>
   </div>
+
+  <!-- GALLERY HERO HEADER -->
+  <div class="gallery-hero-bg"></div>
+
   <div class="gallery-page-content">
     <h1 style="text-align:center; margin-top:30px;">Gallery</h1>
     <div class="gallery-description">
