@@ -320,6 +320,24 @@
       box-sizing: border-box;
     }
     /* ---- VALUE ARRAY SECTION CSS ---- */
+    .down-arrow-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 32px;
+      margin-bottom: -32px;
+    }
+    .down-arrow-img {
+      display: block;
+      width: 68px;
+      height: auto;
+      margin: 0 auto;
+      border: none;
+      box-shadow: none;
+      background: none;
+      padding: 0;
+    }
     .value-array-container {
       position: relative;
       width: 1200px;
@@ -373,11 +391,13 @@
       .value-array-container { width: 98vw; min-width: 320px; height: 65vw; min-height: 400px; max-width: 680px; }
       .value-img, .value-img.center { width: 19vw; height: 19vw; min-width: 80px; min-height: 80px; max-width: 160px; max-height: 160px; }
       .value-img.center { width: 22vw; height: 22vw; min-width: 100px; min-height: 100px; max-width: 180px; max-height: 180px; }
+      .down-arrow-img { width: 40px; }
     }
     @media (max-width: 600px) {
       .value-array-container { width: 100vw; height: 125vw; min-height: 340px; max-width: 100vw;}
       .value-img, .value-img.center { border-width: 3px; border-radius: 10px; }
       .value-img.center { border: none; }
+      .down-arrow-img { width: 26px; }
     }
     /* ---- END VALUE ARRAY SECTION CSS ---- */
 
@@ -612,10 +632,11 @@
   <hr class="welcome-separator" />
   <!-- END: Welcome Section -->
 
-  <div class="content">
-    <h1>Welcome to Joseph Pavich’s Portfolio</h1>
-    <p>This is sample content. Your hero background and navigation bar now match your custom requirements!</p>
+  <!-- BEGIN: Down Arrow Above Value Array -->
+  <div class="down-arrow-wrap">
+    <img src="images/down.png" alt="Down Arrow" class="down-arrow-img" />
   </div>
+  <!-- END: Down Arrow Above Value Array -->
 
   <!-- BEGIN: Value Array Section -->
   <div class="value-array-container">
