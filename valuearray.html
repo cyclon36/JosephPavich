@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Value Array Layout</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #fff;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .value-array-container {
+      position: relative;
+      width: 800px;
+      height: 600px;
+      margin: 60px auto;
+      background: #fff;
+      /* For demo: outline to see container */
+      /* border: 1px dashed #ddd; */
+    }
+
+    .value-img {
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border: 6px solid #382417;
+      border-radius: 18px;
+      background: #fafaf8;
+      box-shadow: 0 4px 16px #0001;
+      transition: box-shadow 0.2s;
+      background-clip: padding-box;
+    }
+    .value-img.center {
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 190px;
+      height: 190px;
+      z-index: 2;
+      border-width: 8px;
+      /* Slightly larger for emphasis */
+    }
+
+    /* Surrounding images, placed in a hexagon (clockwise from left) */
+    .value-img.together {
+      left: 6%;  top: 38%;
+    }
+    .value-img.ask {
+      left: 28%; top: 10%;
+    }
+    .value-img.why {
+      left: 57%; top: 10%;
+    }
+    .value-img.open {
+      left: 80%; top: 38%;
+    }
+    .value-img.zoom {
+      left: 21%; top: 68%;
+    }
+    .value-img.deliver {
+      left: 67%; top: 68%;
+    }
+
+    @media (max-width: 950px) {
+      .value-array-container { width: 98vw; min-width: 320px; height: 65vw; min-height: 400px; max-width: 680px; }
+      .value-img, .value-img.center { width: 19vw; height: 19vw; min-width: 80px; min-height: 80px; max-width: 160px; max-height: 160px; }
+      .value-img.center { width: 22vw; height: 22vw; min-width: 100px; min-height: 100px; max-width: 180px; max-height: 180px; }
+    }
+    @media (max-width: 600px) {
+      .value-array-container { width: 100vw; height: 125vw; min-height: 340px; max-width: 100vw;}
+      .value-img, .value-img.center { border-width: 3px; border-radius: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="value-array-container">
+    <!-- Central Image -->
+    <img src="images/values.png" alt="Values" class="value-img center">
+
+    <!-- Surrounding Images, left to right (clockwise) -->
+    <img src="images/together.png" alt="Together" class="value-img together">
+    <img src="images/ask.png" alt="Ask" class="value-img ask">
+    <img src="images/why.png" alt="Why" class="value-img why">
+    <img src="images/open.png" alt="Open" class="value-img open">
+    <img src="images/zoom.png" alt="Zoom" class="value-img zoom">
+    <img src="images/deliver.png" alt="Deliver" class="value-img deliver">
+  </div>
+</body>
+</html>
