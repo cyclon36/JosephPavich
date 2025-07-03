@@ -1,1 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Story - Joseph Pavich</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: #fff;
+      color: #181818;
+    }
+    /* Grey Navbar Styles (mirroring challenges page) */
+    .navbar {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      width: 100vw;
+      background: #ececec;
+      border-radius: 28px 28px 28px 28px;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12), 0 -2px 24px rgba(40,30,20,0.10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 65px;
+      z-index: 1000;
+      transition: top 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.25s, box-shadow 0.25s;
+      gap: 0;
+      padding: 0;
+    }
+    .navbar-content {
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 100%;
+    }
+    .hamburger-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-left: 32px;
+      margin-right: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1201;
+    }
+    .hamburger-icon {
+      width: 32px;
+      height: 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+    .hamburger-bar {
+      width: 32px;
+      height: 4px;
+      background: #181818;
+      border-radius: 2px;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .hamburger-btn.open .bar1 {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger-btn.open .bar2 {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+    .navbar-center {
+      margin: 0 auto;
+      font-weight: 900;
+      font-size: 2.4rem;
+      color: #181818;
+      letter-spacing: 0.07em;
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1100;
+    }
+    .dropdown {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 101px;
+      width: 100vw;
+      background: #ececec;
+      border-radius: 0 0 28px 28px;
+      box-shadow: 0 6px 24px 0 rgba(0,0,0,0.15);
+      z-index: 1200;
+      flex-direction: column;
+      padding: 26px 0 32px 0;
+      align-items: flex-start;
+      border-top: 1px solid #d4d4d4;
+      transition: border-radius 0.25s, box-shadow 0.25s;
+      min-height: 180px;
+    }
+    .dropdown.open {
+      display: flex;
+      box-shadow: none;
+      border-radius: 0 0 0 0;
+    }
+    .dropdown-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 340px;
+      padding-left: 48px;
+      z-index: 2;
+    }
+    .dropdown-link {
+      padding: 16px 28px;
+      color: #181818;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 10px;
+      transition: background 0.18s;
+      margin: 0.5rem 0;
+      width: 220px;
+    }
+    .dropdown-link:hover,
+    .dropdown-link:focus {
+      background: #d4d4d4;
+      outline: none;
+    }
+    .dropdown-contact-img-wrapper {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      background: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown.open .dropdown-contact-img-wrapper {
+      display: flex;
+    }
+    .dropdown-contact-img-wrapper img {
+      display: block;
+      height: 90%;
+      width: auto;
+      max-width: 98vw;
+      max-height: 98%;
+      object-fit: contain;
+      border-radius: 24px;
+      box-shadow: 0 4px 32px #0002;
+      border: 6px solid #ececec;
+      background: #fff;
+      pointer-events: all;
+    }
+    @media (max-width: 900px) {
+      .dropdown-contact-img-wrapper img {
+        border-radius: 14px;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        height: 50px;
+        border-radius: 14px;
+      }
+      .navbar-center {
+        font-size: 1.2rem;
+      }
+      .hamburger-btn {
+        margin-left: 10px;
+        width: 36px;
+        height: 36px;
+      }
+      .hamburger-icon {
+        width: 24px;
+        height: 24px;
+        gap: 6px;
+      }
+      .hamburger-bar {
+        width: 24px;
+        height: 3px;
+      }
+      .dropdown {
+        top: 86px;
+        border-radius: 0 0 14px 14px;
+        padding: 12px 0 18px 0;
+        min-height: 120px;
+      }
+      .dropdown.open {
+        border-radius: 0 0 0 0;
+      }
+      .dropdown-inner {
+        max-width: 98vw;
+        padding-left: 12px;
+      }
+      .dropdown-link {
+        font-size: 1.02rem;
+        width: 98vw;
+        max-width: 250px;
+        padding: 13px 4vw;
+      }
+      .dropdown-contact-img-wrapper img {
+        border-radius: 8px;
+      }
+    }
+    /* Main Content Styles */
+    .main-content {
+      margin: 0 auto;
+      max-width: 800px;
+      padding: 160px 20px 60px 20px; /* 160px to clear navbar */
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      margin-bottom: 48px;
+      margin-top: 0;
+      color: #181818;
+      text-align: center;
+      letter-spacing: 0.06em;
+    }
+    .spacer {
+      height: 40px;
+    }
+    .story-image {
+      display: block;
+      max-width: 90vw;
+      width: 400px;
+      margin: 28px auto 28px auto;
+      border: none;
+      box-shadow: none;
+      background: none;
+    }
+    .text-block {
+      font-size: 1.26rem;
+      margin: 32px 0 32px 0;
+      color: #222;
+      text-align: left;
+      line-height: 1.7;
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      .main-content { padding: 110px 4vw 40px 4vw;}
+      .story-image { width: 98vw; max-width: 98vw; }
+      h1 { font-size: 1.4rem; }
+      .text-block { font-size: 1.01rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="navbar-content">
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+        <span class="hamburger-icon">
+          <span class="hamburger-bar bar1"></span>
+          <span class="hamburger-bar bar2"></span>
+        </span>
+      </button>
+      <span class="navbar-center">JOSEPH PAVICH</span>
+    </div>
+  </nav>
+  <div class="dropdown" id="dropdownMenu">
+    <div class="dropdown-inner">
+      <a href="index.html" class="dropdown-link" id="home-link">Home</a>
+      <a href="resume.html" class="dropdown-link">Resume</a>
+      <a href="story.html" class="dropdown-link">My Story</a>
+      <a href="challenges.html" class="dropdown-link">Challenges</a>
+      <a href="gallery.html" class="dropdown-link">Gallery</a>
+      <a href="#contact" class="dropdown-link" id="contact-link">Contact</a>
+    </div>
+    <div class="dropdown-contact-img-wrapper" id="contact-img-wrapper" style="display: none;">
+      <img src="images/contact.png" alt="Contact" />
+    </div>
+  </div>
 
+  <div class="main-content">
+    <h1>My Story</h1>
+    <div class="spacer"></div>
+
+    <div class="text-block">
+      What’s my story and why does it matter? This isn’t about my skills as a trimmer, or my knowledge of industrialization, engineering background or experience. It’s about my passion for cars and the freedom they bring us. Something I’ve unfortunately noticed during my time in automotive is that the world is filled with designers and engineers who don’t even like cars. It’s just another job that pays the bills. While they might be good at what they do, they might never realize their potential if there is no true passion or interest in what they’re working on.
+ 
+This is not a job for me; it’s an extension of my life and passions for what I’ve learned to value and appreciate. I want to surround myself with like-minded people and share how exciting automotive can be and the adventures it can bring. If we don’t embody the same values the company we work for does, can we ever truly achieve our best?
+    </div>
+    <img src="images/polaroid.png" alt="Polaroid Photo" class="story-image"/>
+
+    <div class="text-block">
+      In a way, my story begins very much like Rivian’s. Fascinated by cars as a kid, it’s all I talked and dreamed about. I spent days drawing outlines of my favorite models which filled numerous binders and folders as I grew up. When I turned 16, I was amazingly fortunate to have a Jeep Wrangler as my first car. A TJ to be specific. This iconic convertible sparked my sense of adventure and stoked my passion for automobiles even further. Having the ability to travel lead me in so many directions and developed my appreciation for the open road and new places.
+    </div>
+    <img src="images/polaroid1.png" alt="Polaroid 1" class="story-image"/>
+
+    <div class="text-block">
+      At the same time, I became interested in its design. The Wrangler wasn’t just transportation for me; I was obsessed with the details of its design and what went into it. I would wash it every single week in a three-hour ritual. If it rained, I’d wash it again. I spent hours working to afford small add-ons or bits and pieces I felt complimented its personality. Often times installing then removing and replacing with something else until I got it right. Although I eventually sold it, I would go on to own two more TJ’s, one of which I still have as its style maintains a permanent soft spot in my heart.
+
+Without turning this simple site into a novel, it’s sufficient to say that my early love for automotive adventure eventually turned into days at the racetrack, off-roading through the woods, and countless drives across the United States. Despite the occasional closed roof, I prefer being part of the journey, sun shining on me, and wind blowing through the cabin. You can’t appreciate your surroundings as much when you’re closed off from them and I found that life wasn’t complete unless I had at least one convertible to scratch that itch.
+
+    </div>
+    <img src="images/polaroid2.png" alt="Polaroid 2" class="story-image"/>
+
+    <div class="text-block">
+      Progressing through my first few careers, I found myself in the unique position to start my own company. Starting as a hobby with cutting out small pieces of vinyl so I could sell as console covers, I eventually taught myself to sew. As my skills grew, I found myself working on more amazing cars every year. I soaked up all the information I could from the projects that came in. How the Japanese designed versus the Germans, versus the Americans. All of the cars that I dreamed about as a kid were coming through my shop to have me design their next interior. 
+
+Despite the growth and reputation of the company, lack of family time and amount of involvement to keep it moving forward left me with many difficult decisions. When an opportunity came to help develop seats for an actual OEM, I took that as an opportunity to expand my knowledge.
+
+As my journey evolved and the world started the pivot towards EVs, I found myself at the forefront of the automotive universe. Despite my ambition at work and drive to create something new and exciting, I never felt I was able to work on something that was filled with details. I worked at Tesla for six years before I purchased my first EV… an R1S. Sparked by a trip to a sand dune park with a friend who drove an R1T, I was instantly hooked. The more I went over his truck and more I studied the brand, the details, all of the effort and ideas that went into Rivian’s first vehicles, the more I knew I had to have one. It was December of 2023 when my wife and I took delivery of our Forest Green R1S with a Forest Edge interior, a nod to my green TJ with green and tan seats.
+    </div>
+    <img src="images/polaroids2.png" alt="Polaroids 2" class="story-image"/>
+
+    <div class="text-block">
+      After spending years working on cars with minimal details and uninspiring interiors, this was a breath of fresh air. Despite the difficult design of a lot of the pieces, you knew this was a designer’s showcase and not something that was overly simplified by engineers or cheapened by purchasing departments. I was immediately envious that there existed a company that could make something like as stylish and deliberate as the R1S and that I was not involved. I was even more drawn to be part Rivian when the R3X was revealed, which will be my next car. 
+
+I want Rivian’s future to be part of my journey and hope to be a part of the reason why it continues to succeed. I believe in the skills, foundation, and automotive passion within me and, given the chance, I know the team at Rivian would as well.
+ 
+Let’s go on an adventure.
+ 
+Joe
+    </div>
+    <img src="images/polaroid3.png" alt="Polaroid 3" class="story-image"/>
+  </div>
+
+  <script>
+    // Hamburger dropdown and morph
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const navbar = document.getElementById('navbar');
+    hamburgerBtn.addEventListener('click', function(e) {
+      hamburgerBtn.classList.toggle('open');
+      dropdownMenu.classList.toggle('open');
+      e.stopPropagation();
+    });
+    document.body.addEventListener('click', function() {
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+    });
+    dropdownMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // Home link: go to index page (even from other pages)
+    document.getElementById('home-link').addEventListener('click', function(e) {
+      if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") return;
+      e.preventDefault();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      hamburgerBtn.classList.remove('open');
+      dropdownMenu.classList.remove('open');
+    });
+
+    // Contact link: show image centered in dropdown
+    document.getElementById('contact-link').addEventListener('mouseenter', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'flex';
+    });
+    document.getElementById('contact-link').addEventListener('mouseleave', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+    document.getElementById('contact-link').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('contact-img-wrapper').style.display = 'flex';
+    });
+    document.getElementById('dropdownMenu').addEventListener('mouseleave', function() {
+      document.getElementById('contact-img-wrapper').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
