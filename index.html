@@ -10,7 +10,61 @@
       font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
       background: #fff;
     }
-    /* Navbar styles */
+    /* ...existing styles... */
+    .popup-modal {
+      display: none;
+      position: fixed;
+      z-index: 2222;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(24,18,12,0.85);
+      justify-content: center;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .popup-modal.open {
+      display: flex;
+    }
+    .popup-modal-img {
+      max-width: 96vw;
+      max-height: 92vh;
+      border-radius: 24px;
+      border: none;
+      box-shadow: 0 6px 32px #000a;
+      background: #fff;
+      display: block;
+    }
+    .popup-modal-close {
+      position: absolute;
+      top: 32px;
+      right: 38px;
+      font-size: 2.2rem;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 3;
+      padding: 0 12px;
+      font-weight: bold;
+      transition: color 0.2s;
+      text-shadow: 0 2px 12px #000a;
+      line-height: 1;
+    }
+    .popup-modal-close:hover { color: #e06348; }
+    @media (max-width: 600px) {
+      .popup-modal-close {
+        top: 8px;
+        right: 12px;
+        font-size: 1.5rem;
+      }
+      .popup-modal-img {
+        border-radius: 8px;
+      }
+    }
+    /* Existing index.css content below this line */
+    /* Navbar styles, hero, welcome, array, carousel, etc. all as in your latest file */
     .navbar {
       position: fixed;
       top: 36px;
@@ -261,17 +315,6 @@
       background: transparent;
       z-index: 2;
     }
-    .content {
-      max-width: 900px;
-      margin: 100px auto 0 auto;
-      padding: 2rem;
-      background: #f8f6f0;
-      border-radius: 18px;
-      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.03);
-      position: relative;
-      z-index: 2;
-    }
-    /* Welcome Row styles */
     .welcome-row {
       display: flex;
       align-items: center;
@@ -288,7 +331,6 @@
       border-radius: 20px;
       background: #f8f6f0;
       display: block;
-      /* Drop shadow removed */
       box-shadow: none;
     }
     .welcome-text {
@@ -301,12 +343,10 @@
       background: #fff8e1;
       border-radius: 18px;
       padding: 28px 32px;
-      /* Thin brown border to match carousel */
       border: 2px solid #382417;
       box-shadow: none;
       text-align: left;
     }
-    /* Separation line below welcome section, similar to carousel's top border */
     .welcome-separator {
       width: 100vw;
       max-width: none;
@@ -319,7 +359,6 @@
       transform: translateX(-50%);
       box-sizing: border-box;
     }
-    /* ---- VALUE ARRAY SECTION CSS ---- */
     .down-arrow-wrap {
       width: 100%;
       display: flex;
@@ -356,6 +395,7 @@
       box-shadow: 0 0px 0px #0001;
       transition: box-shadow 0.2s;
       background-clip: padding-box;
+      cursor: pointer;
     }
     .value-img.center {
       left: 50%; top: 60%;
@@ -364,9 +404,9 @@
       height: 190px;
       z-index: 2;
       border-width: 0px;
-      border: none; /* Remove border from center image */
+      border: none;
+      cursor: default;
     }
-    /* Pentagon arrangement, all at same radius from center */
     .value-img.open {
       left: 50%; top: 14%;
       transform: translate(-50%, 0);
@@ -399,9 +439,6 @@
       .value-img.center { border: none; }
       .down-arrow-img { width: 26px; }
     }
-    /* ---- END VALUE ARRAY SECTION CSS ---- */
-
-    /* Carousel Bar with sunburst background */
     .carousel-bar {
       width: 100vw;
       position: relative;
@@ -642,14 +679,20 @@
   <div class="value-array-container">
     <!-- Central Image -->
     <img src="images/values.png" alt="Values" class="value-img center">
-    <!-- Surrounding Images -->
-    <img src="images/together.png" alt="Together" class="value-img together">
-    <img src="images/ask.png" alt="Ask" class="value-img ask">
-    <img src="images/open.png" alt="Open" class="value-img open">
-    <img src="images/zoom.png" alt="Zoom" class="value-img zoom">
-    <img src="images/deliver.png" alt="Deliver" class="value-img deliver">
+    <!-- Surrounding Images, now with popups -->
+    <img src="images/together.png" alt="Together" class="value-img together pop-trigger" data-popup="images/val1.jpeg">
+    <img src="images/ask.png" alt="Ask" class="value-img ask pop-trigger" data-popup="images/val2.jpeg">
+    <img src="images/open.png" alt="Open" class="value-img open pop-trigger" data-popup="images/val3.jpeg">
+    <img src="images/zoom.png" alt="Zoom" class="value-img zoom pop-trigger" data-popup="images/val4.jpeg">
+    <img src="images/deliver.png" alt="Deliver" class="value-img deliver pop-trigger" data-popup="images/val5.jpeg">
   </div>
   <!-- END: Value Array Section -->
+
+  <!-- POPUP MODAL (single, reused for all) -->
+  <div class="popup-modal" id="popup-modal">
+    <button class="popup-modal-close" id="popup-modal-close" aria-label="Close popup">&times;</button>
+    <img src="" alt="Value Detail" class="popup-modal-img" id="popup-modal-img">
+  </div>
 
   <div class="carousel-bar">
     <div class="carousel-shell">
@@ -766,6 +809,36 @@
       else if (x - startX < -50 && slideIndex < slides.length - 1) { nextBtn.click(); isDown = false; }
     });
     updateCarousel();
+
+    // POPUP MODAL LOGIC FOR VALUE ARRAY
+    document.querySelectorAll('.pop-trigger').forEach(function(img) {
+      img.addEventListener('click', function(e) {
+        const modal = document.getElementById('popup-modal');
+        const modalImg = document.getElementById('popup-modal-img');
+        modalImg.src = img.getAttribute('data-popup');
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    document.getElementById('popup-modal-close').addEventListener('click', function() {
+      document.getElementById('popup-modal').classList.remove('open');
+      document.getElementById('popup-modal-img').src = '';
+      document.body.style.overflow = '';
+    });
+    document.getElementById('popup-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('open');
+        document.getElementById('popup-modal-img').src = '';
+        document.body.style.overflow = '';
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") {
+        document.getElementById('popup-modal').classList.remove('open');
+        document.getElementById('popup-modal-img').src = '';
+        document.body.style.overflow = '';
+      }
+    });
   </script>
 </body>
 </html>
