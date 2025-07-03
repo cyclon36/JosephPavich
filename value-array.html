@@ -18,8 +18,6 @@
       height: 600px;
       margin: 60px auto;
       background: #fff;
-      /* For demo: outline to see container */
-      /* border: 1px dashed #ddd; */
     }
 
     .value-img {
@@ -41,27 +39,28 @@
       height: 190px;
       z-index: 2;
       border-width: 8px;
-      /* Slightly larger for emphasis */
     }
 
-    /* Surrounding images, placed in a hexagon (clockwise from left) */
-    .value-img.together {
-      left: 6%;  top: 38%;
+    /* Pentagon arrangement, all at same radius from center */
+    .value-img.open {
+      left: 50%; top: 14%;
+      transform: translate(-50%, 0);
     }
     .value-img.ask {
-      left: 28%; top: 10%;
+      left: 19.1%; top: 29%;
+      transform: translate(0, 0);
     }
-    .value-img.why {
-      left: 57%; top: 10%;
-    }
-    .value-img.open {
-      left: 80%; top: 38%;
-    }
-    .value-img.zoom {
-      left: 21%; top: 68%;
+    .value-img.together {
+      left: 14.5%; top: 62%;
+      transform: translate(0, -50%);
     }
     .value-img.deliver {
-      left: 67%; top: 68%;
+      left: 85.5%; top: 62%;
+      transform: translate(-100%, -50%);
+    }
+    .value-img.zoom {
+      left: 80.9%; top: 29%;
+      transform: translate(-100%, 0);
     }
 
     @media (max-width: 950px) {
@@ -80,10 +79,9 @@
     <!-- Central Image -->
     <img src="images/values.png" alt="Values" class="value-img center">
 
-    <!-- Surrounding Images, left to right (clockwise) -->
+    <!-- Surrounding Images -->
     <img src="images/together.png" alt="Together" class="value-img together">
     <img src="images/ask.png" alt="Ask" class="value-img ask">
-    <img src="images/why.png" alt="Why" class="value-img why">
     <img src="images/open.png" alt="Open" class="value-img open">
     <img src="images/zoom.png" alt="Zoom" class="value-img zoom">
     <img src="images/deliver.png" alt="Deliver" class="value-img deliver">
